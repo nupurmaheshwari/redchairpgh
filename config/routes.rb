@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  #devise_for :users
   # Semi-static page routes
   get 'home', to: 'home#index', as: :home
   get 'home/about', to: 'home#about', as: :about
@@ -7,13 +8,19 @@ Rails.application.routes.draw do
   get 'home/privacy', to: 'home#privacy', as: :privacy
   get 'home/search', to: 'home#search', as: :search
 
+  # LinkedIn authentication routes 
+  get '/auth/linkedin/callback' => 'sessions#create'
+  
   # Authentication routes
-  resources :sessions
-  resources :users
-  get 'users/new', to: 'users#new', as: :signup
-  get 'user/edit', to: 'users#edit', as: :edit_current_user
-  get 'login', to: 'sessions#new', as: :login
-  get 'logout', to: 'sessions#destroy', as: :logout
+  #resources :sessions
+  #resources :users
+  #get 'users/new', to: 'users#new', as: :signup
+  #get 'user/edit', to: 'users#edit', as: :edit_current_user
+  get '/login' => "sessions#new"
+  post '/sessions' => "sessions#create"
+  get '/logout' => "sessions#destroy"
+
+  #resources :users, :only => [:new, :create]
 
   # Resource routes (maps HTTP verbs to controller actions automatically):
   resources :mentees
