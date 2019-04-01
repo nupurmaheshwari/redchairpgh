@@ -2,7 +2,10 @@ class User < ApplicationRecord
   
   # Use built-in rails support for password protection
   has_secure_password
-    
+  
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable, :omniauthable
+  
   # Relationships
   has_many :mentorships
   

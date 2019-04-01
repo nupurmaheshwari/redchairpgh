@@ -1,5 +1,5 @@
 class MenteesController < ApplicationController
-    before_action :check_login
+    #before_action :check_login
 
     def new
         @mentee = Mentee.new
