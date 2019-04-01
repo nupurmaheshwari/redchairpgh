@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_action :check_login
+  #before_action :check_login
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
   
   def index
     # get all visits in reverse chronological order, 10 per page
@@ -7,14 +8,19 @@ class UsersController < ApplicationController
   end
   
   def show
+     puts "SHOW!!!!!!!!!!!!!!!!!!!!!"
+    @user = @user
   end
   
   def new
     @user = User.new
+    
   end
   
   def create
+    puts "EXCUSE ME"
     @user = User.new(user_params)
+    puts @user 
     if @user.save
       flash[:notice] = "Welcome, #{@user.first_name}."
       redirect_to @user
@@ -48,6 +54,6 @@ class UsersController < ApplicationController
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :image_url, :email, :profile_url, :location, :active)
+      params.permit(:uid, :provider, :first_name, :last_name, :image_url, :email, :profile_url, :location, :active, :created_at, :updated_at)
     end
 end

@@ -25,14 +25,18 @@
 
 
 class SessionsController < ApplicationController
+  
   def create
     #render plain: request.env['omniauth.auth']
     begin
-      puts "trying to create user"
-      @user = User.from_omniauth(request.env['omniauth.auth'])
-      puts "SUCCESS"
+      auth_hash = request.env['omniauth.auth']
+      @user = User.from_omniauth(auth_hash)
+      if !@user 
+        @user = User.new(auth_hash['uid'], auth_hash['info']['first_name'],
+        auth_hash['info']['last_name'], auth_hash['info']['picture_url'])
+      end
       session[:user_id] = @user.id
-      flash[:success] = "Welcome, #{@user.name}!"
+      #flash[:success] = "Welcome, #{@user.first_name}!"
     rescue
      flash[:warning] = "There was an error while trying to authenticate you..."
     end
@@ -48,7 +52,6 @@ class SessionsController < ApplicationController
   end
 
   def auth_failure
-    puts "POOP!!!!!!"
     puts request.env['omniauth.auth'].to_yaml
     redirect_to about_path
   end

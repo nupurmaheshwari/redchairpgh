@@ -1,5 +1,5 @@
 class MentorsController < ApplicationController
-    before_action :check_login
+    #before_action :check_login
 
     def new
         @mentor = Mentor.new

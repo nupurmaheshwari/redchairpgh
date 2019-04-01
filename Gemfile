@@ -34,6 +34,7 @@ gem 'omniauth-linkedin-oauth2'#, git: 'https://github.com/Devato/omniauth-linked
 #gem 'omniauth-linkedin'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+gem 'simple_form', '3.5.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
