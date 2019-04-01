@@ -7,9 +7,17 @@ Rails.application.routes.draw do
   get 'home/contact', to: 'home#contact', as: :contact
   get 'home/privacy', to: 'home#privacy', as: :privacy
   get 'home/search', to: 'home#search', as: :search
+  
+  get ''
 
   # LinkedIn authentication routes 
-  get '/auth/linkedin/callback' => 'sessions#create'
+  #get '/auth/linkedin/callback' => 'sessions#create'
+  #get '/auth/linkedin', to: "sessions#auth", as: :linkedin_auth
+  
+  delete '/logout', to: 'sessions#destroy'
+  #get '/auth/:provider/callback', to: 'sessions#create'
+  get '/auth/linkedin/callback', to: 'sessions#create'
+  get '/auth/failure', to: 'sessions#auth_failure'
   
   # Authentication routes
   #resources :sessions
@@ -17,8 +25,9 @@ Rails.application.routes.draw do
   #get 'users/new', to: 'users#new', as: :signup
   #get 'user/edit', to: 'users#edit', as: :edit_current_user
   get '/login' => "sessions#new"
-  post '/sessions' => "sessions#create"
-  get '/logout' => "sessions#destroy"
+  get 'users/new', to: 'users#new', as: :signup
+  #post '/sessions' => "sessions#create"
+  #get '/logout' => "sessions#destroy"
 
   #resources :users, :only => [:new, :create]
 
