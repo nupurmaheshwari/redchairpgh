@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+<<<<<<< HEAD
 
   # Semi-static page routes
   get 'home', to: 'home#index', as: :home
@@ -28,3 +29,7 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with 'root'
   root 'home#index'
 end
+=======
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+end
+>>>>>>> 03d3b8e4a1e6b11c52868e004db4c1f75b3816b9
