@@ -3,7 +3,7 @@
     <ul class="left hide-on-med-and-down">
       <li><%= link_to 'Mentors', mentors_path %></li>
       <li><%= link_to 'Mentees', mentees_path %></li>>
-      <li><%= link_to 'My Account', users_path %></li>
+      <li><%= link_to 'My Account', account_path(current_user.id) %></li>
     </ul>
     <ul class="right">
       <li><%= link_to 'Logout', logout_path %></li>
