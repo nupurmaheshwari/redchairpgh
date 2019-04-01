@@ -1,0 +1,33 @@
+
+<div class="row">
+  <div class="col s7">
+    <div class="card yellow lighten-4">
+      <div class="card-content">
+        <span class="card-title">Login here</span>
+          <br />
+          <%= form_with url: sessions_path, local: true do |f| %>
+          <div class="control-group">
+            <%= f.label :username %>
+            <div class="controls">
+              <%= f.text_field :username %>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <%= f.label :password %>
+            <div class="controls">
+              <%= f.password_field :password %>
+            </div>
+          </div>
+          
+          <div class="actions"><%= f.submit "Log In" %></div>
+        <% end %>
+      </div>
+      <div class="card-content">
+        <span class="card-title">Create Account with</span>
+        <%= link_to "LinkedIn", "https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=78jiaqir16u8ah&redirect_uri=https://labs-373-jennyzhu84.c9users.io/login&state=fooobar&scope=r_liteprofile%20r_emailaddress%20w_member_social" %>
+        <%= link_to "IDK" "grant_type=authorization_code&code=987654321&redirect_uri=https%3A%2F%2Fwww.myapp.com%2Fauth%2Flinkedin&client_id=123456789&client_secret=shhdonottell" %>
+      </div>
+    </div>
+  </div>
+</div>
