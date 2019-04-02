@@ -2,48 +2,70 @@
 
 <h1>Mentees</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Is active</th>
-      <th>Current role</th>
-      <th>Mentor role</th>
-      <th>Skill 1</th>
-      <th>Skill 2</th>
-      <th>Skill 3</th>
-      <th>Years in field</th>
-      <th>Lead team</th>
-      <th>Mentor gender</th>
-      <th>Comm frequency</th>
-      <th>Bio</th>
-      <th>In five years</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<% if !current_user.nil? && current_user.role?(:contributor) %>
+  <% if !current_user.is_mentor? %>  
+    <p>You are currently not a mentor. Create a profile!</p>
+  <% else %>
+    <table>
+      <thead>
+        <tr>
+          <th>Is active</th>
+          <th>Current role</th>
+          <th>Mentor role</th>
+          <th>Skill 1</th>
+          <th>Skill 2</th>
+          <th>Skill 3</th>
+          <th>Years in field</th>
+          <th>Lead team</th>
+          <th>Mentor gender</th>
+          <th>Comm frequency</th>
+          <th>Bio</th>
+          <th>In five years</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+    </table> 
+  <% end %> 
+<% end %>
 
-  <tbody>
-    <% @mentees.each do |mentee| %>
-      <tr>
-        <td><%= mentee.is_active %></td>
-        <td><%= mentee.current_role %></td>
-        <td><%= mentee.mentor_role %></td>
-        <td><%= mentee.skill_1 %></td>
-        <td><%= mentee.skill_2 %></td>
-        <td><%= mentee.skill_3 %></td>
-        <td><%= mentee.years_in_field %></td>
-        <td><%= mentee.lead_team %></td>
-        <td><%= mentee.mentor_gender %></td>
-        <td><%= mentee.comm_frequency %></td>
-        <td><%= mentee.bio %></td>
-        <td><%= mentee.in_five_years %></td>
-        <td><%= link_to 'Show', mentee %></td>
-        <td><%= link_to 'Edit', edit_mentee_path(mentee) %></td>
-        <td><%= link_to 'Destroy', mentee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<% if !current_user.nil? && current_user.role?(:contributor) && current_user.is_mentor? %>
+  <% mentees = current_user.mentees_list %> <!-- need to fix this to reference the mentor profile of user, then call mentees_list scope -->
+<% elsif !current_user.nil? && current_user.role?(:admin) %> 
+  <% mentees = @mentees %>
+<% end %>
+
+<% if mentees.nil? %> 
+  <p>Currently no mentees.</p>
+<% else %> 
+  <table> 
+    <tbody>
+      <% mentees.each do |mentee| %>
+        <tr>
+          <td><%= mentee.is_active %></td>
+          <td><%= mentee.current_role %></td>
+          <td><%= mentee.mentor_role %></td>
+          <td><%= mentee.skill_1 %></td>
+          <td><%= mentee.skill_2 %></td>
+          <td><%= mentee.skill_3 %></td>
+          <td><%= mentee.years_in_field %></td>
+          <td><%= mentee.lead_team %></td>
+          <td><%= mentee.mentor_gender %></td>
+          <td><%= mentee.comm_frequency %></td>
+          <td><%= mentee.bio %></td>
+          <td><%= mentee.in_five_years %></td>
+          <td><%= link_to 'Show', mentee %></td>
+          <% if !current_user.nil? && current_user.role(:admin) %>
+            <td><%= link_to 'Edit', edit_mentee_path(mentee) %></td>
+            <td><%= link_to 'Destroy', mentee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
 
 <br>
 
-<%= link_to 'New Mentee', new_mentee_path %>
+<% if !current_user.nil? && (current_user.role?(:contributor) && !current_user.is_mentee?) || (current_user.role(:admin)) %>
+  <%= link_to 'New Mentee', new_mentee_path %>
+<% end %>

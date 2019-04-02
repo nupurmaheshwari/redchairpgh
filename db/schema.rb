@@ -60,10 +60,11 @@ ActiveRecord::Schema.define(version: 20190402221605) do
   create_table "users", force: :cascade do |t|
     t.string "provider", null: false
     t.string "uid", null: false
+    t.string "role", null: false
     t.string "first_name"
     t.string "last_name"
     t.string "location"
-    t.string "image_url"
+    t.text "image_url"
     t.string "url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

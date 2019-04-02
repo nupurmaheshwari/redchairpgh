@@ -13,23 +13,30 @@
 #  updated_at :datetime         not null
 #
 
+## ADD METHOD: IS.MENTOR?, IS.MENTEE? 
+## ADD ATTRIBUTE: ROLE (ADMIN OR CONTRIBUTOR)
+
 class User < ActiveRecord::Base
+  
+  def role?(authorized_role)
+    return false if role.nil? 
+    role.downcase.to_sym == authorized_role 
+  end 
+  
+  def is_mentee?
+    return true 
+  end 
+  
+  def is_mentor?
+    return true 
+  end 
+    
   class << self
     def from_omniauth(auth_hash)
-      #puts "OMG!!!!!!!!!!!!!!!!!"
-      #user = where(:uid => auth_hash['uid'])
-      #user = find(params[:uid])
-      #puts "HAHAHAHHAHA"
-      #user.first_name = auth_hash['info']['first_name']
-      # user.last_name = auth_hash['info']['last_name']
-      # user.location = get_social_location_for user.provider, auth_hash['info']['location']
-      # user.image_url = auth_hash['info']['picture_url']
-      # user.url = get_social_url_for user.provider, auth_hash['info']['urls']
-      #user.save!
-      #user 
-      @user = find_or_create_by(uid: auth_hash['uid'], provider: auth_hash['provider'], first_name: auth_hash['info']['first_name'], last_name: auth_hash['info']['last_name'], )
-      #@user.first_name = auth_hash['info']['first_name']
-      # puts "HO"
+      @user = find_or_create_by(uid: auth_hash['uid'], provider: auth_hash['provider'], 
+      role: 'contributor', first_name: auth_hash['info']['first_name'], 
+      last_name: auth_hash['info']['last_name'], image_url: auth_hash['info']['picture_url'])
+      puts auth_hash
       # # user.location = get_social_location_for user.provider, auth_hash['info']['location']
       # @user.image_url = auth_hash['info']['picture_url']
       # # user.url = get_social_url_for user.provider, auth_hash['info']['urls']
