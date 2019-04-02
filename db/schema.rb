@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190402002643) do
+ActiveRecord::Schema.define(version: 20190402221605) do
 
   create_table "mentees", force: :cascade do |t|
     t.boolean "is_active"
@@ -40,6 +40,8 @@ ActiveRecord::Schema.define(version: 20190402002643) do
     t.text "motivation"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "specialized_skills", default: "--- []\n"
+    t.string "mentor_roles", default: "--- []\n"
   end
 
   create_table "mentorships", force: :cascade do |t|
