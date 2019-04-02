@@ -1,0 +1,64 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Is active:</strong>
+  <%= @mentee.is_active %>
+</p>
+
+<p>
+  <strong>Current role:</strong>
+  <%= @mentee.current_role %>
+</p>
+
+<p>
+  <strong>Mentor role:</strong>
+  <%= @mentee.mentor_role %>
+</p>
+
+<p>
+  <strong>Skill 1:</strong>
+  <%= @mentee.skill_1 %>
+</p>
+
+<p>
+  <strong>Skill 2:</strong>
+  <%= @mentee.skill_2 %>
+</p>
+
+<p>
+  <strong>Skill 3:</strong>
+  <%= @mentee.skill_3 %>
+</p>
+
+<p>
+  <strong>Years in field:</strong>
+  <%= @mentee.years_in_field %>
+</p>
+
+<p>
+  <strong>Lead team:</strong>
+  <%= @mentee.lead_team %>
+</p>
+
+<p>
+  <strong>Mentor gender:</strong>
+  <%= @mentee.mentor_gender %>
+</p>
+
+<p>
+  <strong>Comm frequency:</strong>
+  <%= @mentee.comm_frequency %>
+</p>
+
+<p>
+  <strong>Bio:</strong>
+  <%= @mentee.bio %>
+</p>
+
+<p>
+  <strong>In five years:</strong>
+  <%= @mentee.in_five_years %>
+</p>
+
+<%= link_to 'Edit', edit_mentee_path(@mentee) %> |
+<%= link_to 'Back', mentees_path %>

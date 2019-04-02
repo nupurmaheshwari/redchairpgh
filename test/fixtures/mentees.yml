@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  is_active: false
+  current_role: MyString
+  mentor_role: MyString
+  skill_1: MyString
+  skill_2: MyString
+  skill_3: MyString
+  years_in_field: 1
+  lead_team: false
+  mentor_gender: MyString
+  comm_frequency: MyString
+  bio: MyText
+  in_five_years: MyText
+
+two:
+  is_active: false
+  current_role: MyString
+  mentor_role: MyString
+  skill_1: MyString
+  skill_2: MyString
+  skill_3: MyString
+  years_in_field: 1
+  lead_team: false
+  mentor_gender: MyString
+  comm_frequency: MyString
+  bio: MyText
+  in_five_years: MyText

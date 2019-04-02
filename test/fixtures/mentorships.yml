@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  mentor: 
+  mentee: 
+  match_score: 1
+  is_active: false
+  mentee_approved: false
+  mentor_approved: false
+
+two:
+  mentor: 
+  mentee: 
+  match_score: 1
+  is_active: false
+  mentee_approved: false
+  mentor_approved: false
