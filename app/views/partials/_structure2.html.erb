@@ -9,6 +9,9 @@
     <% end %>
   </div>
 </div>
-<div class="row">
-  <%= render :partial => "partials/object_options", locals: {model_name: model_name, object: object} %>
-</div>
+
+<% if !current_user.nil? && current_user.role?(:admin) %>
+  <div class="row">
+    <%= render :partial => "partials/object_options", locals: {model_name: model_name, object: object} %>
+  </div>
+<% end %>
