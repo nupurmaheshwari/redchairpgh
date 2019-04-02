@@ -1,17 +1,16 @@
 <div class="card">
   <div class="card-content">
     <h5>Account Information for <%= @user.first_name %></h5><br />
-
+    
+    <b>Profile Photo:&nbsp;&nbsp;</b>
+    <% unless @user.image_url.nil? %> 
+      <p> 
+        <%= image_tag @user.image_url, :class => "round", :size => "180x180" %> 
+      </p>
+    <% end %>
+    
     <b>Full Name:&nbsp;&nbsp;</b>
       <%= @user.first_name%> <%= @user.last_name %><br /><br />
 
-    <!--<b>Gender:&nbsp;&nbsp;</b>-->
-    <!--  <%# @pet.gender %><br /><br />-->
-
-    <!--<b>Date of Birth:&nbsp;&nbsp;</b>-->
-    <!--  <%# @pet.date_of_birth.strftime("%B %d, %Y") %><br /><br />-->
-
-    <!--<b>Active with PATS?&nbsp;&nbsp;</b>-->
-    <!--  <%# @pet.active ? "Yes" : "No" %><br><br><br>-->
   </div>
 </div>
