@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 20190402221605) do
     t.string "location"
     t.text "image_url"
     t.string "url"
+    t.boolean "agreed"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true

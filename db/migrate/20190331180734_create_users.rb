@@ -10,6 +10,7 @@ class CreateUsers < ActiveRecord::Migration[5.1]
       t.string :location
       t.text   :image_url
       t.string :url
+      t.boolean :agreed
 
       t.timestamps null: false
     end

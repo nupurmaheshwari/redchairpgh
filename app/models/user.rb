@@ -30,18 +30,20 @@ class User < ActiveRecord::Base
   def is_mentor?
     return true 
   end 
-    
+  
   class << self
     def from_omniauth(auth_hash)
-      @user = find_or_create_by(uid: auth_hash['uid'], provider: auth_hash['provider'], 
-      role: 'contributor', first_name: auth_hash['info']['first_name'], 
-      last_name: auth_hash['info']['last_name'], image_url: auth_hash['info']['picture_url'])
-      puts auth_hash
+      @user = where(uid: auth_hash['uid'], provider: auth_hash['provider']).first#, 
+      #role: 'contributor', first_name: auth_hash['info']['first_name'], 
+      #last_name: auth_hash['info']['last_name'], image_url: auth_hash['info']['picture_url'])
+      puts @user
+      puts "user^^^ up there"
+      #puts auth_hash
       # # user.location = get_social_location_for user.provider, auth_hash['info']['location']
       # @user.image_url = auth_hash['info']['picture_url']
       # # user.url = get_social_url_for user.provider, auth_hash['info']['urls']
       # puts "HELLO"
-      # @user.save
+      #@user.save
       @user
     end
 

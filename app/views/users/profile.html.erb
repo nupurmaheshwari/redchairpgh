@@ -1,0 +1,27 @@
+<div class="card">    
+  <div class="card-content">
+    <p>Almost there! Verify your information</p>
+    <%= simple_form_for(@user) do |f| %>
+      <%= f.error_notification %>
+      <div class="row">
+        <div class="form-inputs">
+          <%= f.input :first_name %> 
+          <%= f.input :last_name %> 
+          <%= f.input :location %> 
+          <%= f.input :url %> 
+          <br>CODE OF CONDUCT</br>
+          <p>In order to maintain a healthy and safe mentorship environment,
+          all members must agree to all terms in the code of conduct.</p>
+          <p>Do you agree to follow these rules?</p>
+          <%= f.input_field :agreed, as: :boolean, boolean_style: :inline %>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <div class="row">
+    <div class="form-actions col s7">
+      <%= f.button :submit %>
+    </div>
+  </div>
+<% end %>
