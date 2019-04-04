@@ -31,16 +31,19 @@ class SessionsController < ApplicationController
     begin
       auth_hash = request.env['omniauth.auth']
       @user = User.from_omniauth(auth_hash)
-      if !@user 
-        @user = User.new(auth_hash['uid'], auth_hash['info']['first_name'],
-        auth_hash['info']['last_name'], auth_hash['info']['picture_url'])
+      if @user.nil? 
+        @user = User.new(uid: auth_hash['uid'], provider: auth_hash['provider'], 
+        role: 'contributor', first_name: auth_hash['info']['first_name'], 
+        last_name: auth_hash['info']['last_name'], image_url: auth_hash['info']['picture_url'],
+        agreed: false)
+        @user.save
       end
       session[:user_id] = @user.id
-      #flash[:success] = "Welcome, #{@user.first_name}!"
+      flash[:success] = "Welcome, #{@user.first_name}!"
     rescue
      flash[:warning] = "There was an error while trying to authenticate you..."
     end
-    redirect_to root_path
+    redirect_to create_profile_path(@user.id)
   end
 
   def destroy

@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   #get 'user/edit', to: 'users#edit', as: :edit_current_user
   get '/login', to: 'sessions#new', as: :login
   get 'users/new', to: 'users#create', as: :signup
+  get 'users/:id/create_profile', to: 'users#profile', as: :create_profile
   #post '/sessions' => "sessions#create"
   #get '/logout' => "sessions#destroy"
 
