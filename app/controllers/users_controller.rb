@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   #before_action :check_login
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :profile]
   
   def index
     # get all visits in reverse chronological order, 10 per page
@@ -14,7 +15,9 @@ class UsersController < ApplicationController
   
   def new
     @user = User.new
-    
+  end
+  
+  def profile 
   end
   
   def create
@@ -51,9 +54,11 @@ class UsersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
+      puts "USERS!!"
+      puts User.all
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.permit(:uid, :provider, :role, :first_name, :last_name, :image_url, :email, :image_url, :location, :active, :created_at, :updated_at)
+      params.permit(:uid, :provider, :role, :first_name, :last_name, :image_url, :email, :image_url, :location, :active, :agreed, :created_at, :updated_at)
     end
 end
