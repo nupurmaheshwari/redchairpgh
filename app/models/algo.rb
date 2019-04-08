@@ -8,17 +8,22 @@ def match(mentee)
 	filtered.each do |mentor|
 		if mentor.specialized_skills.include? mentee.skill_3
 			mentor_points[mentor] << 1
+		end
 		if mentor.specialized_skills.include? mentee.skill_2
 			if mentor_points[] == nil
 				mentor_points[mentor] << 2
 			else
 				mentor_points[mentor] += 2
+			end
+		end 
 		if mentor.specialized_skills.include? mentee.skill_1
 			if mentor_points[] == nil
 				mentor_points[mentor] << 3
 			else
 				mentor_points[mentor] += 3
-
+			end 
+		end 
+	end
 	#order hash in descending order of number of points per mentor
 	mentor_points.sort_by {|key,value| value}.reverse
 end
@@ -30,21 +35,31 @@ def initial_filter(mentee)
 	#create array to hold filtered down mentors
 	acceptable = []
 	mentor_list.each do |mentor|
-		if mentee.gender == 'no preference' || mentee.gender == mentor.gender
+		if (mentee.gender == 'no preference' || mentee.gender == mentor.gender)
 			if mentor.mentor_roles.include? mentee.mentor_roles
 				if frequency(mentee, mentor) == true
 					acceptable.push(mentor)
+				end 
+			end 
+		end 
+	end 
 	return acceptable
 end
 
 
 #check if mentor and mentee communication frequency are compatible
 def frequency(mentee, mentor)
-	if mentee.comm_frequency == 'no preference' || mentor.comm_frequency == 'no preference' 
+	freq_options = ['Biweekly', 'Monthly', 'Bimonthly', 'Quarterly']
+	if (mentee.comm_frequency == 'No preference' || mentor.comm_frequency == 'No preference')
 		return true
-	if mentee.comm_frequency == mentor.comm_frequency
+	elsif mentee.comm_frequency == mentor.comm_frequency
 		return true
-		#UNFINISHED!!!!!!! (ensure that mentor wants to meet more than mentee)
-	if
+	else
+		mentor_freq_num = freq_options.index(mentor.comm_frequency)
+		mentee_freq_num = freq_options.index(mentee.comm_frequency)
+		if mentor_freq_num < mentee_freq_num 
+			return true 
+		end 
+	end 
 end
 

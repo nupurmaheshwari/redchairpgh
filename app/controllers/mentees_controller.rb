@@ -1,5 +1,5 @@
 class MenteesController < ApplicationController
-  before_action :set_mentee, only: [:show, :edit, :update, :destroy]
+  before_action :set_mentee, only: [:show, :edit, :update, :destroy, :matches]
 
   # GET /mentees
   # GET /mentees.json
@@ -21,6 +21,9 @@ class MenteesController < ApplicationController
   def edit
   end
 
+  def matches 
+  end 
+    
   # POST /mentees
   # POST /mentees.json
   def create
