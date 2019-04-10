@@ -17,11 +17,10 @@
 //= require_tree .
 
 $(document).ready(function() {
-  	$('input[type=checkbox]').change(function(e){
-   		if ($('input[type=checkbox]:checked').length > 6) {
+  	$('input[type=checkbox]').change(function(e) {
+   		if ($('input[type=checkbox]:checked').length > 2) {
         	$(this).prop('checked', false)
    		}
 	})
 });
-
 
