@@ -14,9 +14,7 @@ class Mentee < ApplicationRecord
 	MENTOR_ROLES = [['Nurturer', 'Nurturer'],['Colleague', 'Colleague'],['Sounding board', 'Sounding board'],['Teacher', 'Teacher'],['Motivator', 'Motivator']]
 
 	def get_matches 
-		poo = Match.new(self) 
-		puts "HELLOOOOOOOO"
-		puts poo
+		Match.new(self) 
 	end 
 	
 end

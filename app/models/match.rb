@@ -5,7 +5,6 @@ class Match
         @mentors = match(mentee)
         puts "MENTOR MATCHES!!!!!!!!"
         puts @mentors
-        puts "huh?"
     end 
         
     def match(mentee)
