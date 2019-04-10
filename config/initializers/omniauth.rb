@@ -20,7 +20,7 @@ Rails.application.config.middleware.use OmniAuth::Builder do
 #           access_type: "offline", skip_jwt: true
 
   provider :linkedin, "78jiaqir16u8ah", "rlDe8Wm2s5RtmEuW",
-           #scope: 'r_basicprofile'#,
+           #scope: 'r_basicprofile'
            fields: ['id', 'first-name', 'last-name', 'location', 'picture-url', 'public-profile-url']
 
   OmniAuth.config.on_failure = Proc.new do |env|

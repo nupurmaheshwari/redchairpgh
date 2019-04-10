@@ -1,0 +1,67 @@
+<%= form_with(model: mentor, local: true) do |form| %>
+  <% if mentor.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(mentor.errors.count, "error") %> prohibited this mentor from being saved:</h2>
+
+      <ul>
+      <% mentor.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :is_active %>
+    <%= form.check_box :is_active, id: :mentor_is_active %>
+  </div>
+
+  <div class="field">
+    <%= form.label :current_role %>
+    <%= form.check_box :current_role, id: :mentor_current_role %>
+  </div>
+
+  <div class="field">
+    <%= form.label :mentor_role %>
+    <%= form.check_box :mentor_roles, id: :mentee_mentor_role %>
+  </div>
+
+  <div class="field">
+    <%= form.label :specialized_skills %>
+    <%= form.check_box :specialized_skills, id: :mentor_specialized_skills %>
+  </div>
+
+  <div class="field">
+    <%= form.label :years_in_field %>
+    <%= form.text_field :years_in_field, id: :mentor_years_in_field %>
+  </div>
+
+  <div class="field">
+    <%= form.label :lead_team %>
+    <%= form.check_box :lead_team, id: :mentor_lead_team %>
+  </div>
+
+  <div class="field">
+    <%= form.label :gender %>
+    <%= form.collection_select :gender, [['Male', 'Male'],['Female', 'Female'],['Non-binary', 'Non-binary'], ['Do not wish to disclose','Do not wish to disclose']], {include_blank: true}, {id: "mentor_gender"} %>
+  </div>
+
+  <div class="field">
+    <%= form.label :comm_frequency %>
+    <%= form.collection_select :comm_frequency, [['Biweekly','Biweekly'],['Monthly','Monthly'],['Bimonthly','Bimonthly'],['Quarterly','Quarterly'],['As needed','As needed']], {id: "mentor_comm_frequency"} %>
+  </div>
+
+  <div class="field">
+    <%= form.label :bio %>
+    <%= form.text_area :bio, id: :mentor_bio %>
+  </div>
+
+  <div class="field">
+    <%= form.label :motivation %>
+    <%= form.text_area :motivation, id: :mentor_motivation %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
