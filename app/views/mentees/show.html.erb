@@ -1,11 +1,6 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Is active:</strong>
-  <%= @mentee.is_active %>
-</p>
-
-<p>
   <strong>Current role:</strong>
   <%= @mentee.current_role %>
 </p>
@@ -58,6 +53,11 @@
 <p>
   <strong>In five years:</strong>
   <%= @mentee.in_five_years %>
+</p>
+
+<p>
+  <strong>Is active:</strong>
+  <%= @mentee.is_active %>
 </p>
 
 <%= link_to 'Edit', edit_mentee_path(@mentee) %> |

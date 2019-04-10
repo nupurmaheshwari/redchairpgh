@@ -2,8 +2,8 @@ class Match
 
     def initialize(mentee) 
         #@mentee = params[:mentee] 
-        @mentors = match(mentee) 
-        puts "HIIIIIIIIIIIIIIIIIIIIi!!!!"
+        @mentors = match(mentee)
+        puts "MENTOR MATCHES!!!!!!!!"
         puts @mentors
     end 
         

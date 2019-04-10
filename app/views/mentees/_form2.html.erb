@@ -1,0 +1,77 @@
+<%= form_with(model: mentee, local: true) do |form| %>
+  <% if mentee.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(mentee.errors.count, "error") %> prohibited this mentee from being saved:</h2>
+
+      <ul>
+      <% mentee.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :is_active %>
+    <%= form.check_box :is_active, id: :mentee_is_active %>
+  </div>
+
+  <div class="field">
+    <%= form.label :current_role %>
+    <%= form.text_field :current_role, id: :mentee_current_role %>
+  </div>
+
+  <div class="field">
+    <%= form.label :mentor_role %>
+    <%= form.text_field :mentor_role, id: :mentee_mentor_role %>
+  </div>
+
+  <div class="field">
+    <%= form.label :skill_1 %>
+    <%= form.text_field :skill_1, id: :mentee_skill_1 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :skill_2 %>
+    <%= form.text_field :skill_2, id: :mentee_skill_2 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :skill_3 %>
+    <%= form.text_field :skill_3, id: :mentee_skill_3 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :years_in_field %>
+    <%= form.number_field :years_in_field, id: :mentee_years_in_field %>
+  </div>
+
+  <div class="field">
+    <%= form.label :lead_team %>
+    <%= form.check_box :lead_team, id: :mentee_lead_team %>
+  </div>
+
+  <div class="field">
+    <%= form.label :mentor_gender %>
+    <%= form.text_field :mentor_gender, id: :mentee_mentor_gender %>
+  </div>
+
+  <div class="field">
+    <%= form.label :comm_frequency %>
+    <%= form.text_field :comm_frequency, id: :mentee_comm_frequency %>
+  </div>
+
+  <div class="field">
+    <%= form.label :bio %>
+    <%= form.text_area :bio, id: :mentee_bio %>
+  </div>
+
+  <div class="field">
+    <%= form.label :in_five_years %>
+    <%= form.text_area :in_five_years, id: :mentee_in_five_years %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

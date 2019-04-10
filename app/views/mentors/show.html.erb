@@ -1,0 +1,52 @@
+<p id="notice"><%= notice %></p>
+
+
+<p>
+  <strong>Current role:</strong>
+  <%= @mentor.current_role %>
+</p>
+
+<p>
+  <strong>Mentor role:</strong>
+  <%= @mentor.mentor_roles %>
+</p>
+
+<p>
+  <strong>Specialized skills:</strong>
+  <%= @mentor.specialized_skills %>
+</p>
+
+<p>
+
+<p>
+  <strong>Years in field:</strong>
+  <%= @mentor.years_in_field %>
+</p>
+
+<p>
+  <strong>Years in Lead:</strong>
+  <%= @mentor.years_in_lead %>
+</p>
+
+<p>
+  <strong>Mentor gender:</strong>
+  <%= @mentor.gender %>
+</p>
+
+<p>
+  <strong>Comm frequency:</strong>
+  <%= @mentor.comm_frequency %>
+</p>
+
+<p>
+  <strong>Bio:</strong>
+  <%= @mentor.bio %>
+</p>
+
+<p>
+  <strong>Motivation:</strong>
+  <%= @mentor.motivation %>
+</p>
+
+<%= link_to 'Edit', edit_mentor_path(@mentor) %> |
+<%= link_to 'Back', mentors_path %>

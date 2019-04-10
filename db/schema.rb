@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 20190402221605) do
 
   create_table "mentors", force: :cascade do |t|
     t.boolean "is_active"
-    t.string "current_role"
+    t.string "current_role", array: true, default: []
     t.integer "years_in_field"
     t.integer "years_in_lead"
     t.string "gender"
@@ -40,8 +40,8 @@ ActiveRecord::Schema.define(version: 20190402221605) do
     t.text "motivation"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "specialized_skills", default: "--- []\n"
-    t.string "mentor_roles", default: "--- []\n"
+    t.string "specialized_skills", array: true, default: [] #default: "--- []\n"
+    t.string "mentor_roles", array: true, default: [] #default: "--- []\n"
   end
 
   create_table "mentorships", force: :cascade do |t|
