@@ -14,7 +14,8 @@ class Mentee < ApplicationRecord
 	MENTOR_ROLES = [['Nurturer', 'Nurturer'],['Colleague', 'Colleague'],['Sounding board', 'Sounding board'],['Teacher', 'Teacher'],['Motivator', 'Motivator']]
 
 	def get_matches 
-		Match.new(self) 
+		match = Match.new(self) 
+		match.get_mentor_ids 
 	end 
 	
 end
