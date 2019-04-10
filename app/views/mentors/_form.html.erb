@@ -14,6 +14,7 @@
           <%= f.input :comm_frequency, collection: Mentor::COMMUNICATION_FREQ, include_blank: true, :label => '4. How frequently would you like to communicate with a mentee? ' %>
           <%= f.input :years_in_field, :label => '5. Years of experience in your field' %>
           <%= f.input :years_in_lead, :label => '6. Years as a leader/supervisor' %>
+          <%= f.hidden_field :is_active, value: true %>
           
           <!--non matching algorithm fields-->          
           <%= f.input :motivation, text_field_tag: { class: 'active' }, :label => '7. What motivates you to want to mentor? (limited text field)' %>
