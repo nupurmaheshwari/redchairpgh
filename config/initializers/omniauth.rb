@@ -19,9 +19,13 @@ Rails.application.config.middleware.use OmniAuth::Builder do
 #           scope: 'profile', image_aspect_ratio: 'square', image_size: 48, name: 'google',
 #           access_type: "offline", skip_jwt: true
 
-  provider :linkedin, "78jiaqir16u8ah", "rlDe8Wm2s5RtmEuW",
+  #provider :linkedin, "78jiaqir16u8ah", "rlDe8Wm2s5RtmEuW",
            #scope: 'r_basicprofile'#,
-           fields: ['id', 'first-name', 'last-name', 'location', 'picture-url', 'public-profile-url']
+           #fields: ['id', 'first-name', 'last-name', 'location', 'picture-url', 'public-profile-url']
+
+  provider :linkedin, "78jiaqir16u8ah", "rlDe8Wm2s5RtmEuW",
+           scope: 'r_basicprofile'
+           #fields: ['id', 'first-name', 'last-name', 'location', 'picture-url', 'public-profile-url']
 
   OmniAuth.config.on_failure = Proc.new do |env|
     SessionsController.action(:auth_failure).call(env)
