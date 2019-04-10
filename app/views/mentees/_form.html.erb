@@ -1,77 +1,44 @@
-<%= form_with(model: mentee, local: true) do |form| %>
-  <% if mentee.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(mentee.errors.count, "error") %> prohibited this mentee from being saved:</h2>
+<!--<h1>New Mentee</h1>-->
 
-      <ul>
-      <% mentee.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<!--<%# render 'form', mentee: @mentee %>-->
+
+<!--<%# link_to 'Back', mentees_path %>-->
+
+<div class="card">    
+  <div class="card-content">
+    <%= simple_form_for(@mentee) do |f| %>
+      <%= f.error_notification %>
+      <div class="row">
+        <div class="form-inputs">
+          
+
+        
+          
+          <%= f.input :current_role, collection: Mentee::CURR_ROLE, include_blank: true, :label => '1. What is your current role (select one)?' %>
+           <%= f.input :skill_1, collection: Mentee::IMPACT , include_blank: true, :label => '2. In what area, do you most want mentor support?' %>
+            <%= f.input :skill_2, collection: Mentee::IMPACT, include_blank: true, :label => '3. What is the 2nd most important area for which you want mentor support?' %>
+             <%= f.input :skill_3, collection: Mentee::IMPACT, include_blank: true, :label => '4. What is the 3rd most important area for which you want mentor support?' %>
+          <%= f.input :mentor_role, collection: Mentee::MENTOR_ROLES, include_blank: true, :label => '5. What adjective best describes the role you would like your mentor to play (choose one)? A mentor acts as a: ' %>
+          <%= f.input :mentor_gender, collection: Mentee::GENDER, include_blank: true, :label => '6. I prefer a mentor who identifies as (select all that apply or no preference):' %>
+          <%= f.input :comm_frequency, collection: Mentee::COMMUNICATION_FREQ, include_blank: true, :label => '7. How frequently would you like to communicate with a mentor?' %>
+          <%# f.input :impact, experience: Mentor::EXPERIENCE, include_blank: true %>
+          <%= f.input :years_in_field, :label => '8. Years of experience in your field' %>
+          <%= f.input :lead_team, :label => '9. Do you currently supervise/lead a team or group?' %>
+          
+          <!--non matching algorithm feilds-->          
+          <%= f.input :in_five_years, text_field_tag: { class: 'active' }, :label => '10. Where do you see yourself in your career in five years?' %>
+          <%= f.input :bio, text_field_tag: { class: 'active' }, :label => '11. Please provide a short bio of your interests, hobbies, and core values outside of your professional environment. ' %>
+
+
+
+      </div>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :is_active %>
-    <%= form.check_box :is_active, id: :mentee_is_active %>
   </div>
-
-  <div class="field">
-    <%= form.label :current_role %>
-    <%= form.text_field :current_role, id: :mentee_current_role %>
-  </div>
-
-  <div class="field">
-    <%= form.label :mentor_role %>
-    <%= form.text_field :mentor_role, id: :mentee_mentor_role %>
-  </div>
-
-  <div class="field">
-    <%= form.label :skill_1 %>
-    <%= form.text_field :skill_1, id: :mentee_skill_1 %>
-  </div>
-
-  <div class="field">
-    <%= form.label :skill_2 %>
-    <%= form.text_field :skill_2, id: :mentee_skill_2 %>
-  </div>
-
-  <div class="field">
-    <%= form.label :skill_3 %>
-    <%= form.text_field :skill_3, id: :mentee_skill_3 %>
-  </div>
-
-  <div class="field">
-    <%= form.label :years_in_field %>
-    <%= form.number_field :years_in_field, id: :mentee_years_in_field %>
-  </div>
-
-  <div class="field">
-    <%= form.label :lead_team %>
-    <%= form.check_box :lead_team, id: :mentee_lead_team %>
-  </div>
-
-  <div class="field">
-    <%= form.label :mentor_gender %>
-    <%= form.text_field :mentor_gender, id: :mentee_mentor_gender %>
-  </div>
-
-  <div class="field">
-    <%= form.label :comm_frequency %>
-    <%= form.text_field :comm_frequency, id: :mentee_comm_frequency %>
-  </div>
-
-  <div class="field">
-    <%= form.label :bio %>
-    <%= form.text_area :bio, id: :mentee_bio %>
-  </div>
-
-  <div class="field">
-    <%= form.label :in_five_years %>
-    <%= form.text_area :in_five_years, id: :mentee_in_five_years %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+</div>
+  
+  <div class="row">
+    <div class="form-actions col s7">
+      <%= f.button :submit %>
+    </div>
   </div>
 <% end %>

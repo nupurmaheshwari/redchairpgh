@@ -1,67 +1,34 @@
-<%= form_with(model: mentor, local: true) do |form| %>
-  <% if mentor.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(mentor.errors.count, "error") %> prohibited this mentor from being saved:</h2>
+<div class="card">    
+  <div class="card-content">
+    <%= simple_form_for(@mentor) do |f| %>
+      <%= f.error_notification %>
+      <div class="row">
+        <div class="form-inputs">
+          
+          <%# f.input :role, collection: Mentor::ROLE, include_blank: true %>
+          <!--matching algo fields -->          
+          <%= f.input :current_role, :as => :check_boxes, collection: Mentor::BACKGROUND, :label => '1. What is your background?  Check all that apply.' %>
+          <%= f.input :specialized_skills, :as => :check_boxes, collection: Mentor::IMPACT, :label => '2. What areas do you most want to support (rank the top 6) -- where you think your experience can most impact your mentee? ' %>
+          <%= f.input :mentor_roles, :as => :check_boxes, collection: Mentor::MENTOR_ROLES, :label => '3. What adjective best describes the role you would like to play as a mentor (choose all that apply)? ' %>
+          <%= f.input :gender, collection: Mentor::GENDER, include_blank: true, :label => 'I identify as: ' %>
+          <%= f.input :comm_frequency, collection: Mentor::COMMUNICATION_FREQ, include_blank: true, :label => '4. How frequently would you like to communicate with a mentee? ' %>
+          <%# f.input :impact, experience: Mentor::EXPERIENCE, include_blank: true %>
+          <%= f.input :years_in_field, :label => '5. Years of experience in your field' %>
+          <%= f.input :years_in_lead, :label => '6. Years as a leader/supervisor' %>
+          
+          <!--non matching algorithm fields-->          
+          <%= f.input :motivation, text_field_tag: { class: 'active' }, :label => '7. What motivates you to want to mentor? (limited text field)' %>
+          <%= f.input :bio, text_field_tag: { class: 'active' }, :label => '8. Please provide a short bio of your interests, hobbies, and core values outside of your professional environment. ' %>
 
-      <ul>
-      <% mentor.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+
+      </div>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :is_active %>
-    <%= form.check_box :is_active, id: :mentor_is_active %>
   </div>
-
-  <div class="field">
-    <%= form.label :current_role %>
-    <%= form.check_box :current_role, id: :mentor_current_role %>
-  </div>
-
-  <div class="field">
-    <%= form.label :mentor_role %>
-    <%= form.check_box :mentor_roles, id: :mentee_mentor_role %>
-  </div>
-
-  <div class="field">
-    <%= form.label :specialized_skills %>
-    <%= form.check_box :specialized_skills, id: :mentor_specialized_skills %>
-  </div>
-
-  <div class="field">
-    <%= form.label :years_in_field %>
-    <%= form.text_field :years_in_field, id: :mentor_years_in_field %>
-  </div>
-
-  <div class="field">
-    <%= form.label :lead_team %>
-    <%= form.check_box :lead_team, id: :mentor_lead_team %>
-  </div>
-
-  <div class="field">
-    <%= form.label :gender %>
-    <%= form.collection_select :gender, [['Male', 'Male'],['Female', 'Female'],['Non-binary', 'Non-binary'], ['Do not wish to disclose','Do not wish to disclose']], {include_blank: true}, {id: "mentor_gender"} %>
-  </div>
-
-  <div class="field">
-    <%= form.label :comm_frequency %>
-    <%= form.collection_select :comm_frequency, [['Biweekly','Biweekly'],['Monthly','Monthly'],['Bimonthly','Bimonthly'],['Quarterly','Quarterly'],['As needed','As needed']], {id: "mentor_comm_frequency"} %>
-  </div>
-
-  <div class="field">
-    <%= form.label :bio %>
-    <%= form.text_area :bio, id: :mentor_bio %>
-  </div>
-
-  <div class="field">
-    <%= form.label :motivation %>
-    <%= form.text_area :motivation, id: :mentor_motivation %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+</div>
+  
+  <div class="row">
+    <div class="form-actions col s7">
+      <%= f.button :submit %>
+    </div>
   </div>
 <% end %>
