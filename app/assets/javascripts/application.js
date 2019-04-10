@@ -16,11 +16,20 @@
 //= require jquery_ujs
 //= require_tree .
 
+(function($){
+	$.fn.limitCB = function(dId, n) {
+		$('#'+dId).find(':checkbox').change(function(e) {
+	   		if ($('input[type=checkbox]:checked').length > n) {
+	       		$(this).prop('checked', false)
+	    	}
+		})
+	};
+
+})(jQuery);
+
+
 $(document).ready(function() {
-  	$('input[type=checkbox]').change(function(e) {
-   		if ($('input[type=checkbox]:checked').length > 2) {
-        	$(this).prop('checked', false)
-   		}
-	})
+
+	$().limitCB('skills', 2);
 });
 
