@@ -9,7 +9,16 @@ class MentorsController < ApplicationController
     def edit
     end 
     
-    def update 
+    def update
+        respond_to do |format|
+          if @mentor.update(mentor_params)
+            format.html { redirect_to @mentor, notice: 'Mentor was successfully updated.' }
+            format.json { render :show, status: :ok, location: @mentor }
+          else
+            format.html { render :edit, notice: 'Mentor cannot be updated.' }
+            format.json { render json: @mentor.errors, status: :unprocessable_entity }
+          end
+        end
     end 
     
     def create
@@ -38,8 +47,8 @@ class MentorsController < ApplicationController
       @mentor = Mentor.find(params[:id])
     end
     def mentor_params
-      params.require(:mentor).permit(:user_id, :is_active, :current_role, :years_in_field, :years_in_lead,
-                                     :gender, :comm_frequency, :bio, :motivation, :specialized_skills, :mentor_roles)
+      params.require(:mentor).permit(:user_id, :is_active, :years_in_field, :years_in_lead, :gender, :comm_frequency, 
+                                     :bio, :motivation, :current_role => [], :specialized_skills => [], :mentor_roles => [])
     end
     
 end

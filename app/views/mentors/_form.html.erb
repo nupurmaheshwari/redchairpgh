@@ -12,7 +12,6 @@
           <%= f.input :mentor_roles, :as => :check_boxes, collection: Mentor::MENTOR_ROLES, :label => '3. What adjective best describes the role you would like to play as a mentor (choose all that apply)? ' %>
           <%= f.input :gender, collection: Mentor::GENDER, include_blank: true, :label => 'I identify as: ' %>
           <%= f.input :comm_frequency, collection: Mentor::COMMUNICATION_FREQ, include_blank: true, :label => '4. How frequently would you like to communicate with a mentee? ' %>
-          <%# f.input :impact, experience: Mentor::EXPERIENCE, include_blank: true %>
           <%= f.input :years_in_field, :label => '5. Years of experience in your field' %>
           <%= f.input :years_in_lead, :label => '6. Years as a leader/supervisor' %>
           
