@@ -1,6 +1,6 @@
 class MentorsController < ApplicationController
     #before_action :check_login
-    before_action :set_mentor, only: [:show, :edit, :update, :destroy]
+    before_action :set_mentor, only: [:show, :edit, :update, :destroy, :requests]
 
     def new
         @mentor = Mentor.new
@@ -9,6 +9,9 @@ class MentorsController < ApplicationController
     def edit
     end 
     
+    def requests 
+    end 
+  
     def update
         respond_to do |format|
           if @mentor.update(mentor_params)

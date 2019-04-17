@@ -28,11 +28,11 @@
   <% end %> 
 <% end %>
 
-<% if !current_user.nil? && current_user.role?(:contributor) && current_user.is_mentor? %>
-  <% mentees = current_user.mentees_list %> <!-- need to fix this to reference the mentor profile of user, then call mentees_list scope -->
-<% elsif !current_user.nil? && current_user.role?(:admin) %> 
-  <% mentees = @mentees %>
-<% end %>
+<%# if !current_user.nil? && current_user.role?(:contributor) && current_user.is_mentor? %>
+  <%# mentees = current_user.mentees_list %> <!-- need to fix this to reference the mentor profile of user, then call mentees_list scope -->
+<%# elsif !current_user.nil? && current_user.role?(:admin) %> 
+<% mentees = @mentees %>
+<%# end %>
 
 <% if mentees.nil? %> 
   <p>Currently no mentees.</p>
@@ -54,10 +54,10 @@
           <td><%= mentee.bio %></td>
           <td><%= mentee.in_five_years %></td>
           <td><%= link_to 'Show', mentee %></td>
-          <% if !current_user.nil? && current_user.role(:admin) %>
-            <td><%= link_to 'Edit', edit_mentee_path(mentee) %></td>
-            <td><%= link_to 'Destroy', mentee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          <% end %>
+          <%# if !current_user.nil? && current_user.role(:admin) %>
+          <td><%= link_to 'Edit', edit_mentee_path(mentee) %></td>
+          <td><%= link_to 'Destroy', mentee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <%# end %>
         </tr>
       <% end %>
     </tbody>
@@ -66,6 +66,6 @@
 
 <br>
 
-<% if !current_user.nil? && (current_user.role?(:contributor) && !current_user.is_mentee?) || (current_user.role(:admin)) %>
+<%# if !current_user.nil? && (current_user.role?(:contributor) && !current_user.is_mentee?) || (current_user.role(:admin)) %>
   <%= link_to 'New Mentee', new_mentee_path %>
-<% end %>
+<%# end %>

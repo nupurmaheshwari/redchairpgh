@@ -19,14 +19,14 @@ class Match
     			mentor_points[mentor] = 1
     		end
     		if mentor.specialized_skills.include? mentee.skill_2
-    			if mentor_points.empty?
+    			if mentor_points[mentor] == nil
     				mentor_points[mentor] = 2
     			else
     				mentor_points[mentor] += 2
     			end
     		end 
     		if mentor.specialized_skills.include? mentee.skill_1
-    			if mentor_points.empty?
+    			if mentor_points[mentor] == nil
     				mentor_points[mentor] = 3
     			else
     				mentor_points[mentor] += 3
