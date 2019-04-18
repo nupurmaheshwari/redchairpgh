@@ -38,7 +38,7 @@
                 <td><%= mentee.comm_frequency %></td>
                 <td><%= mentee.bio %></td>
                 <td><%= mentee.in_five_years %></td>
-                <td><%= link_to 'Accept Mentee', mentorships_path(mentor_id: @mentor.id, mentee_id: mentee.id, state: 'accepted'), method: :update %></td>
+                <td><%= link_to 'Accept Mentee', edit_mentorship_path %></td>
             </tr>
         <% end %>
         </tbody>

@@ -19,4 +19,13 @@ class Mentor < ApplicationRecord
 	def get_requests 
 		Mentorship.for_mentor(self.id)
 	end
+	
+	def full_name 
+		user = User.find(self.user_id).first
+		user.first_name + " " + user.last_name 
+	end
+	
+	def email 
+		User.find(self.user_id).first.email
+	end 
 end

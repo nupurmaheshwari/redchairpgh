@@ -21,4 +21,14 @@ class Mentee < ApplicationRecord
 	def can_request?(mentor)	
 		!self.mentorships.include?(mentor)
 	end 
+	
+	def full_name 
+		user = User.find(self.user_id).first
+		user.first_name + " " + user.last_name 
+	end
+	
+	def email 
+		User.find(self.user_id).first.email
+	end 
+
 end

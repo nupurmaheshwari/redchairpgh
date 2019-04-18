@@ -1,0 +1,29 @@
+<h4>Mentorship Agreement</h4>
+
+<div class="card">    
+  <div class="card-content">
+    <%# mentorship = Mentorship.find_mentorship(mentor_id, mentee_id) %> 
+    <%= simple_form_for(@mentorship) do |f| %>
+      <%= f.error_notification %>
+      <div class="row">
+        <div class="form-inputs">
+          
+            <%= f.hidden_field :mentor_id, value: true %>
+            <%= f.hidden_field :mentee_id, value: true %>
+            <p>In order to maintain a healthy and safe mentorship environment,
+            all mentors must agree to communicate with their mentees as 
+            specified in the code of conduct.</p>
+            <p>Do you agree to follow these rules?</p>
+            <%= f.input_field :status, as: :boolean, boolean_style: :inline %>
+
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <div class="row">
+    <div class="form-actions col s7">
+      <%= f.button :submit, :value => "Accept Mentee" %>
+    </div>
+  </div>
+<% end %>
