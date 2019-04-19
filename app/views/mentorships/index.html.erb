@@ -1,0 +1,19 @@
+<% if @mentorships.empty? %> 
+    <h4>There are currently no mentorships in the system at this time.</h4>
+<% else %>
+    <h4>Active Mentorships</h4>
+    <table> 
+        <thead> 
+            <th>Mentor</th>
+            <th>Mentee</th>
+            <th>Status</th>
+        </thead>
+        <% for mentorship in @mentorships %> 
+            <tr>
+                <td><%= mentorship.mentor_id %></td>
+                <td><%= mentorship.mentee_id %></td> 
+                <td><%= mentorship.status %></td>
+            </tr>
+        <% end %> 
+    </table>
+<% end %>

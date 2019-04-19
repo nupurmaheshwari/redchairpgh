@@ -13,6 +13,7 @@
 ActiveRecord::Schema.define(version: 20190402221605) do
 
   create_table "mentees", force: :cascade do |t|
+    t.integer "user_id", null: false 
     t.boolean "is_active"
     t.string "current_role"
     t.string "mentor_role"
@@ -30,8 +31,9 @@ ActiveRecord::Schema.define(version: 20190402221605) do
   end
 
   create_table "mentors", force: :cascade do |t|
+    t.integer "user_id", null: false
     t.boolean "is_active"
-    t.string "current_role", array: true, default: []
+    t.string "current_role", default: "--- []\n"
     t.integer "years_in_field"
     t.integer "years_in_lead"
     t.string "gender"
@@ -40,13 +42,14 @@ ActiveRecord::Schema.define(version: 20190402221605) do
     t.text "motivation"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "specialized_skills", array: true, default: [] #default: "--- []\n"
-    t.string "mentor_roles", array: true, default: [] #default: "--- []\n"
+    t.string "specialized_skills", default: "--- []\n"
+    t.string "mentor_roles", default: "--- []\n"
   end
 
   create_table "mentorships", force: :cascade do |t|
     t.integer "mentor_id"
     t.integer "mentee_id"
+    t.string "status"
     t.integer "match_score"
     t.boolean "is_active"
     t.boolean "mentee_approved"

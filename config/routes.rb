@@ -36,8 +36,12 @@ Rails.application.routes.draw do
   resources :mentors
   resources :mentorships
   
-  #matches route 
-  get 'mentees/:id/matches', to: 'mentees#matches', as: :matches
+  #mentee matches route 
+  get 'mentees/:id/matches', to: 'mentees#matches', as: :mentee_matches
+  
+  #mentor matches route 
+  get 'mentors/:id/requests', to: 'mentors#requests', as: :mentor_requests
+  
   # Routes for searching
   get 'mentees/search', to: 'mentees#search', as: :mentees_search
   get 'mentors/search', to: 'mentors#search', as: :mentors_search
