@@ -17,9 +17,9 @@
 //= require_tree .
 
 (function($){
-	$.fn.limitCB = function(dId, n) {
-		$('#'+dId).find(':checkbox').change(function(e) {
-	   		if ($('input[type=checkbox]:checked').length > n) {
+	$.fn.limitCB = function() {
+		$('#skills').find(':checkbox').change(function(e) {
+	   		if ($('input[type=checkbox]:checked').length > 2) {
 	       		$(this).prop('checked', false)
 	    	}
 		})
@@ -30,6 +30,6 @@
 
 $(document).ready(function() {
 
-	$().limitCB('skills', 2);
+	$().limitCB();
 });
 

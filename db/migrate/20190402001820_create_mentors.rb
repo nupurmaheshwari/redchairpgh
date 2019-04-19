@@ -9,6 +9,7 @@ class CreateMentors < ActiveRecord::Migration[5.1]
       t.string :comm_frequency
       t.text :bio
       t.text :motivation
+      t.references :user, foreign_key: true
 
       t.timestamps
     end
