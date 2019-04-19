@@ -23,9 +23,11 @@ class Mentor < ApplicationRecord
 	def full_name 
 		user = User.find(self.user_id).first
 		user.first_name + " " + user.last_name 
+		#self.id
 	end
 	
 	def email 
 		User.find(self.user_id).first.email
+		#self.id
 	end 
 end

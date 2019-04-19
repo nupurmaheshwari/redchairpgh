@@ -26,16 +26,14 @@
           <%= f.input :in_five_years, text_field_tag: { class: 'active' }, :label => '10. Where do you see yourself in your career in five years?' %>
           <%= f.input :bio, text_field_tag: { class: 'active' }, :label => '11. Please provide a short bio of your interests, hobbies, and core values outside of your professional environment. ' %>
 
+          <div class="form-actions col s7">
+            <%= f.button :submit %>
+          </div>
+
 
 
       </div>
     </div>
   </div>
 </div>
-  
-  <div class="row">
-    <div class="form-actions col s7">
-      <%= f.button :submit %>
-    </div>
-  </div>
 <% end %>
