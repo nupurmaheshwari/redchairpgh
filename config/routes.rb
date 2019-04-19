@@ -13,8 +13,8 @@ Rails.application.routes.draw do
   #get '/auth/linkedin', to: "sessions#auth", as: :linkedin_auth
   
   get '/logout', to: 'sessions#destroy', as: :logout
-  #get '/auth/:provider/callback', to: 'sessions#create'
-  get '/auth/linkedin/callback', to: 'sessions#create'
+  get '/auth/:provider/callback', to: 'sessions#create'
+  #get '/auth/linkedin/callback', to: 'sessions#create'
   get '/auth/failure', to: 'sessions#auth_failure'
   
   # Authentication routes

@@ -27,7 +27,8 @@
 class SessionsController < ApplicationController
   
   def create
-    #render plain: request.env['omniauth.auth']
+    puts "CREATING"
+    puts request.env['omniauth.auth']
     begin
       auth_hash = request.env['omniauth.auth']
       puts auth_hash
@@ -56,7 +57,9 @@ class SessionsController < ApplicationController
   end
 
   def auth_failure
+    puts "FAIL!!!!!!!!"
     puts request.env['omniauth.auth'].to_yaml
+    puts "request up there ^^^^^^^^^^^^^^"
     redirect_to about_path
   end
 end

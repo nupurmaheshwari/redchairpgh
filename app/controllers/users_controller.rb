@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  #before_action :check_login
+  before_action :check_login
   
   before_action :set_user, only: [:show, :edit, :update, :destroy, :profile]
   
@@ -59,6 +59,6 @@ class UsersController < ApplicationController
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.permit(:uid, :provider, :role, :first_name, :last_name, :image_url, :email, :profile_url, :location, :active, :agreed, :created_at, :updated_at)
+      params.permit(:uid, :provider, :role, :first_name, :last_name, :image_url, :email, :image_url, :location, :active, :agreed, :created_at, :updated_at)
     end
 end

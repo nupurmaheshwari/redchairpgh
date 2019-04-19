@@ -12,7 +12,10 @@
     <b>Full Name:&nbsp;&nbsp;</b>
       <%= @user.first_name%> <%= @user.last_name %><br /><br />
 
-    <b>Agreed to Code of Conduct?</b>
+    <p><b>Agreed to Code of Conduct?</b>
       <%= @user.agreed %>
+    </p>
+      
+    <%= link_to 'Edit', create_profile_path(@user) %>
   </div>
 </div>

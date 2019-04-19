@@ -11,7 +11,7 @@
   <body>
     <!-- Partials for the topbar and navigation -->
     <%= render :partial => "partials/topbar" %>
-    <% if logged_in? && current_user.agreed == true %>
+    <% if logged_in? && current_user.agreed %>
       <%= render :partial => "partials/nav" %>
     <% else %>
       <%= render :partial => "partials/nav_guest" %>

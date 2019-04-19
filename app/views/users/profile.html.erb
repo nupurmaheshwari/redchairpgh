@@ -13,7 +13,7 @@
           <p>In order to maintain a healthy and safe mentorship environment,
           all members must agree to all terms in the code of conduct.</p>
           <p>Do you agree to follow these rules?</p>
-          <%= f.input_field :agreed, as: :boolean, boolean_style: :inline %>
+          <%= check_box_tag :agreed %>
       </div>
     </div>
   </div>
@@ -21,7 +21,7 @@
   
   <div class="row">
     <div class="form-actions col s7">
-      <%= f.button :submit %>
+      <%= f.button :submit, :value => "Create Account"%>
     </div>
   </div>
 <% end %>
