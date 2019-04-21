@@ -1,15 +1,14 @@
 class UsersController < ApplicationController
-  before_action :check_login
+  before_action :check_login, except: :new
   
-  before_action :set_user, only: [:show, :edit, :update, :destroy, :profile]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :profile, :setup]
   
   def index
     # get all visits in reverse chronological order, 10 per page
-    @users = User.alphabetical.paginate(page: params[:page]).per_page(10)
+    @users = User.alphabetical#.paginate(page: params[:page]).per_page(10)
   end
   
   def show
-     puts "SHOW!!!!!!!!!!!!!!!!!!!!!"
     @user = @user
   end
   
@@ -20,13 +19,16 @@ class UsersController < ApplicationController
   def profile 
   end
   
+  def setup
+  end 
+  
   def create
-    puts "EXCUSE ME"
     @user = User.new(user_params)
     puts @user 
     if @user.save
       flash[:notice] = "Welcome, #{@user.first_name}."
-      redirect_to @user
+      #redirect_to @user
+      redirect_to setup_account_path
     else
       render action: 'new'
     end
@@ -54,8 +56,6 @@ class UsersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
-      puts "USERS!!"
-      puts User.all
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params

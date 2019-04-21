@@ -13,7 +13,7 @@
 ActiveRecord::Schema.define(version: 20190402221605) do
 
   create_table "mentees", force: :cascade do |t|
-    t.integer "user_id", null: false
+    ##t.integer "user_id", null: false
     t.boolean "is_active"
     t.string "current_role"
     t.string "mentor_role"
@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(version: 20190402221605) do
     t.text "image_url"
     t.string "url"
     t.boolean "agreed"
+    t.boolean "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true

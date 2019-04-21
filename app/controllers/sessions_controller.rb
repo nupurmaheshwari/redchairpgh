@@ -37,7 +37,7 @@ class SessionsController < ApplicationController
         @user = User.new(uid: auth_hash['uid'], provider: auth_hash['provider'], 
         role: 'contributor', first_name: auth_hash['info']['first_name'], 
         last_name: auth_hash['info']['last_name'], image_url: auth_hash['info']['picture_url'],
-        agreed: false)
+        agreed: false, active: false)
         @user.save
       end
       session[:user_id] = @user.id
@@ -57,9 +57,7 @@ class SessionsController < ApplicationController
   end
 
   def auth_failure
-    puts "FAIL!!!!!!!!"
     puts request.env['omniauth.auth'].to_yaml
-    puts "request up there ^^^^^^^^^^^^^^"
     redirect_to about_path
   end
 end

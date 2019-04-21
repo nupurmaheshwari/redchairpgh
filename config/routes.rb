@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   get '/auth/failure', to: 'sessions#auth_failure'
   
   # Authentication routes
-  #resources :sessions
+  resources :sessions
   resources :users
   get '/users/:id', to: 'users#show', as: :account
   #get 'users/new', to: 'users#new', as: :signup
@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#new', as: :login
   get 'users/new', to: 'users#create', as: :signup
   get 'users/:id/create_profile', to: 'users#profile', as: :create_profile
+  get 'users/:id/setup_account', to: 'users#setup', as: :setup_account 
   #post '/sessions' => "sessions#create"
   #get '/logout' => "sessions#destroy"
 

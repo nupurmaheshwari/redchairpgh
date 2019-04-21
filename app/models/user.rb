@@ -1,22 +1,13 @@
-# == Schema Information
-#
-# Table name: users
-#
-#  id         :integer          not null, primary key
-#  provider   :string
-#  uid        :string
-#  name       :string
-#  location   :string
-#  image_url  :string
-#  url        :string
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#
+class User < ApplicationRecord
 
-## ADD METHOD: IS.MENTOR?, IS.MENTEE? 
-## ADD ATTRIBUTE: ROLE (ADMIN OR CONTRIBUTOR)
+  ## ADD METHOD: IS.MENTOR?, IS.MENTEE? 
+  ## ADD ATTRIBUTE: ROLE (ADMIN OR CONTRIBUTOR)
 
-class User < ActiveRecord::Base
+  scope :alphabetical,       -> { order('last_name, first_name') }
+  
+  def name 
+    last_name + ", " + first_name
+  end 
   
   def role?(authorized_role)
     return false if role.nil? 
