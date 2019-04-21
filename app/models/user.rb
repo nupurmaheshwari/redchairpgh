@@ -1,8 +1,8 @@
 class User < ApplicationRecord
   #has_secure_password
 
-  #validate :agreed_value
-
+  validates_acceptance_of :code_of_conduct, :message => "must be accepted.", :on => :update
+  
   scope :alphabetical,       -> { order('last_name, first_name') }
   
   # validates :username, presence: true, uniqueness: { case_sensitive: false}
@@ -37,8 +37,8 @@ class User < ApplicationRecord
   end 
   
   def agreed_value
-    if agreed != true
-      errors.add(:agreed, "must be checked")
+    if code_of_conduct != true
+      errors.add(:code_of_conduct, "must be checked")
     end
   end
 

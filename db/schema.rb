@@ -68,7 +68,7 @@ ActiveRecord::Schema.define(version: 20190402221605) do
     t.string "location"
     t.text "image_url"
     t.string "url"
-    t.boolean "agreed"
+    t.boolean "code_of_conduct"
     t.boolean "active"
     t.boolean "is_new"
     t.string "password_digest"

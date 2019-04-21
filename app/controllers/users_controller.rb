@@ -48,7 +48,7 @@ class UsersController < ApplicationController
     else
       if @user.update_attributes(user_params)
         if @user.new_user? 
-          @user.update_attributes(:agreed => true) 
+          @user.update_attributes(:code_of_conduct => true) 
           @user.update_attributes(:is_new => false) 
           redirect_to setup_account_path(@user) 
         else 
@@ -77,6 +77,6 @@ class UsersController < ApplicationController
     end
     
     def user_params
-      params.permit(:uid, :provider, :role, :first_name, :last_name, :image_url, :email, :image_url, :url, :location, :agreed, :active, :is_new, :username, :password, :password_confirmation, :created_at, :updated_at)
+      params.permit(:uid, :provider, :role, :first_name, :last_name, :image_url, :email, :image_url, :url, :location, :code_of_conduct, :active, :is_new, :username, :password, :password_confirmation, :created_at, :updated_at)
     end
 end
