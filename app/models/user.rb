@@ -1,9 +1,15 @@
 class User < ApplicationRecord
+  #has_secure_password
 
-  ## ADD METHOD: IS.MENTOR?, IS.MENTEE? 
-  ## ADD ATTRIBUTE: ROLE (ADMIN OR CONTRIBUTOR)
+  #validate :agreed_value
 
   scope :alphabetical,       -> { order('last_name, first_name') }
+  
+  # validates :username, presence: true, uniqueness: { case_sensitive: false}
+  # validates_presence_of :password, on: :create 
+  # validates_presence_of :password_confirmation, on: :create 
+  #validates_confirmation_of :password, message: "does not match"
+  #validates_length_of :password, minimum: 4, message: "must be at least 4 characters long", allow_blank: true
   
   def name 
     last_name + ", " + first_name
@@ -13,6 +19,10 @@ class User < ApplicationRecord
     return false if role.nil? 
     role.downcase.to_sym == authorized_role 
   end 
+  
+  # def self.authenticate(username,password)
+  #   find_by_username(username).try(:authenticate, password)
+  # end
   
   def is_mentee?
     return true 
@@ -26,6 +36,12 @@ class User < ApplicationRecord
     return is_new == true 
   end 
   
+  def agreed_value
+    if agreed != true
+      errors.add(:agreed, "must be checked")
+    end
+  end
+
   class << self
     def from_omniauth(auth_hash)
       @user = where(uid: auth_hash['uid'], provider: auth_hash['provider']).first#, 

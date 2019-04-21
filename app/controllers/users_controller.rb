@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :check_login, except: :new
   
-  before_action :set_user, only: [:show, :edit, :update, :destroy, :profile, :setup]
+  before_action :set_user, only: [:show, :edit, :update, :change_password, :destroy, :profile, :setup]
   
   def index
     # get all visits in reverse chronological order, 10 per page
@@ -17,38 +17,51 @@ class UsersController < ApplicationController
   end
   
   def profile 
+    if !current_user.is_new
+      redirect_to current_user
+    end
   end
   
   def setup
   end 
-  
+
   def create
     @user = User.new(user_params)
-    puts @user 
     if @user.save
       flash[:notice] = "Welcome, #{@user.first_name}."
       redirect_to @user
     else
       render action: 'new'
     end
-  end 
+  end
   
   def edit
   end
   
   def update
-    puts user_params
-    if @user.update_attributes(user_params)
-      if @user.new_user? 
-        @user.update_attributes(:is_new => false) 
-        redirect_to setup_account_path(@user) 
-      else 
-        flash[:notice] = "Successfully updated your account."
-        redirect_to @user
-      end 
+    if user_params[:password]
+      if @user.update_attributes(user_params)
+        redirect_to (@user), notice: "Password was successfully changed."
+      else
+        render action: 'change_password'
+      end
     else
-      render action: 'edit'
-    end
+      if @user.update_attributes(user_params)
+        if @user.new_user? 
+          @user.update_attributes(:agreed => true) 
+          @user.update_attributes(:is_new => false) 
+          redirect_to setup_account_path(@user) 
+        else 
+          flash[:notice] = "Successfully updated your account."
+          redirect_to @user
+        end 
+      else
+        render action: 'edit'
+      end
+    end 
+  end
+
+  def change_password
   end
   
   def destroy
@@ -63,8 +76,7 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
     end
     
-    # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.permit(:uid, :provider, :role, :first_name, :last_name, :image_url, :email, :image_url, :location, :agreed, :active, :is_new, :created_at, :updated_at)
+      params.permit(:uid, :provider, :role, :first_name, :last_name, :image_url, :email, :image_url, :url, :location, :agreed, :active, :is_new, :username, :password, :password_confirmation, :created_at, :updated_at)
     end
 end

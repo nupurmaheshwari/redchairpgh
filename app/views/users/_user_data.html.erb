@@ -17,5 +17,11 @@
     </p>
       
     <%= link_to 'Edit', create_profile_path(@user) %>
+    
+    <% if !current_user.nil? %>
+      <p align="center">
+        <br><a <%= link_to 'Change Password', change_password_path(@user) %> </a>
+      </p>
+    <% end %>
   </div>
 </div>

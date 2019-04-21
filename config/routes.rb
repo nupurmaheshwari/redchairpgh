@@ -20,6 +20,8 @@ Rails.application.routes.draw do
   # Authentication routes
   resources :sessions
   resources :users
+  get 'users/:id/change_password', to: 'users#change_password', as: :change_password
+  
   get '/users/:id', to: 'users#show', as: :account
   #get 'users/new', to: 'users#new', as: :signup
   #get 'user/edit', to: 'users#edit', as: :edit_current_user

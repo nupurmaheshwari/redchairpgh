@@ -71,6 +71,8 @@ ActiveRecord::Schema.define(version: 20190402221605) do
     t.boolean "agreed"
     t.boolean "active"
     t.boolean "is_new"
+    t.string "password_digest"
+    t.string "username"
     # t.datetime "created_at", null: false
     # t.datetime "updated_at", null: false
     # t.index ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true
