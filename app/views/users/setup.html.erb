@@ -1,32 +1,44 @@
 <% if current_user.active.nil? or current_user.active != true %>
   <div class="card">    
     <div class="card-content">
-      <p>Optional! Set up an email and password if you don't want to login through LinkedIn from now on!</p>
-      <%= simple_form_for(@user) do |f| %>
-        <%= f.error_notification %>
-        <div class="row">
-          <div class="form-inputs">
-            <%= f.input :first_name %> 
-            <%= f.input :last_name %> 
-            <%= f.input :location %> 
-            <%= f.input :url %> 
-            <br>CODE OF CONDUCT</br>
-            <p>In order to maintain a healthy and safe mentorship environment,
-            all members must agree to all terms in the code of conduct.</p>
-            <p>Do you agree to follow these rules?</p>
-            <%= check_box_tag :agreed %>
-            <% f.hidden_field :active, value: true %>
-        </div>
-      </div>
+      <h3>Optional! Set up an email and password if you don't want to login through LinkedIn from now on.</h3>
+      <%= form_with(model: @user, local: true) do |f| %>
+    	<% if @user.errors.any? %>
+            <br>
+        
+            <div id="error_explanation">
+              <h4><%= pluralize(@user.errors.count, "error") %> prohibited this account from being created:</h4>
+              <ul>
+            <% @user.errors.full_messages.each do |msg| %>
+                <% if msg.include? "Family" %>
+                  <li style="color: red"><%= msg %></li>
+                <% end %>
+            <% end %>
+              </ul>
+            </div>
+        <% end %>
+        <br>
+      
+        <h3>Account Information</h3>
+
+        <p>
+        <%= f.label :email, "Email Address" %><br />
+        <%= f.text_field :email %>
+        </p>
+        
+        <p>
+        <%= f.label :password %><br />
+        <%= f.password_field :password %>
+        </p>
+        
+        <p>
+        <%= f.label :password_confirmation, "Confirm Password" %><br />
+        <%= f.password_field :password_confirmation %>
+        </p>
+        
+        <p><%= f.submit (@user.new_record? ? "Sign up" : "Update"), class: "btn-large waves-effect waves-light green lighten-1" %></p>
+
+    <% end %>
     </div>
   </div>
-  
-    <div class="row">
-      <div class="form-actions col s7">
-        <%= f.button :submit, :value => "Create Account"%>
-      </div>
-    </div>
-  <% end %>
-<% else %>
-  redirect_to home_path 
 <% end %>

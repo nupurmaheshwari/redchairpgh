@@ -22,6 +22,10 @@ class User < ApplicationRecord
     return true 
   end 
   
+  def new_user? 
+    return is_new == true 
+  end 
+  
   class << self
     def from_omniauth(auth_hash)
       @user = where(uid: auth_hash['uid'], provider: auth_hash['provider']).first#, 

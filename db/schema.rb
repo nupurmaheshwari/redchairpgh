@@ -70,11 +70,12 @@ ActiveRecord::Schema.define(version: 20190402221605) do
     t.string "url"
     t.boolean "agreed"
     t.boolean "active"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true
-    t.index ["provider"], name: "index_users_on_provider"
-    t.index ["uid"], name: "index_users_on_uid"
+    t.boolean "is_new"
+    # t.datetime "created_at", null: false
+    # t.datetime "updated_at", null: false
+    # t.index ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true
+    # t.index ["provider"], name: "index_users_on_provider"
+    # t.index ["uid"], name: "index_users_on_uid"
   end
 
 end

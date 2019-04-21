@@ -37,7 +37,7 @@ class SessionsController < ApplicationController
         @user = User.new(uid: auth_hash['uid'], provider: auth_hash['provider'], 
         role: 'contributor', first_name: auth_hash['info']['first_name'], 
         last_name: auth_hash['info']['last_name'], image_url: auth_hash['info']['picture_url'],
-        agreed: false, active: false)
+        agreed: false, active: false, is_new: true)
         @user.save
       end
       session[:user_id] = @user.id
