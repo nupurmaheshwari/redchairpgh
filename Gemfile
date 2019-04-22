@@ -35,6 +35,7 @@ gem 'devise'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'simple_form', '3.5.0'
+gem 'cancancan', '2.1.2'
 
 gem 'jquery-rails'
 gem 'will_paginate', '~> 3.1.6'
