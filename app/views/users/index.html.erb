@@ -1,0 +1,17 @@
+<% if @users.empty? %> 
+    <h4>There are currently no users in the system at this time.</h4>
+<% else %>
+    <h3>Active Users</h3>
+    <table> 
+        <thead> 
+            <th>Name</th>
+            <th></th>
+        </thead>
+        <% for user in @users %> 
+            <tr>
+                <td><%= user.name %></td>
+                <td><%= link_to 'Show', user_path(user) %></td>
+            </tr>
+        <% end %> 
+    </table>
+<% end %>

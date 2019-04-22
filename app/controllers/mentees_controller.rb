@@ -1,4 +1,5 @@
 class MenteesController < ApplicationController
+  before_action :check_login
   before_action :set_mentee, only: [:show, :edit, :update, :destroy, :matches]
 
   # GET /mentees

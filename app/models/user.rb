@@ -1,27 +1,28 @@
-# == Schema Information
-#
-# Table name: users
-#
-#  id         :integer          not null, primary key
-#  provider   :string
-#  uid        :string
-#  name       :string
-#  location   :string
-#  image_url  :string
-#  url        :string
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#
+class User < ApplicationRecord
+  #has_secure_password
 
-## ADD METHOD: IS.MENTOR?, IS.MENTEE? 
-## ADD ATTRIBUTE: ROLE (ADMIN OR CONTRIBUTOR)
-
-class User < ActiveRecord::Base
+  validates_acceptance_of :code_of_conduct, :message => "must be accepted.", :on => :update
+  
+  scope :alphabetical,       -> { order('last_name, first_name') }
+  
+  # validates :username, presence: true, uniqueness: { case_sensitive: false}
+  # validates_presence_of :password, on: :create 
+  # validates_presence_of :password_confirmation, on: :create 
+  #validates_confirmation_of :password, message: "does not match"
+  #validates_length_of :password, minimum: 4, message: "must be at least 4 characters long", allow_blank: true
+  
+  def name 
+    last_name + ", " + first_name
+  end 
   
   def role?(authorized_role)
     return false if role.nil? 
     role.downcase.to_sym == authorized_role 
   end 
+  
+  # def self.authenticate(username,password)
+  #   find_by_username(username).try(:authenticate, password)
+  # end
   
   def is_mentee?
     return true 
@@ -31,6 +32,16 @@ class User < ActiveRecord::Base
     return true 
   end 
   
+  def new_user? 
+    return is_new == true 
+  end 
+  
+  def agreed_value
+    if code_of_conduct != true
+      errors.add(:code_of_conduct, "must be checked")
+    end
+  end
+
   class << self
     def from_omniauth(auth_hash)
       @user = where(uid: auth_hash['uid'], provider: auth_hash['provider']).first#, 

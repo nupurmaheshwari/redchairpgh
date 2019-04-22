@@ -2,28 +2,31 @@
   <div class="col s7">
     <div class="card yellow lighten-4">
       <div class="card-content">
-        <span class="card-title">Login here</span>
-          <br />
-          <%# form_with url: sessions_path, local: true do |f| %>
-          <div class="control-group">
-            <%# f.label :username %>
-            <div class="controls">
-              <%# f.text_field :username %>
-            </div>
-          </div>
-
-          <div class="control-group">
-            <%# f.label :password %>
-            <div class="controls">
-              <%# f.password_field :password %>
-            </div>
-          </div>
-          
-          <div class="actions"><%# f.submit "Log In" %></div>
-        <%# end %>
+        <h2>Log In to RedChairPGH</h2>
+        <br />
       </div>
       <div class="card-content">
-        <%=link_to "Login via LinkedIn", "/auth/linkedin"%>
+        <h3><%=link_to "Login via LinkedIn", "/auth/linkedin"%></h3>
+      </div>
+      <p> -- OR -- </p>
+      <div class="card-content">
+        <%= form_tag sessions_path do %>
+        	<div class="control-group">
+            <%= label_tag :email %>
+            <div class="controls">
+              <%= text_field_tag :email, params[:email] %>
+            </div>
+          </div>
+          <br/>
+        	<div class="control-group">
+            <%= label_tag :password %>
+            <div class="controls">
+              <%= password_field_tag :password %>
+            </div>
+          </div>
+          <br/>
+          <div class="actions"><%= submit_tag "Log In", class: "btn-large waves-effect waves-light green lighten-1" %></div>
+        <% end %>
       </div>
     </div>
   </div>

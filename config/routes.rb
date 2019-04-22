@@ -13,19 +13,22 @@ Rails.application.routes.draw do
   #get '/auth/linkedin', to: "sessions#auth", as: :linkedin_auth
   
   get '/logout', to: 'sessions#destroy', as: :logout
-  #get '/auth/:provider/callback', to: 'sessions#create'
-  get '/auth/linkedin/callback', to: 'sessions#create'
+  get '/auth/:provider/callback', to: 'sessions#create'
+  #get '/auth/linkedin/callback', to: 'sessions#create'
   get '/auth/failure', to: 'sessions#auth_failure'
   
   # Authentication routes
-  #resources :sessions
+  resources :sessions
   resources :users
+  get 'users/:id/change_password', to: 'users#change_password', as: :change_password
+  
   get '/users/:id', to: 'users#show', as: :account
   #get 'users/new', to: 'users#new', as: :signup
   #get 'user/edit', to: 'users#edit', as: :edit_current_user
   get '/login', to: 'sessions#new', as: :login
   get 'users/new', to: 'users#create', as: :signup
   get 'users/:id/create_profile', to: 'users#profile', as: :create_profile
+  get 'users/:id/setup_account', to: 'users#setup', as: :setup_account 
   #post '/sessions' => "sessions#create"
   #get '/logout' => "sessions#destroy"
 

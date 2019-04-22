@@ -1,5 +1,5 @@
 class MentorshipsController < ApplicationController
-    #before_action :check_login
+    before_action :check_login
     before_action :set_mentorship, only: [:show, :edit, :update, :destroy]
   
     def index 

@@ -1,0 +1,54 @@
+<%= form_with(model: @user, local: true) do |f| %>
+	<% if @user.errors.any? %>
+
+        <br>
+    
+        <div id="error_explanation">
+          <h4><%= pluralize(@user.errors.count, "error") %> prohibited this account from being created:</h4>
+    
+          <ul>
+          <% @user.errors.full_messages.each do |msg| %>
+            <li style="color: red"><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <br>
+    
+    <h5>Account Information</h5>
+    
+    <div class="card">    
+        <div class="card-content">
+          <p>Almost there! Verify your information</p>
+          <%= simple_form_for(@user) do |f| %>
+            <%= f.error_notification %>
+            <div class="row">
+              <div class="form-inputs">
+                <%= f.input :first_name %> 
+                <%= f.input :last_name %> 
+                <%= f.input :location %> 
+                <%= f.input :url %> 
+                <br>CODE OF CONDUCT</br>
+                <p>In order to maintain a healthy and safe mentorship environment,
+                all members must agree to all terms in the code of conduct.</p>
+                <p>Do you agree to follow these rules?</p>
+                <%= f.input_field :code_of_conduct, as: :boolean, boolean_style: :inline %>
+                <%= f.hidden_field :active, value: true %>
+                <%= f.hidden_field :is_new, value: true %>
+              </div>
+            </div>
+        
+            <div class="row">
+              <div class="form-actions col s7">
+                <%= f.button :submit, :value => "Create Account"%>
+              </div>
+            </div>
+          <% end %>
+        </div>
+    </div>
+
+<% end %>
+
+<br>
+<br>

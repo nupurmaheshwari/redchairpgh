@@ -1,6 +1,6 @@
 <div class="card">
   <div class="card-content">
-    <h5>Account Information for <%= @user.first_name %></h5><br />
+    <h3>Account Information for <%= @user.first_name %></h3><br />
     
     <b>Profile Photo:&nbsp;&nbsp;</b>
     <% unless @user.image_url.nil? %> 
@@ -12,7 +12,16 @@
     <b>Full Name:&nbsp;&nbsp;</b>
       <%= @user.first_name%> <%= @user.last_name %><br /><br />
 
-    <b>Agreed to Code of Conduct?</b>
-      <%= @user.agreed %>
+    <p><b>Agreed to Code of Conduct?</b>
+      <%= @user.code_of_conduct %>
+    </p>
+      
+    <%= link_to 'Edit', create_profile_path(@user) %>
+    
+    <% if !current_user.nil? %>
+      <p align="center">
+        <br><a <%= link_to 'Change Password', change_password_path(@user) %> </a>
+      </p>
+    <% end %>
   </div>
 </div>
