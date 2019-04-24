@@ -15,6 +15,12 @@ html {
     height: 400px;
 }
 
+[type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+    position: absolute;
+    left: -9999px;
+    visibility: hidden;
+}
+
 /********** TOPBAR & NAV ********/
 #topbar {
   background-color: white;

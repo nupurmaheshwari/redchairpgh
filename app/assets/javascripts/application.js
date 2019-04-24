@@ -10,11 +10,18 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require jquery
 //= require rails-ujs
-//= require turbolinks
-//= require jquery3
-//= require jquery_ujs
+//= require materialize-sprockets
+//= require materialize-form
 //= require_tree .
+
+// @import "materialize";
+// @import "https://fonts.googleapis.com/icon?family=Material+Icons";
+
+// Sticky footer js
+// Thanks to Charles Smith for this -- http://foundation.zurb.com/forum/posts/629-sticky-footer
+
 
 (function($){
 	$.fn.limitCB = function() {

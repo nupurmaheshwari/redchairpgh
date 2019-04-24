@@ -30,17 +30,17 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 gem 'omniauth-linkedin-oauth2'#, git: 'https://github.com/Devato/omniauth-linkedin-oauth2.git'
+#gem 'devise'
 #gem 'omniauth-linkedin'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'simple_form', '3.5.0'
-gem 'cancancan', '2.1.2'
 
 gem 'jquery-rails'
-gem 'will_paginate', '~> 3.1.6'
+gem 'chronic', '0.10.2'
+gem 'materialize-sass', '0.100.2'
+gem 'materialize-form', '1.0.8'
 
-# Use ActiveModel has_secure_password
-gem 'bcrypt', '~> 3.1.11'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

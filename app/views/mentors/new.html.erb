@@ -8,7 +8,9 @@
           
           <%# f.input :role, collection: Mentor::ROLE, include_blank: true %>
           <!--matching algo feilds -->          
-          <%= f.input :current_role, :as => :check_boxes, collection: Mentor::BACKGROUND, :label => '1. What is your background?  Check all that apply.' %>
+          <%#= f.input :current_role, :as => :check_boxes, collection: Mentor::BACKGROUND, :label => '1. What is your background?  Check all that apply.' %>
+          <%= f.check_box :current_role %>
+          <%= f.label 'current_role', id:'current_role' %>
           <div id="skills">
             <%= f.input :specialized_skills, :as => :check_boxes, collection: Mentor::IMPACT, :label => '2. What areas do you most want to support (choose your top 6) -- where you think your experience can most impact your mentee? ' %>
           </div>
