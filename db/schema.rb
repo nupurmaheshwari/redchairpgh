@@ -10,10 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190402221605) do
+ActiveRecord::Schema.define(version: 20190424233128) do
 
   create_table "mentees", force: :cascade do |t|
-    ##t.integer "user_id", null: false
     t.boolean "is_active"
     t.string "current_role"
     t.string "mentor_role"
@@ -28,6 +27,7 @@ ActiveRecord::Schema.define(version: 20190402221605) do
     t.text "in_five_years"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "paused"
   end
 
   create_table "mentors", force: :cascade do |t|
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 20190402221605) do
     t.datetime "updated_at", null: false
     t.string "specialized_skills", default: "--- []\n"
     t.string "mentor_roles", default: "--- []\n"
+    t.boolean "paused"
   end
 
   create_table "mentorships", force: :cascade do |t|
@@ -73,11 +74,8 @@ ActiveRecord::Schema.define(version: 20190402221605) do
     t.boolean "is_new"
     t.string "password_digest"
     t.string "username"
-    t.datetime "created_at"#, null: false
-    t.datetime "updated_at"#, null: false
-    # t.index ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true
-    # t.index ["provider"], name: "index_users_on_provider"
-    # t.index ["uid"], name: "index_users_on_uid"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

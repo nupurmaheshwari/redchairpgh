@@ -2,10 +2,9 @@ class Match
 
     def initialize(mentee) 
         @mentors = match(mentee)
-        # @mentors.each do |mentor|
-        #     puts mentor[1]
-        # end 
     end 
+
+    #check if match is a mentorship - remove=
         
     def match(mentee)
     	#all mentor options that pass binary questions
@@ -45,8 +44,9 @@ class Match
     	mentor_list.each do |mentor|
     		if (mentee.mentor_gender == 'As needed' || mentee.mentor_gender == mentor.gender)
     			if mentor.mentor_roles.include? mentee.mentor_role
-    				if frequency(mentee, mentor) == true
-    					acceptable.push(mentor)
+                    if (!mentor.paused && mentee.user_id != mentor.user_id)
+    				    if frequency(mentee, mentor) == true
+    					   acceptable.push(mentor)
     				end 
     			end 
     		end 
