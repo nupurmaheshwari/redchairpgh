@@ -13,7 +13,6 @@
 ActiveRecord::Schema.define(version: 20190402221605) do
 
   create_table "mentees", force: :cascade do |t|
-    ##t.integer "user_id", null: false
     t.boolean "is_active"
     t.string "current_role"
     t.string "mentor_role"
@@ -26,29 +25,32 @@ ActiveRecord::Schema.define(version: 20190402221605) do
     t.string "comm_frequency"
     t.text "bio"
     t.text "in_five_years"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_mentees_on_user_id"
   end
 
   create_table "mentors", force: :cascade do |t|
     t.boolean "is_active"
-    t.string "current_role", default: "--- []\n"
+    t.string "current_role"
     t.integer "years_in_field"
     t.integer "years_in_lead"
     t.string "gender"
     t.string "comm_frequency"
     t.text "bio"
     t.text "motivation"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "specialized_skills", default: "--- []\n"
     t.string "mentor_roles", default: "--- []\n"
+    t.index ["user_id"], name: "index_mentors_on_user_id"
   end
 
   create_table "mentorships", force: :cascade do |t|
     t.integer "mentor_id"
     t.integer "mentee_id"
-    t.string "status"
     t.integer "match_score"
     t.boolean "is_active"
     t.boolean "mentee_approved"
@@ -68,16 +70,12 @@ ActiveRecord::Schema.define(version: 20190402221605) do
     t.string "location"
     t.text "image_url"
     t.string "url"
-    t.boolean "code_of_conduct"
-    t.boolean "active"
-    t.boolean "is_new"
-    t.string "password_digest"
-    t.string "username"
-    # t.datetime "created_at", null: false
-    # t.datetime "updated_at", null: false
-    # t.index ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true
-    # t.index ["provider"], name: "index_users_on_provider"
-    # t.index ["uid"], name: "index_users_on_uid"
+    t.boolean "agreed"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true
+    t.index ["provider"], name: "index_users_on_provider"
+    t.index ["uid"], name: "index_users_on_uid"
   end
 
 end
