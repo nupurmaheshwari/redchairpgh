@@ -14,7 +14,8 @@
             <p>In order to maintain a healthy and safe mentorship environment,
             all members must agree to all terms in the code of conduct.</p>
             <p>Do you agree to follow these rules?</p>
-            <%= f.input_field :code_of_conduct, as: :boolean, boolean_style: :inline %>
+            <%= f.input :code_of_conduct%>
+            <%#= f.input_field :code_of_conduct, as: :boolean, boolean_style: :inline %>
             <%= f.hidden_field :active, value: true %>
             <%= f.hidden_field :is_new, value: true %>
           </div>
