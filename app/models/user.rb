@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_secure_password
+  has_secure_password validations: false
 
   #validates_acceptance_of :code_of_conduct, :message => "must be accepted.", :on => :update
   
