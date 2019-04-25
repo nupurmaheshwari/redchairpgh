@@ -4,7 +4,8 @@ class Match
         @mentors = match(mentee)
     end 
 
-    #check if match is a mentorship - remove=
+    #check if match is a mentorship - remove
+    #get all mentors for a mentee and check if mentor id is in list ids
         
     def match(mentee)
     	#all mentor options that pass binary questions
@@ -43,10 +44,11 @@ class Match
     	acceptable = []
     	mentor_list.each do |mentor|
     		if (mentee.mentor_gender == 'As needed' || mentee.mentor_gender == mentor.gender)
-    			if mentor.mentor_roles.include? mentee.mentor_role
+    			if (mentor.mentor_roles.include? mentee.mentor_role) && !(mentee.connections.include? mentor.id)
                     if (!mentor.paused && mentee.user_id != mentor.user_id)
     				    if frequency(mentee, mentor) == true
     					   acceptable.push(mentor)
+                        end
     				end 
     			end 
     		end 

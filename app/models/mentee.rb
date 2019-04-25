@@ -1,7 +1,9 @@
 class Mentee < ApplicationRecord
     
 	# Relationships
+	belongs_to :user
 	has_many :mentorships
+	has_many :mentors, through: :mentorships
 	
 	## ADD SCOPE: MENTORS_LIST 
 	
@@ -31,5 +33,9 @@ class Mentee < ApplicationRecord
 	def email 
 		#User.find(self.user_id).first.email
 	end 
+
+	def connections
+		self.mentorships.to_a.select{|m| m.mentor_id }
+	end
 
 end

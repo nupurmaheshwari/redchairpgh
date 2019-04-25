@@ -36,6 +36,8 @@ gem 'omniauth-linkedin-oauth2'#, git: 'https://github.com/Devato/omniauth-linked
 # gem 'capistrano-rails', group: :development
 gem 'simple_form', '3.5.0'
 
+gem 'cancancan', '2.1.2'
+
 gem 'jquery-rails'
 gem 'chronic', '0.10.2'
 gem 'materialize-sass', '0.100.2'
