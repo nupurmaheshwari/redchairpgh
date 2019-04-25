@@ -1,15 +1,15 @@
 class User < ApplicationRecord
-  #has_secure_password
+  has_secure_password
 
-  validates_acceptance_of :code_of_conduct, :message => "must be accepted.", :on => :update
+  #validates_acceptance_of :code_of_conduct, :message => "must be accepted.", :on => :update
   
   scope :alphabetical,       -> { order('last_name, first_name') }
   
   # validates :username, presence: true, uniqueness: { case_sensitive: false}
   # validates_presence_of :password, on: :create 
   # validates_presence_of :password_confirmation, on: :create 
-  #validates_confirmation_of :password, message: "does not match"
-  #validates_length_of :password, minimum: 4, message: "must be at least 4 characters long", allow_blank: true
+  validates_confirmation_of :password, message: "does not match"
+  validates_length_of :password, minimum: 4, message: "must be at least 4 characters long", allow_blank: true
   
   def name 
     last_name + ", " + first_name
@@ -20,10 +20,10 @@ class User < ApplicationRecord
     role.downcase.to_sym == authorized_role 
   end 
   
-  # def self.authenticate(username,password)
-  #   find_by_username(username).try(:authenticate, password)
-  # end
-  
+  def self.authenticate(username,password)
+    find_by_username(username).try(:authenticate, password)
+  end
+
   def is_mentee?
     return true 
   end 
