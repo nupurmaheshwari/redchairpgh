@@ -41,8 +41,13 @@ class UsersController < ApplicationController
   end
   
   def update
+    puts params 
+    puts user_params[:id]
+    puts "SETUP ACCOUNT DETAILS^^"
     if user_params[:password]
-      if @user.update_attributes(user_params)
+      puts "haha"
+      @user.update(user_params)
+      if @user.save #.update_attributes(user_params)
         redirect_to (@user), notice: "Password was successfully changed."
       else
         render action: 'change_password'
@@ -81,6 +86,6 @@ class UsersController < ApplicationController
     end
     
     def user_params
-      params.permit(:uid, :provider, :role, :first_name, :last_name, :image_url, :email, :image_url, :url, :location, :code_of_conduct, :active, :is_new, :username, :password, :password_confirmation, :created_at, :updated_at)
+      params.require(:user).permit(:uid, :provider, :role, :first_name, :last_name, :image_url, :email, :image_url, :url, :location, :code_of_conduct, :active, :is_new, :username, :password, :password_confirmation, :created_at, :updated_at)
     end
 end
