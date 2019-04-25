@@ -72,19 +72,6 @@ ActiveRecord::Schema.define(version: 20190424233128) do
     t.string "location"
     t.text "image_url"
     t.string "url"
-    t.boolean "agreed"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true
-    t.index ["provider"], name: "index_users_on_provider"
-    t.index ["uid"], name: "index_users_on_uid"
-    t.boolean "code_of_conduct"
-    t.boolean "active"
-    t.boolean "is_new"
-    t.string "password_digest"
-    t.string "username"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
 end
