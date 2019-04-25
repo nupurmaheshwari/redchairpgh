@@ -12,12 +12,11 @@ class UsersController < ApplicationController
   end
   
   def new
+    puts "HI"
     @user = User.new
   end
   
   def profile 
-    puts "JENNY, THIS IS THE CURRENT USER"
-    puts current_user.attributes 
     if !current_user.is_new 
       redirect_to current_user
     end
@@ -27,6 +26,8 @@ class UsersController < ApplicationController
   end 
 
   def create
+    puts "user params down there"
+    puts user_params
     @user = User.new(user_params)
     if @user.save
       flash[:notice] = "Welcome, #{@user.first_name}."
@@ -85,6 +86,6 @@ class UsersController < ApplicationController
     end
     
     def user_params
-      params.require(:user).permit(:uid, :provider, :role, :first_name, :last_name, :image_url, :email, :image_url, :url, :location, :code_of_conduct, :active, :is_new, :username, :password, :password_confirmation, :created_at, :updated_at)
+      params.require(:user).permit(:uid, :provider, :role, :first_name, :last_name, :image_url, :email, :image_url, :url, :location, :code_of_conduct, :active, :is_new, :username, :agreed, :password, :password_confirmation, :created_at, :updated_at)
     end
 end
