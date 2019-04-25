@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
   before_action :check_login, except: :new
-  
   before_action :set_user, only: [:show, :edit, :update, :change_password, :destroy, :profile, :setup]
   
   def index
