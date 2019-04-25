@@ -17,7 +17,9 @@ class UsersController < ApplicationController
   end
   
   def profile 
-    if !current_user.is_new
+    puts "JENNY, THIS IS THE CURRENT USER"
+    puts current_user.attributes 
+    if !current_user.is_new 
       redirect_to current_user
     end
   end
@@ -48,10 +50,12 @@ class UsersController < ApplicationController
     else
       if @user.update_attributes(user_params)
         if @user.new_user? 
+          puts "A NEW USER!!!"
           @user.update_attributes(:code_of_conduct => true) 
           @user.update_attributes(:is_new => false) 
           redirect_to setup_account_path(@user) 
         else 
+          puts "NOT A NEW USER!!!!!!!!!!!!!!!!!!!"
           flash[:notice] = "Successfully updated your account."
           redirect_to @user
         end 

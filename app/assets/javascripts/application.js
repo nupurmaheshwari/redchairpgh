@@ -12,12 +12,9 @@
 //
 //= require jquery
 //= require rails-ujs
-//= require materialize-sprockets
-//= require materialize-form
+
 //= require_tree .
 
-// @import "materialize";
-// @import "https://fonts.googleapis.com/icon?family=Material+Icons";
 
 // Sticky footer js
 // Thanks to Charles Smith for this -- http://foundation.zurb.com/forum/posts/629-sticky-footer
