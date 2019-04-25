@@ -13,7 +13,6 @@
 ActiveRecord::Schema.define(version: 20190402221605) do
 
   create_table "mentees", force: :cascade do |t|
-    t.integer "user_id", null: false
     t.boolean "is_active"
     t.string "current_role"
     t.string "mentor_role"
@@ -31,7 +30,6 @@ ActiveRecord::Schema.define(version: 20190402221605) do
   end
 
   create_table "mentors", force: :cascade do |t|
-    t.integer "user_id", null: false
     t.boolean "is_active"
     t.string "current_role", default: "--- []\n"
     t.integer "years_in_field"
@@ -74,11 +72,8 @@ ActiveRecord::Schema.define(version: 20190402221605) do
     t.boolean "is_new"
     t.string "password_digest"
     t.string "username"
-    t.datetime "created_at"#, null: false
-    t.datetime "updated_at"#, null: false
-    # t.index ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true
-    # t.index ["provider"], name: "index_users_on_provider"
-    # t.index ["uid"], name: "index_users_on_uid"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end
