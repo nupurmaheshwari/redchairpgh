@@ -1,3 +1,35 @@
-<h1>Editing User</h1>
+<h1>Editing Account</h1>
 
-<%= render 'form', user: @user %>
+<div class="card">    
+    <div class="card-content">
+      <%= simple_form_for(@user) do |f| %>
+        <%= f.error_notification %>
+        <div class="row">
+          <div class="form-inputs">
+            <% if @user.username %>
+                <%= f.input :username %>
+            <% end %>
+            <%= f.input :first_name %> 
+            <%= f.input :last_name %> 
+            <%= f.input :email %> 
+            <%= f.input :url %>
+            <%= f.input :location %> 
+            <%= f.hidden_field :active, value: true %>
+            <%= f.hidden_field :is_new, value: true %>
+          </div>
+        </div>
+    
+        <div class="row">
+          <div class="form-actions col s7">
+            <%= f.button :submit, :value => "Save Changes"%>
+          </div>
+        </div>
+      <% end %>
+      <p align="center">
+        <% if @user.username %>
+            <h6><a <%= link_to 'Change Password', change_password_path(@user) %> </a></h6>
+        <% end %>
+      </p>
+      <%= link_to 'Cancel', user_path %>
+    </div>
+</div>

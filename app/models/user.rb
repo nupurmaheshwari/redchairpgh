@@ -5,7 +5,7 @@ class User < ApplicationRecord
   
   scope :alphabetical,       -> { order('last_name, first_name') }
   
-  # validates :username, presence: true, uniqueness: { case_sensitive: false}
+  validates :username, uniqueness: { case_sensitive: false}
   # validates_presence_of :password, on: :create 
   # validates_presence_of :password_confirmation, on: :create 
   validates_confirmation_of :password, message: "does not match"

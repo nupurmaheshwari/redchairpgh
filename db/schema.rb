@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190425230254) do
+ActiveRecord::Schema.define(version: 20190426004455) do
 
   create_table "mentees", force: :cascade do |t|
     t.boolean "is_active"
@@ -80,6 +80,7 @@ ActiveRecord::Schema.define(version: 20190425230254) do
     t.boolean "active"
     t.string "password_digest"
     t.string "username"
+    t.string "email"
     t.index ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true
     t.index ["provider"], name: "index_users_on_provider"
     t.index ["uid"], name: "index_users_on_uid"
