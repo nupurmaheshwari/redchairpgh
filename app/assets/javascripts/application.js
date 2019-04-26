@@ -26,7 +26,7 @@
 (function($){
 	$.fn.limitCB = function() {
 		$('#skills').find(':checkbox').change(function(e) {
-	   		if ($('input[type=checkbox]:checked').length > 2) {
+	   		if ($('input[type=checkbox]:checked').length > 6) {
 	       		$(this).prop('checked', false)
 	    	}
 		})
