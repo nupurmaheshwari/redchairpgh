@@ -1,6 +1,6 @@
 <div class="card">
   <div class="card-content">
-    <h3>Account Information for <%= @user.first_name %></h3><br />
+    <h4>Account Information for <%= @user.first_name %></h4><br />
     
     <b>Profile Photo:&nbsp;&nbsp;</b>
     <% unless @user.image_url.nil? %> 
@@ -8,20 +8,24 @@
         <%= image_tag @user.image_url, :class => "round", :size => "180x180" %> 
       </p>
     <% end %>
+    <br/>
     
-    <b>Full Name:&nbsp;&nbsp;</b>
-      <%= @user.first_name%> <%= @user.last_name %><br /><br />
-
-    <p><b>Agreed to Code of Conduct?</b>
-      <%= @user.code_of_conduct %>
-    </p>
+    <b>Username:&nbsp;&nbsp;</b>
+      <%= @user.username %><br />
       
-    <%= link_to 'Edit', create_profile_path(@user) %>
+    <b>Full Name:&nbsp;&nbsp;</b>
+      <%= @user.first_name%> <%= @user.last_name %><br />
+
+    <b>Email:&nbsp;&nbsp;</b>
+      <%= @user.email %><br />
     
-    <% if !current_user.nil? %>
-      <p align="center">
-        <br><a <%= link_to 'Change Password', change_password_path(@user) %> </a>
-      </p>
-    <% end %>
+    <b>LinkedIn URL:&nbsp;&nbsp;</b>
+      <%= @user.url %><br />
+      
+    <b>Location:&nbsp;&nbsp;</b>
+      <%= @user.location %><br />
+
+    <%= link_to 'Edit', edit_user_path(@user) %>
+    
   </div>
 </div>
