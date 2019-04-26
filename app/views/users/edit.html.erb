@@ -6,7 +6,9 @@
         <%= f.error_notification %>
         <div class="row">
           <div class="form-inputs">
-  
+            <% if @user.username %>
+                <%= f.input :username %>
+            <% end %>
             <%= f.input :first_name %> 
             <%= f.input :last_name %> 
             <%= f.input :email %> 
@@ -24,7 +26,10 @@
         </div>
       <% end %>
       <p align="center">
-        <h6><a <%= link_to 'Change Password', change_password_path(@user) %> </a></h6>
+        <% if @user.username %>
+            <h6><a <%= link_to 'Change Password', change_password_path(@user) %> </a></h6>
+        <% end %>
       </p>
+      <%= link_to 'Cancel', user_path %>
     </div>
 </div>

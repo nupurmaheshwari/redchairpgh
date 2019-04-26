@@ -10,8 +10,10 @@
     <% end %>
     <br/>
     
-    <b>Username:&nbsp;&nbsp;</b>
+    <% if @user.username %>
+      <b>Username:&nbsp;&nbsp;</b>
       <%= @user.username %><br />
+    <% end %>
       
     <b>Full Name:&nbsp;&nbsp;</b>
       <%= @user.first_name%> <%= @user.last_name %><br />
@@ -20,12 +22,24 @@
       <%= @user.email %><br />
     
     <b>LinkedIn URL:&nbsp;&nbsp;</b>
-      <%= @user.url %><br />
+      <% if !@user.url.blank? %>
+        <%= @user.url %><br/>
+      <% else %>
+        <%= "N/A" %><br/>
+      <% end %>
       
     <b>Location:&nbsp;&nbsp;</b>
-      <%= @user.location %><br />
+      <% if !@user.location.blank? %>
+        <%= @user.location %><br/>
+      <% else %>
+        <%= "N/A" %><br/>
+      <% end %>
 
-    <%= link_to 'Edit', edit_user_path(@user) %>
+    <h5><%= link_to 'Edit Account', edit_user_path(@user) %></h5>
+    </br>
+    <% if @user.username.nil? %>
+      <%= link_to 'Setup username and password', setup_account_path %>
+    <% end %>
     
   </div>
 </div>

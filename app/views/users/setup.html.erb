@@ -1,7 +1,7 @@
-<% if current_user.active.nil? or current_user.active != true %>
+<% if current_user.password.nil? #current_user.active.nil? or current_user.active != true %>
   <div class="card">    
     <div class="card-content">
-      <h3>Optional! Set up an email and password if you don't want to login through LinkedIn from now on.</h3>
+      <h4>Optional! Set up an email and password if you don't want to login through LinkedIn from now on.</h4>
       <%= form_with(model: @user, local: true) do |f| %>
     	<% if @user.errors.any? %>
             <br>
@@ -19,7 +19,7 @@
         <% end %>
         <br>
       
-        <h3>Account Information</h3>
+        <h4>Account Information</h4>
 
         <p>
         <%= f.label :username, "Username" %><br />
