@@ -30,9 +30,10 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 gem 'bcrypt'
 
-gem 'omniauth-linkedin'#, git: 'https://github.com/Devato/omniauth-linkedin-oauth2.git'
+#gem 'omniauth-linkedin'#, git: 'https://github.com/Devato/omniauth-linkedin-oauth2.git'
 #gem 'devise'
 #gem 'omniauth-linkedin'
+gem 'omniauth-oauth2', '1.3.1'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'simple_form', '3.5.0'
