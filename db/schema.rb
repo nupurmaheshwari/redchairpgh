@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190425230510) do
+ActiveRecord::Schema.define(version: 20190426004455) do
 
   create_table "mentees", force: :cascade do |t|
     t.boolean "is_active"
@@ -25,29 +25,34 @@ ActiveRecord::Schema.define(version: 20190425230510) do
     t.string "comm_frequency"
     t.text "bio"
     t.text "in_five_years"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "paused"
+    t.index ["user_id"], name: "index_mentees_on_user_id"
   end
 
   create_table "mentors", force: :cascade do |t|
     t.boolean "is_active"
-    t.string "current_role", default: "--- []\n"
+    t.string "current_role"
     t.integer "years_in_field"
     t.integer "years_in_lead"
     t.string "gender"
     t.string "comm_frequency"
     t.text "bio"
     t.text "motivation"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "specialized_skills", default: "--- []\n"
     t.string "mentor_roles", default: "--- []\n"
+    t.boolean "paused"
+    t.index ["user_id"], name: "index_mentors_on_user_id"
   end
 
   create_table "mentorships", force: :cascade do |t|
     t.integer "mentor_id"
     t.integer "mentee_id"
-    t.string "status"
     t.integer "match_score"
     t.boolean "is_active"
     t.boolean "mentee_approved"
@@ -67,14 +72,18 @@ ActiveRecord::Schema.define(version: 20190425230510) do
     t.string "location"
     t.text "image_url"
     t.string "url"
+    t.boolean "agreed"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.boolean "is_new"
     t.boolean "code_of_conduct"
     t.boolean "active"
     t.string "password_digest"
-    t.datetime "updated_at"
-    t.datetime "created_at"
     t.string "username"
-    t.boolean "agreed"
+    t.string "email"
+    t.index ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true
+    t.index ["provider"], name: "index_users_on_provider"
+    t.index ["uid"], name: "index_users_on_uid"
   end
 
 end

@@ -28,7 +28,7 @@ gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
-gem 'bcrypt-ruby', '~> 3.1.2', :require => 'bcrypt'
+gem 'bcrypt'
 
 gem 'omniauth-linkedin-oauth2'#, git: 'https://github.com/Devato/omniauth-linkedin-oauth2.git'
 #gem 'devise'
@@ -36,6 +36,8 @@ gem 'omniauth-linkedin-oauth2'#, git: 'https://github.com/Devato/omniauth-linked
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'simple_form', '3.5.0'
+
+gem 'cancancan', '2.1.2'
 
 gem 'jquery-rails'
 gem 'chronic', '0.10.2'

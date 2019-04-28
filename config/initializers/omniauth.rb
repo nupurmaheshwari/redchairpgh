@@ -34,7 +34,7 @@ Rails.application.config.middleware.use OmniAuth::Builder do
 
   provider :linkedin, "78jiaqir16u8ah", "rlDe8Wm2s5RtmEuW",
            #scope: 'r_basicprofile'
-           fields: ['id', 'first-name', 'last-name', 'location', 'picture-url', 'public-profile-url']
+           fields: ['id', 'first-name', 'last-name', 'email-address', 'location', 'picture-url', 'public-profile-url']
 
   OmniAuth.config.on_failure = Proc.new do |env|
     SessionsController.action(:auth_failure).call(env)

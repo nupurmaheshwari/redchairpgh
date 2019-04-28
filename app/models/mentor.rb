@@ -1,7 +1,9 @@
 class Mentor < ApplicationRecord
     
 	# Relationships
+	belongs_to :user
 	has_many :mentorships
+	has_many :mentees, through: :mentorships
 	
 	## ADD SCOPE: MENTEES_LIST 
 	#scope :alphabetical, -> { order('name') }
