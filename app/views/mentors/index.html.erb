@@ -1,3 +1,7 @@
+<div class="row">
+  <div class="center">
+    <div class="card">    
+      <div class="card-content">
 <p id="notice"><%= notice %></p>
 
 <h1>Mentors</h1>
@@ -6,7 +10,7 @@
     <% if !current_user.is_mentee? %>  
         <p>You are currently not a mentee. Create a profile!</p>
     <% else %>
-        <table>
+        <table class="striped">
           <thead>
             <tr>
               <th>Is active</th>
@@ -37,7 +41,7 @@
 <% if mentors.nil? %> 
   <p>Currently no mentors.</p>
 <% else %> 
-    <table> 
+    <table class="striped"> 
       <tbody>
         <% mentors.each do |mentor| %>
           <tr>
@@ -59,7 +63,10 @@
       </tbody>
     </table>
 <% end %>
-
+ </div>
+</div>
+</div>
+</div>
 <%# if !current_user.nil? && (current_user.role?(:contributor) && !current_user.is_mentor?) || (current_user.role(:admin)) %>
     <%= link_to 'New Mentor', new_mentor_path %>
 <%# end %>
