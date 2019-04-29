@@ -1,7 +1,15 @@
+<div class="imgimg">
+<%= image_tag("bg.jpeg", :alt => "rss feed")%>
+</div>
 <div class="row">  
-  <h4>Welcome to RedChairPGH Mentorship</h4>  
-  <div class="col s9">
+
+  <h4>Welcome to RedChairPGH Mentorship</h4> 
+
+  <div class="col s8">
+
     <div class="card">
+
+
       <div class="card-content">
         <p>RedChairPGH was formed in 2015 as a grassroots effort in response to 
         troubling statistics in the tech workforce that showed a declining
@@ -24,4 +32,25 @@
       </div>
     </div>
   </div>
+  <% if logged_in? %>
+  <div class="col s4">
+   <div class="center">
+   <br>
+      <br>
+   <br>
+   <br>
+   
+
+    <div class="card">
+      <div class="card-content">
+      
+        <%= link_to "Become a Mentor", new_mentor_path, :class => "btn-large waves-effect waves-light red" %><br><br><br>
+        <%= link_to "Become a Mentee", new_mentee_path, :class => "btn-large waves-effect waves-light red" %>
+       </div>
+      </div>
+    </div>
+  </div>
+    <% end %>
 </div>
+
+
