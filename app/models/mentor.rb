@@ -32,4 +32,9 @@ class Mentor < ApplicationRecord
 		#User.find(self.user_id).first.email
 		self.id
 	end 
+
+	def valid?
+		!self.paused && self.active
+	end
+
 end

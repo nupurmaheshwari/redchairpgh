@@ -36,7 +36,8 @@
         <%= f.password_field :password_confirmation %>
         </p>
         
-        <p><%= f.submit (@user.new_record? ? "Sign up" : "Update"), class: "btn-large waves-effect waves-light green lighten-1" %></p>
+        <p><%= f.submit (@user.new_record? ? "Sign up" : "Update"), class: "btn-large waves-effect waves-light green lighten-1" %>
+        <%= link_to "Skip", home_path, class: "btn-large waves-effect waves-light blue lighten-1"  %></p>
 
     <% end %>
     </div>

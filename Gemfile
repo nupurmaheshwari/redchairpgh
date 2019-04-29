@@ -30,7 +30,7 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 gem 'bcrypt'
 
-gem 'omniauth-linkedin'#, git: 'https://github.com/Devato/omniauth-linkedin-oauth2.git'
+gem 'omniauth-linkedin-oauth2'#, git: 'https://github.com/Devato/omniauth-linkedin-oauth2.git'
 #gem 'devise'
 #gem 'omniauth-linkedin'
 #gem 'omniauth-oauth2', '1.3.1'
