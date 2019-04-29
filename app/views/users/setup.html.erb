@@ -1,5 +1,9 @@
-<% if current_user.password.nil? #current_user.active.nil? or current_user.active != true %>
-  <div class="card">    
+
+<% if current_user.active.nil? or current_user.active != true %>
+  <div class="card"> 
+  <div class="center">       
+
+
     <div class="card-content">
       <h4>Optional! Set up an email and password if you don't want to login through LinkedIn from now on.</h4>
       <%= form_with(model: @user, local: true) do |f| %>
@@ -41,5 +45,6 @@
 
     <% end %>
     </div>
+  </div>
   </div>
 <% end %>

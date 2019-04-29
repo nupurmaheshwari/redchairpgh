@@ -1,6 +1,13 @@
-<div class="card">
-  <div class="card-content">
-    <h4>Account Information for <%= @user.first_name %></h4><br />
+
+<div class="imgimg">
+<%= image_tag("bg.jpeg", :alt => "rss feed")%>
+</div>
+<div class="row">  
+  <div class="center">
+    <div class="card">
+      <div class="card-content">
+         <h4>Account Information for <%= @user.first_name %></h4><br />
+
     
     <b>Profile Photo:&nbsp;&nbsp;</b>
     <% unless @user.image_url.nil? %> 
@@ -17,6 +24,23 @@
       
     <b>Full Name:&nbsp;&nbsp;</b>
       <%= @user.first_name%> <%= @user.last_name %><br />
+
+
+    <p><b>Agreed to Code of Conduct?</b>
+      <%= @user.code_of_conduct %>
+    </p>
+      
+     <%= link_to 'Edit', create_profile_path(@user), :class => "btn-large waves-effect waves-light red" %>
+    
+    <%# if !current_user.nil? %>
+       
+
+        <%= link_to "Change Password", change_password_path(@user), :class => "btn-large waves-effect waves-light red" %>
+
+
+    <%# end %>
+      </div>
+    </div>
 
     <b>Email:&nbsp;&nbsp;</b>
       <%= @user.email %><br />
@@ -41,7 +65,11 @@
       <%= link_to 'Setup username and password', setup_account_path %>
     <% end %>
     
+
   </div>
 </div>
-</div>
-</div>
+
+
+
+
+

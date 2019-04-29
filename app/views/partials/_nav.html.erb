@@ -4,6 +4,9 @@
       <% if current_user.code_of_conduct %>
         <li><%= link_to 'Mentors', mentors_path %></li>
         <li><%= link_to 'Mentees', mentees_path %></li>
+        <li><%#= link_to 'Matches', mentee_matches_path %></li>
+        <li><%#= link_to 'Requests', mentor_requests_path %></li>
+
       <% end %> 
       <li><%= link_to 'My Account', account_path(current_user.id) %></li>
     </ul>

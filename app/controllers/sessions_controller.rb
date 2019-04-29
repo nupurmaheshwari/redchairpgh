@@ -5,7 +5,6 @@ class SessionsController < ApplicationController
       if params[:commit]
         @user = User.find_by_username(params[:username])
         if @user.nil? || !User.authenticate(params[:username], params[:password])
-          puts "POOP"
           flash.now.alert = "Username or password is invalid"
           render 'new'
           return

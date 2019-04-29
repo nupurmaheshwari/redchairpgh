@@ -11,6 +11,7 @@ class UsersController < ApplicationController
   
   def show
     @user = @user
+    @mentor = Mentor.for_user(current_user.id)
   end
   
   def new
