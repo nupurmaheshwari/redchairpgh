@@ -4,6 +4,8 @@ class User < ApplicationRecord
   #validates_acceptance_of :code_of_conduct, :message => "must be accepted.", :on => :update
   
   scope :alphabetical,       -> { order('last_name, first_name') }
+  scope :is_active,          -> { where('active = ?', true) }
+  scope :is_inactive,          -> { where('active = ?', false) }
   
   validates :username, uniqueness: { case_sensitive: false}
   # validates_presence_of :password, on: :create 

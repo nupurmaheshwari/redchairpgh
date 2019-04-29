@@ -29,6 +29,8 @@ Rails.application.routes.draw do
   get 'users/new', to: 'users#create', as: :signup
   get 'users/:id/create_profile', to: 'users#profile', as: :create_profile
   get 'users/:id/setup_account', to: 'users#setup', as: :setup_account 
+  get 'users/:id/deactivate', to: 'users#deactivate', as: :deactivate 
+  get 'users/:id/update', to: 'users#update', as: :update_user
   #post '/sessions' => "sessions#create"
   #get '/logout' => "sessions#destroy"
 

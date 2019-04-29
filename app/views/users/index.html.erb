@@ -1,17 +1,45 @@
 <% if @users.empty? %> 
     <h4>There are currently no users in the system at this time.</h4>
 <% else %>
-    <h3>Active Users</h3>
-    <table> 
-        <thead> 
-            <th>Name</th>
-            <th></th>
-        </thead>
-        <% for user in @users %> 
-            <tr>
-                <td><%= user.name %></td>
-                <td><%= link_to 'Show', user_path(user) %></td>
-            </tr>
-        <% end %> 
-    </table>
+    <% if @users.is_active.empty? %> 
+        <h5>There are currently no deactivated users in the system at this time.</h5>
+    <% else %>
+        <h3>Active Users</h3>
+        <table> 
+            <thead> 
+                <th>Name</th>
+                <th>Active?</th>
+                <th></th>
+            </thead>
+            <% for user in @users.is_active %> 
+                <tr>
+                    <td><%= user.name %></td>
+                    <td><%= user.active %></td>
+                    <td><%= link_to 'Show', user_path(user) %></td>
+                    <td><%= link_to 'Deactivate', deactivate_path(user) %></td>
+                </tr>
+            <% end %> 
+        </table>
+    <% end %> 
+    
+    <% if @users.is_inactive.empty? %> 
+        <h5>There are currently no deactivated users in the system at this time.</h5>
+    <% else %>
+        <h3>Deactivated Users</h3>
+        <table> 
+            <thead> 
+                <th>Name</th>
+                <th>Active?</th>
+                <th></th>
+            </thead>
+            <% for user in @users.is_inactive %> 
+                <tr>
+                    <td><%= user.name %></td>
+                    <td><%= user.active %></td>
+                    <td><%= link_to 'Show', user_path(user) %></td>
+                    <td><%= link_to 'Activate', deactivate_path(user) %></td>
+                </tr>
+            <% end %> 
+        </table>
+    <% end %>
 <% end %>
