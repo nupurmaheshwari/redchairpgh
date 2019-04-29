@@ -2,12 +2,20 @@ class MentorsController < ApplicationController
     # before_action :check_login
     before_action :set_mentor, only: [:show, :edit, :update, :destroy, :requests]
 
+    def index
+      @mentors = Mentor.all
+    end
+
     def new
         @mentor = Mentor.new
     end
     
     def edit
     end 
+    
+    def index
+      @mentors = Mentor.all
+    end
     
     def requests 
     end 

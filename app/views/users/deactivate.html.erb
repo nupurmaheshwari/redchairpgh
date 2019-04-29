@@ -1,0 +1,55 @@
+<% if current_user.role = "admin" %>
+    <% if @user.active %>
+        <h3>Are you sure you want to deactivate this account?</h3>
+    <% else %>
+        <h3>Are you sure you want to activate this account?</h3>
+    <% end %>
+    <table>
+        <td>
+        <div class="card-content">
+       
+        <% unless @user.image_url.nil? %> 
+          <p> 
+            <%= image_tag @user.image_url, :class => "round", :size => "180x180" %> 
+          </p>
+        <% end %>
+        <br/>
+        
+        <% if @user.username %>
+          <b>Username:&nbsp;&nbsp;</b>
+          <%= @user.username %><br />
+        <% end %>
+          
+        <b>Full Name:&nbsp;&nbsp;</b>
+          <%= @user.first_name%> <%= @user.last_name %><br />
+        
+        <b>Email:&nbsp;&nbsp;</b>
+          <% if !@user.email.blank? %>
+            <%= @user.email %><br/>
+          <% else %>
+            <%= "N/A" %><br/>
+          <% end %>
+        
+        <b>LinkedIn URL:&nbsp;&nbsp;</b>
+          <% if !@user.url.blank? %>
+            <%= @user.url %><br/>
+          <% else %>
+            <%= "N/A" %><br/>
+          <% end %>
+          
+        <b>Location:&nbsp;&nbsp;</b>
+          <% if !@user.location.blank? %>
+            <%= @user.location %><br/>
+          <% else %>
+            <%= "N/A" %><br/>
+          <% end %>
+        
+        </div>
+        </td>
+        <td>
+            <h4><%= link_to 'Yes', update_user_path(@user) %></h4>
+            <h4><%= link_to 'Cancel', users_path %></h4>
+        </td>
+    </table>
+<% end %>
+  

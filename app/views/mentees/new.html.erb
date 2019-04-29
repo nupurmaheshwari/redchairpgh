@@ -22,6 +22,7 @@
           <%= f.input :years_in_field, :label => '8. Years of experience in your field' %>
           <%= f.input :lead_team, :label => '9. Do you currently supervise/lead a team or group?' %>
           <%= f.hidden_field :is_active, value: true %>
+          <%= f.hidden_field :user_id, value: current_user.id %>
           
           <!--non requesting algorithm fields-->          
           <%= f.input :in_five_years, text_field_tag: { class: 'active' }, :label => '10. Where do you see yourself in your career in five years?' %>

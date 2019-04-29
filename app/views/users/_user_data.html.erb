@@ -1,3 +1,4 @@
+
 <div class="imgimg">
 <%= image_tag("bg.jpeg", :alt => "rss feed")%>
 </div>
@@ -6,6 +7,7 @@
     <div class="card">
       <div class="card-content">
          <h4>Account Information for <%= @user.first_name %></h4><br />
+
     
     <b>Profile Photo:&nbsp;&nbsp;</b>
     <% unless @user.image_url.nil? %> 
@@ -13,9 +15,16 @@
         <%= image_tag @user.image_url, :class => "round", :size => "180x180" %> 
       </p>
     <% end %>
+    <br/>
     
+    <% if @user.username %>
+      <b>Username:&nbsp;&nbsp;</b>
+      <%= @user.username %><br />
+    <% end %>
+      
     <b>Full Name:&nbsp;&nbsp;</b>
-      <%= @user.first_name%> <%= @user.last_name %><br /><br />
+      <%= @user.first_name%> <%= @user.last_name %><br />
+
 
     <p><b>Agreed to Code of Conduct?</b>
       <%= @user.code_of_conduct %>
@@ -32,6 +41,31 @@
     <%# end %>
       </div>
     </div>
+
+    <b>Email:&nbsp;&nbsp;</b>
+      <%= @user.email %><br />
+    
+    <b>LinkedIn URL:&nbsp;&nbsp;</b>
+      <% if !@user.url.blank? %>
+        <%= @user.url %><br/>
+      <% else %>
+        <%= "N/A" %><br/>
+      <% end %>
+      
+    <b>Location:&nbsp;&nbsp;</b>
+      <% if !@user.location.blank? %>
+        <%= @user.location %><br/>
+      <% else %>
+        <%= "N/A" %><br/>
+      <% end %>
+
+    <h5><%= link_to 'Edit Account', edit_user_path(@user) %></h5>
+    </br>
+    <% if @user.username.nil? %>
+      <%= link_to 'Setup username and password', setup_account_path %>
+    <% end %>
+    
+
   </div>
 </div>
 

@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20190425230254) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "paused"
     t.index ["user_id"], name: "index_mentees_on_user_id"
   end
 
@@ -45,6 +46,7 @@ ActiveRecord::Schema.define(version: 20190425230254) do
     t.datetime "updated_at", null: false
     t.string "specialized_skills", default: "--- []\n"
     t.string "mentor_roles", default: "--- []\n"
+    t.boolean "paused"
     t.index ["user_id"], name: "index_mentors_on_user_id"
   end
 
@@ -71,13 +73,12 @@ ActiveRecord::Schema.define(version: 20190425230254) do
     t.text "image_url"
     t.string "url"
     t.boolean "agreed"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.boolean "is_new"
     t.boolean "code_of_conduct"
     t.boolean "active"
     t.string "password_digest"
     t.string "username"
+    t.string "email"
     t.index ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true
     t.index ["provider"], name: "index_users_on_provider"
     t.index ["uid"], name: "index_users_on_uid"

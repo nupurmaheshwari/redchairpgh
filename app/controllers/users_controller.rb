@@ -1,11 +1,12 @@
 class UsersController < ApplicationController
-  # before_action :check_login, except: :new
-  
-  before_action :set_user, only: [:show, :edit, :update, :change_password, :destroy, :profile, :setup]
-  
+  before_action :set_user, only: [:show, :edit, :update, :change_password, :destroy, :profile, :setup, :deactivate, :update_deactivate]
+
   def index
     # get all visits in reverse chronological order, 10 per page
     @users = User.alphabetical#.paginate(page: params[:page]).per_page(10)
+    if current_user.role != "admin" 
+      redirect_to home_path
+    end 
   end
   
   def show
@@ -26,6 +27,12 @@ class UsersController < ApplicationController
   
   def setup
   end 
+  
+  def deactivate 
+    if current_user.role != "admin"
+      redirect_to home_path
+    end 
+  end 
 
   def create
     puts "user params down there"
@@ -44,32 +51,40 @@ class UsersController < ApplicationController
   
   def update
     puts params 
-    puts user_params[:id]
     puts "SETUP ACCOUNT DETAILS^^"
-    if user_params[:password]
-      puts "haha"
-      @user.update(user_params)
-      if @user.save #.update_attributes(user_params)
-        redirect_to (@user), notice: "Password was successfully changed."
+    if @user.id != current_user.id
+      if @user.active 
+        @user.update_attributes(:active => false)
       else
-        render action: 'change_password'
-      end
+        @user.update_attributes(:active => true)
+      end 
+      redirect_to users_path
     else
-      if @user.update_attributes(user_params)
-        if @user.new_user? 
-          puts "A NEW USER!!!"
-          @user.update_attributes(:code_of_conduct => true) 
-          @user.update_attributes(:is_new => false) 
-          redirect_to setup_account_path(@user) 
-        else 
-          puts "NOT A NEW USER!!!!!!!!!!!!!!!!!!!"
-          flash[:notice] = "Successfully updated your account."
-          redirect_to @user
-        end 
+      if user_params[:password]
+        puts "haha"
+        @user.update(user_params)
+        if @user.save #.update_attributes(user_params)
+          redirect_to (@user), notice: "Password was successfully changed."
+        else
+          render action: 'change_password'
+        end
       else
-        render action: 'edit'
-      end
-    end 
+        if @user.update_attributes(user_params)
+          if @user.new_user? 
+            puts "A NEW USER!!!"
+            @user.update_attributes(:code_of_conduct => true) 
+            @user.update_attributes(:is_new => false) 
+            redirect_to setup_account_path(@user) 
+          else 
+            puts "NOT A NEW USER!!!!!!!!!!!!!!!!!!!"
+            flash[:notice] = "Successfully updated your account."
+            redirect_to @user
+          end 
+        else
+          render action: 'edit'
+        end
+      end 
+    end
   end
 
   def change_password
