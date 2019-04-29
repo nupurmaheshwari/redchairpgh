@@ -73,6 +73,6 @@ class MenteesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def mentee_params
-      params.require(:mentee).permit(:is_active, :current_role, :mentor_role, :skill_1, :skill_2, :skill_3, :years_in_field, :lead_team, :mentor_gender, :comm_frequency, :bio, :in_five_years)
+      params.require(:mentee).permit(:user_id, :is_active, :current_role, :mentor_role, :skill_1, :skill_2, :skill_3, :years_in_field, :lead_team, :mentor_gender, :comm_frequency, :bio, :in_five_years)
     end
 end

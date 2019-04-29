@@ -13,6 +13,7 @@ FactoryBot.define do
     comm_frequency "Biweekly"
     bio "hi"
     in_five_years "hello"
+    paused false
   end
   
   factory :mentor do
@@ -26,6 +27,7 @@ FactoryBot.define do
     motivation "motivated"
     specialized_skills "Increased self-confidence"
     mentor_roles "Nurturer"
+    paused false 
   end
 
   factory :mentorship do

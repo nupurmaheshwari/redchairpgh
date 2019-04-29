@@ -1,8 +1,6 @@
 class UsersController < ApplicationController
-  # before_action :check_login, except: :new
-  
   before_action :set_user, only: [:show, :edit, :update, :change_password, :destroy, :profile, :setup, :deactivate, :update_deactivate]
-  
+
   def index
     # get all visits in reverse chronological order, 10 per page
     @users = User.alphabetical#.paginate(page: params[:page]).per_page(10)

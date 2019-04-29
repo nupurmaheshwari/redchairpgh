@@ -12,7 +12,7 @@ class CreateUsers < ActiveRecord::Migration[5.1]
       t.string :url
       t.boolean :agreed
 
-      t.timestamps null: false
+      #t.timestamps null: false
     end
     add_index :users, :provider
     add_index :users, :uid

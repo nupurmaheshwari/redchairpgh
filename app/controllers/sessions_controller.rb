@@ -18,6 +18,7 @@ class SessionsController < ApplicationController
         puts auth_hash
         @user = User.from_omniauth(auth_hash)
         if @user.nil? 
+          puts "HI NUPUR user is Nil as expected"
           @user = User.new(uid: auth_hash['uid'], provider: auth_hash['provider'], 
           role: 'contributor', first_name: auth_hash['info']['first_name'], 
           last_name: auth_hash['info']['last_name'], image_url: auth_hash['info']['picture_url'],
