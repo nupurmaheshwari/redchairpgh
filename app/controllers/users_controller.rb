@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :change_password, :destroy, :profile, :setup, :deactivate, :update_deactivate]
+  before_action :set_user, only: [:show, :edit, :update, :change_password, :destroy, :profile, :setup, :deactivate]
   authorize_resource
   
   def index
@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   end
   
   def show
-    @user = @user
+    # @user = @user
     @mentor = Mentor.for_user(current_user.id).first
     @mentee = Mentee.for_user(current_user.id).first
   end
@@ -73,12 +73,14 @@ class UsersController < ApplicationController
       else
         if @user.update_attributes(user_params)
           if @user.new_user? 
-            puts "A NEW USER!!!"
             @user.update_attributes(:code_of_conduct => true) 
             @user.update_attributes(:is_new => false) 
-            redirect_to setup_account_path(@user) 
+            if @user.active.nil? || !@user.active
+              redirect_to setup_account_path(@user) 
+            else 
+              redirect_to @user 
+            end 
           else 
-            puts "NOT A NEW USER!!!!!!!!!!!!!!!!!!!"
             flash[:notice] = "Successfully updated your account."
             redirect_to @user
           end 

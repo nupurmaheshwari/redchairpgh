@@ -6,11 +6,11 @@ class Ability
 
     # permissions for admins
     if user.role? :admin
-      can [:read, :show, :edit], :all
+      can [:read, :show, :edit, :update, :deactivate], :all
 
-    elsif user.role? :contributor && user.active
+    elsif user.role?(:contributor) && user.active
       can [:index, :about, :contact, :privacy], :home
-      can [:show, :update, :change_password], User do |u|
+      can [:show, :setup, :create_profile, :edit, :update, :change_password], User do |u|
         u.id == user.id
       end
       
