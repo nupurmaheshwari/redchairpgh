@@ -27,15 +27,15 @@ class User < ApplicationRecord
   end
 
   def is_mentee?
-    return true 
+    return !Mentee.for_user(id).first.nil? 
   end 
   
   def is_mentor?
-    return true 
+    return !Mentor.for_user(id).first.nil?
   end 
   
   def new_user? 
-    return is_new == true 
+    return is_new
   end 
   
   def agreed_value

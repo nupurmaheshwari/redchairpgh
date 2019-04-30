@@ -46,11 +46,7 @@
         <%= "N/A" %><br/>
       <% end %>
 
-<<<<<<< HEAD
     <h5><%#= link_to 'Edit Account', edit_user_path(@user) %></h5>
-=======
-    <%= link_to 'Edit Account', edit_user_path(@user),:class => "btn-large waves-effect waves-light red" %>
->>>>>>> 539251dcb2a4732f7f8d05437424b89a241a47a7
     <% if @user.username.nil? %>
       <%= link_to 'Setup username and password', setup_account_path, :class => "btn-large waves-effect waves-light red"%>
     <% end %>
@@ -61,154 +57,156 @@
 </div>
 </div>
 
-<div class="col s6">
-<div class="card">
-<div class="card-content">
-<p id="notice"><%= notice %></p>
-<h5> Your Mentee Profile </h5>
-<p>
-  <strong>Full Name:</strong>
-  <%= @mentee.full_name %>
-</p>
+<% if @user.is_mentee? %>
+  <div class="col s6">
+  <div class="card">
+  <div class="card-content">
+  <p id="notice"><%= notice %></p>
+  <h5> Your Mentee Profile </h5>
+  <p>
+    <strong>Full Name:</strong>
+    <%= @mentee.full_name %>
+  </p>
+  
+  <p>
+    <strong>Email:</strong>
+    <%= @mentee.email %>
+  </p>
+  
+  <p>
+    <strong>Current role:</strong>
+    <%= @mentee.current_role %>
+  </p>
+  
+  <p>
+    <strong>Mentor role:</strong>
+    <%= @mentee.mentor_role %>
+  </p>
+  
+  <p>
+    <strong>Skill 1:</strong>
+    <%= @mentee.skill_1 %>
+  </p>
+  
+  <p>
+    <strong>Skill 2:</strong>
+    <%= @mentee.skill_2 %>
+  </p>
+  
+  <p>
+    <strong>Skill 3:</strong>
+    <%= @mentee.skill_3 %>
+  </p>
+  
+  <p>
+    <strong>Years in field:</strong>
+    <%= @mentee.years_in_field %>
+  </p>
+  
+  <p>
+    <strong>Lead team:</strong>
+    <%= @mentee.lead_team %>
+  </p>
+  
+  <p>
+    <strong>Mentor gender:</strong>
+    <%= @mentee.mentor_gender %>
+  </p>
+  
+  <p>
+    <strong>Comm frequency:</strong>
+    <%= @mentee.comm_frequency %>
+  </p>
+  
+  <p>
+    <strong>Bio:</strong>
+    <%= @mentee.bio %>
+  </p>
+  
+  <p>
+    <strong>In five years:</strong>
+    <%= @mentee.in_five_years %>
+  </p>
+  
+  <p>
+    <strong>Is active:</strong>
+    <%= @mentee.is_active %>
+  </p>
+  
+  <%= link_to 'Edit', edit_mentee_path(@mentee),:class => "btn-large waves-effect waves-light red" %> 
 
-<p>
-  <strong>Email:</strong>
-  <%= @mentee.email %>
-</p>
-
-<p>
-  <strong>Current role:</strong>
-  <%= @mentee.current_role %>
-</p>
-
-<p>
-  <strong>Mentor role:</strong>
-  <%= @mentee.mentor_role %>
-</p>
-
-<p>
-  <strong>Skill 1:</strong>
-  <%= @mentee.skill_1 %>
-</p>
-
-<p>
-  <strong>Skill 2:</strong>
-  <%= @mentee.skill_2 %>
-</p>
-
-<p>
-  <strong>Skill 3:</strong>
-  <%= @mentee.skill_3 %>
-</p>
-
-<p>
-  <strong>Years in field:</strong>
-  <%= @mentee.years_in_field %>
-</p>
-
-<p>
-  <strong>Lead team:</strong>
-  <%= @mentee.lead_team %>
-</p>
-
-<p>
-  <strong>Mentor gender:</strong>
-  <%= @mentee.mentor_gender %>
-</p>
-
-<p>
-  <strong>Comm frequency:</strong>
-  <%= @mentee.comm_frequency %>
-</p>
-
-<p>
-  <strong>Bio:</strong>
-  <%= @mentee.bio %>
-</p>
-
-<p>
-  <strong>In five years:</strong>
-  <%= @mentee.in_five_years %>
-</p>
-
-<p>
-  <strong>Is active:</strong>
-  <%= @mentee.is_active %>
-</p>
-
-<%= link_to 'Edit', edit_mentee_path(@mentee),:class => "btn-large waves-effect waves-light red" %> 
-
-
-</div>
-</div>
-</div>
-<div class="col s6">
-<div class="card">
-<div class="card-content">
-<p id="notice"><%= notice %></p>
-<h5> Your Mentor Profile </h5>
-<p>
-  <strong>Full Name:</strong>
-  <%= @mentor.full_name %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @mentor.email %>
-</p>
-
-<p>
-  <strong>Current role:</strong>
-  <%= @mentor.current_role %>
-</p>
-
-<p>
-  <strong>Mentor role:</strong>
-  <%= @mentor.mentor_roles %>
-</p>
-
-<p>
-  <strong>Specialized skills:</strong>
-  <%= @mentor.specialized_skills %>
-</p>
-
-<p>
-
-<p>
-  <strong>Years in field:</strong>
-  <%= @mentor.years_in_field %>
-</p>
-
-<p>
-  <strong>Years in Lead:</strong>
-  <%= @mentor.years_in_lead %>
-</p>
-
-<p>
-  <strong>Mentor gender:</strong>
-  <%= @mentor.gender %>
-</p>
-
-<p>
-  <strong>Comm frequency:</strong>
-  <%= @mentor.comm_frequency %>
-</p>
-
-<p>
-  <strong>Bio:</strong>
-  <%= @mentor.bio %>
-</p>
-
-<p>
-  <strong>Motivation:</strong>
-  <%= @mentor.motivation %>
-</p>
-    <%= link_to 'Edit', edit_mentor_path(@mentor), :class => "btn-large waves-effect waves-light red" %> 
-
-
-</div>
-</div>
-</div>
+  </div>
+  </div>
+  </div>
+  
+<% elsif @user.is_mentor? %>  
+  <div class="col s6">
+  <div class="card">
+  <div class="card-content">
+  <p id="notice"><%= notice %></p>
+  <h5> Your Mentor Profile </h5>
+  <p>
+    <strong>Full Name:</strong>
+    <%= @mentor.full_name %>
+  </p>
+  
+  <p>
+    <strong>Email:</strong>
+    <%= @mentor.email %>
+  </p>
+  
+  <p>
+    <strong>Current role:</strong>
+    <%= @mentor.current_role %>
+  </p>
+  
+  <p>
+    <strong>Mentor role:</strong>
+    <%= @mentor.mentor_roles %>
+  </p>
+  
+  <p>
+    <strong>Specialized skills:</strong>
+    <%= @mentor.specialized_skills %>
+  </p>
+  
+  <p>
+  
+  <p>
+    <strong>Years in field:</strong>
+    <%= @mentor.years_in_field %>
+  </p>
+  
+  <p>
+    <strong>Years in Lead:</strong>
+    <%= @mentor.years_in_lead %>
+  </p>
+  
+  <p>
+    <strong>Mentor gender:</strong>
+    <%= @mentor.gender %>
+  </p>
+  
+  <p>
+    <strong>Comm frequency:</strong>
+    <%= @mentor.comm_frequency %>
+  </p>
+  
+  <p>
+    <strong>Bio:</strong>
+    <%= @mentor.bio %>
+  </p>
+  
+  <p>
+    <strong>Motivation:</strong>
+    <%= @mentor.motivation %>
+  </p>
+      <%= link_to 'Edit', edit_mentor_path(@mentor), :class => "btn-large waves-effect waves-light red" %> 
+  
+  </div>
+  </div>
+  </div>
+<% end %>
 </div>
 </div>
 
