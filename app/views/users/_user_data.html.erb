@@ -1,13 +1,13 @@
-
 <div class="imgimg">
 <%= image_tag("bg.jpeg", :alt => "rss feed")%>
 </div>
-<div class="row">  
-  <div class="center">
-    <div class="card">
-      <div class="card-content">
-         <h4>Account Information for <%= @user.first_name %></h4><br />
+<div class="row">
+<div class="center">
+<div class="col s12 center">
 
+<div class="card">
+<div class="card-content">
+<h5>Account Information for <%= @user.first_name %></h5><br />
     
     <b>Profile Photo:&nbsp;&nbsp;</b>
     <% unless @user.image_url.nil? %> 
@@ -24,23 +24,6 @@
       
     <b>Full Name:&nbsp;&nbsp;</b>
       <%= @user.first_name%> <%= @user.last_name %><br />
-
-
-    <p><b>Agreed to Code of Conduct?</b>
-      <%= @user.code_of_conduct %>
-    </p>
-      
-     <%= link_to 'Edit', create_profile_path(@user), :class => "btn-large waves-effect waves-light red" %>
-    
-    <%# if !current_user.nil? %>
-       
-
-        <%= link_to "Change Password", change_password_path(@user), :class => "btn-large waves-effect waves-light red" %>
-
-
-    <%# end %>
-      </div>
-    </div>
 
     <b>Email:&nbsp;&nbsp;</b>
       <%= @user.email %><br />
@@ -59,17 +42,164 @@
         <%= "N/A" %><br/>
       <% end %>
 
-    <h5><%= link_to 'Edit Account', edit_user_path(@user) %></h5>
-    </br>
+    <%= link_to 'Edit Account', edit_user_path(@user),:class => "btn-large waves-effect waves-light red" %>
     <% if @user.username.nil? %>
-      <%= link_to 'Setup username and password', setup_account_path %>
+      <%= link_to 'Setup username and password', setup_account_path, :class => "btn-large waves-effect waves-light red"%>
     <% end %>
-    
 
-  </div>
+
+</div>
+</div>
 </div>
 
+<div class="col s6">
+<div class="card">
+<div class="card-content">
+<p id="notice"><%= notice %></p>
+<h5> Your Mentee Profile </h5>
+<p>
+  <strong>Full Name:</strong>
+  <%= @mentee.full_name %>
+</p>
 
+<p>
+  <strong>Email:</strong>
+  <%= @mentee.email %>
+</p>
+
+<p>
+  <strong>Current role:</strong>
+  <%= @mentee.current_role %>
+</p>
+
+<p>
+  <strong>Mentor role:</strong>
+  <%= @mentee.mentor_role %>
+</p>
+
+<p>
+  <strong>Skill 1:</strong>
+  <%= @mentee.skill_1 %>
+</p>
+
+<p>
+  <strong>Skill 2:</strong>
+  <%= @mentee.skill_2 %>
+</p>
+
+<p>
+  <strong>Skill 3:</strong>
+  <%= @mentee.skill_3 %>
+</p>
+
+<p>
+  <strong>Years in field:</strong>
+  <%= @mentee.years_in_field %>
+</p>
+
+<p>
+  <strong>Lead team:</strong>
+  <%= @mentee.lead_team %>
+</p>
+
+<p>
+  <strong>Mentor gender:</strong>
+  <%= @mentee.mentor_gender %>
+</p>
+
+<p>
+  <strong>Comm frequency:</strong>
+  <%= @mentee.comm_frequency %>
+</p>
+
+<p>
+  <strong>Bio:</strong>
+  <%= @mentee.bio %>
+</p>
+
+<p>
+  <strong>In five years:</strong>
+  <%= @mentee.in_five_years %>
+</p>
+
+<p>
+  <strong>Is active:</strong>
+  <%= @mentee.is_active %>
+</p>
+
+
+
+</div>
+</div>
+</div>
+<div class="col s6">
+<div class="card">
+<div class="card-content">
+<p id="notice"><%= notice %></p>
+<h5> Your Mentor Profile </h5>
+<p>
+  <strong>Full Name:</strong>
+  <%= @mentor.full_name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @mentor.email %>
+</p>
+
+<p>
+  <strong>Current role:</strong>
+  <%= @mentor.current_role %>
+</p>
+
+<p>
+  <strong>Mentor role:</strong>
+  <%= @mentor.mentor_roles %>
+</p>
+
+<p>
+  <strong>Specialized skills:</strong>
+  <%= @mentor.specialized_skills %>
+</p>
+
+<p>
+
+<p>
+  <strong>Years in field:</strong>
+  <%= @mentor.years_in_field %>
+</p>
+
+<p>
+  <strong>Years in Lead:</strong>
+  <%= @mentor.years_in_lead %>
+</p>
+
+<p>
+  <strong>Mentor gender:</strong>
+  <%= @mentor.gender %>
+</p>
+
+<p>
+  <strong>Comm frequency:</strong>
+  <%= @mentor.comm_frequency %>
+</p>
+
+<p>
+  <strong>Bio:</strong>
+  <%= @mentor.bio %>
+</p>
+
+<p>
+  <strong>Motivation:</strong>
+  <%= @mentor.motivation %>
+</p>
+
+
+</div>
+</div>
+</div>
+</div>
+</div>
 
 
 
