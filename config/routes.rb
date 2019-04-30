@@ -54,4 +54,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with 'root'
   root 'home#index'
+  
+  # cancancan for Authorization
+  gem 'cancancan'
 end

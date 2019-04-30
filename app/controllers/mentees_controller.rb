@@ -1,7 +1,8 @@
 class MenteesController < ApplicationController
   # before_action :check_login
   before_action :set_mentee, only: [:show, :edit, :update, :destroy, :matches]
-
+  authorize_resource
+  
   # GET /mentees
   # GET /mentees.json
   def index

@@ -4,7 +4,7 @@
       <div class="card-content">
 <p id="notice"><%= notice %></p>
 
-<h1>Mentors</h1>
+<h3>Mentors</h3>
 
 <% if !current_user.nil? && current_user.role?(:contributor) %>
     <% if !current_user.is_mentee? %>  
@@ -38,8 +38,8 @@
   <% mentors = @mentors %>
 <%# end %>
 
-<% if mentors.nil? %> 
-  <p>Currently no mentors.</p>
+<% if mentors.empty? %> 
+  <p>Currently no mentors in the system.</p>
 <% else %> 
     <table class="striped"> 
       <tbody>

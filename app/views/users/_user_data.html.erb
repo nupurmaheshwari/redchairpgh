@@ -19,7 +19,11 @@
       <%= @user.first_name%> <%= @user.last_name %><br />
 
     <b>Email:&nbsp;&nbsp;</b>
-      <%= @user.email %><br />
+      <% if !@user.email.blank? %>
+        <%= @user.email %><br/>
+      <% else %>
+        <%= "N/A" %><br/>
+      <% end %>
     
     <b>LinkedIn URL:&nbsp;&nbsp;</b>
       <% if !@user.url.blank? %>
@@ -35,8 +39,7 @@
         <%= "N/A" %><br/>
       <% end %>
 
-    <h5><%= link_to 'Edit Account', edit_user_path(@user) %></h5>
-    </br>
+    <h5><%#= link_to 'Edit Account', edit_user_path(@user) %></h5>
     <% if @user.username.nil? %>
       <%= link_to 'Setup username and password', setup_account_path %>
     <% end %>

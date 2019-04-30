@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :change_password, :destroy, :profile, :setup, :deactivate, :update_deactivate]
-
+  authorize_resource
+  
   def index
     # get all visits in reverse chronological order, 10 per page
     @users = User.alphabetical#.paginate(page: params[:page]).per_page(10)
