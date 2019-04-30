@@ -4,6 +4,9 @@ class Mentee < ApplicationRecord
 	belongs_to :user
 	has_many :mentorships
 	has_many :mentors, through: :mentorships
+
+    scope :for_user,     -> (user_id){ where(user_id: user_id) }
+
 	
 	## ADD SCOPE: MENTORS_LIST 
 	
