@@ -48,6 +48,7 @@
     <% end %>
 
 
+
 </div>
 </div>
 </div>
@@ -127,6 +128,7 @@
   <%= @mentee.is_active %>
 </p>
 
+<%= link_to 'Edit', edit_mentee_path(@mentee),:class => "btn-large waves-effect waves-light red" %> 
 
 
 </div>
@@ -193,6 +195,7 @@
   <strong>Motivation:</strong>
   <%= @mentor.motivation %>
 </p>
+    <%= link_to 'Edit', edit_mentor_path(@mentor), :class => "btn-large waves-effect waves-light red" %> 
 
 
 </div>
