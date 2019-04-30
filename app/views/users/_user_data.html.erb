@@ -26,7 +26,11 @@
       <%= @user.first_name%> <%= @user.last_name %><br />
 
     <b>Email:&nbsp;&nbsp;</b>
-      <%= @user.email %><br />
+      <% if !@user.email.blank? %>
+        <%= @user.email %><br/>
+      <% else %>
+        <%= "N/A" %><br/>
+      <% end %>
     
     <b>LinkedIn URL:&nbsp;&nbsp;</b>
       <% if !@user.url.blank? %>
@@ -42,7 +46,11 @@
         <%= "N/A" %><br/>
       <% end %>
 
+<<<<<<< HEAD
+    <h5><%#= link_to 'Edit Account', edit_user_path(@user) %></h5>
+=======
     <%= link_to 'Edit Account', edit_user_path(@user),:class => "btn-large waves-effect waves-light red" %>
+>>>>>>> 539251dcb2a4732f7f8d05437424b89a241a47a7
     <% if @user.username.nil? %>
       <%= link_to 'Setup username and password', setup_account_path, :class => "btn-large waves-effect waves-light red"%>
     <% end %>
