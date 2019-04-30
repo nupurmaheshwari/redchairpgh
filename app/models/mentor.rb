@@ -34,7 +34,10 @@ class Mentor < ApplicationRecord
 		self.id
 	end 
 
-	def valid?
+	
+	private 
+
+	def is_valid
 		!self.paused && self.active
 	end
 
