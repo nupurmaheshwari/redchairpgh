@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190425230254) do
+ActiveRecord::Schema.define(version: 20190426004455) do
 
   create_table "mentees", force: :cascade do |t|
     t.boolean "is_active"
@@ -73,6 +73,8 @@ ActiveRecord::Schema.define(version: 20190425230254) do
     t.text "image_url"
     t.string "url"
     t.boolean "agreed"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.boolean "is_new"
     t.boolean "code_of_conduct"
     t.boolean "active"

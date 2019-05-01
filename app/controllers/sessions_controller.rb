@@ -1,6 +1,8 @@
 class SessionsController < ApplicationController
   
   def create
+    puts "AUTHENTICATION!!!!!!!!!!"
+    puts params
     begin
       if params[:commit]
         @user = User.find_by_username(params[:username])

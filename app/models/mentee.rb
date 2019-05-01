@@ -4,6 +4,9 @@ class Mentee < ApplicationRecord
 	belongs_to :user
 	has_many :mentorships
 	has_many :mentors, through: :mentorships
+
+    scope :for_user,     -> (user_id){ where(user_id: user_id) }
+
 	
 	## ADD SCOPE: MENTORS_LIST 
 	
@@ -25,13 +28,17 @@ class Mentee < ApplicationRecord
 	end 
 	
 	def full_name 
-		#user = User.find(self.user_id).first
-		#user.first_name + " " + user.last_name 
-		self.id
+		user = User.find(self.user_id)
+		user.first_name + " " + user.last_name 
 	end
 	
 	def email 
-		#User.find(self.user_id).first.email
+		email = User.find(self.user_id).email
+		if email.nil? 
+			return "N/A"
+		else 
+			return email
+		end 
 	end 
 
 	def connections
