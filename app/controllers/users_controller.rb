@@ -63,7 +63,6 @@ class UsersController < ApplicationController
       redirect_to users_path
     else
       if user_params[:password]
-        puts "haha"
         @user.update(user_params)
         if @user.save #.update_attributes(user_params)
           redirect_to (@user), notice: "Password was successfully changed."

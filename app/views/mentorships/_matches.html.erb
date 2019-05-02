@@ -6,62 +6,48 @@
 <% elsif mentee.paused %> 
     <p>You are currently paused. If you would like to receive matches again, please unpause yourself above!</p> 
 <% else %>
-
-    <div class="col-md-4 portfolio-item">
-        <button class="button" data-toggle="modal" data-target="#modal2">
-            <img class="img-responsive" src="images/walnut.png" alt="" />
-            <p class="img-description">WALNUT</br>This is the 3rd project</p>     
-            <p class="rectangle"></p>   
-        </button>
-        <div id="modal2" class="modal fade" role="dialog">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    </div>
-                    <!-- this is where you got the other page you want to show -->
-                    <iframe src="project2.html" width="1250px" height="520px"></iframe>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-
-
-    <table>
-        <thead>
-            <tr>
-                <th></th>
-                <th class="large-font">Current Role</th>
-                <th class="large-font">Mentor Role</th>
-                <th class="large-font">Specialized Skills</th>
-                <th class="large-font">Years in Field</th>
-                <th class="large-font">Years in Lead</th>
-                <th class="large-font">Gender</th>
-                <th class="large-font">Communication Frequency</th>
-                <th class="large-font">Bio</th>
-                <th class="large-font">Motivation</th>
-            </tr>
-        </thead> 
-        
+    <table class = "left"> 
         <tbody>
-        <% matches.each do |match| %>
-            <tr>
-                <td><%= link_to 'Show', match[0] %></td>
-                <td><%= match[0].current_role %></td>
-                <td><%= match[0].mentor_roles %></td>
-                <td><%= match[0].specialized_skills %></td>
-                <td><%= match[0].years_in_field %></td>
-                <td><%= match[0].years_in_lead %></td>
-                <td><%= match[0].gender %></td>
-                <td><%= match[0].comm_frequency %></td>
-                <td><%= match[0].bio %></td>
-                <td><%= match[0].motivation %></td>
-                <td><%= link_to 'Request Mentor', mentorships_path(mentor_id: match[0].id, mentee_id: mentee.id, state: 'pending'), method: :post %></td>
+            <% matches.each do |match| %>
+                <tr>
+                    <td><%= link_to 'View Match', mentor_path(match[0].id) %></td>
                 </tr>
-        <% end %>
+            <% end %>
         </tbody>
     </table>
+
+    <!--<table>-->
+    <!--    <thead>-->
+    <!--        <tr>-->
+    <!--            <th></th>-->
+    <!--            <th class="large-font">Current Role</th>-->
+    <!--            <th class="large-font">Mentor Role</th>-->
+    <!--            <th class="large-font">Specialized Skills</th>-->
+    <!--            <th class="large-font">Years in Field</th>-->
+    <!--            <th class="large-font">Years in Lead</th>-->
+    <!--            <th class="large-font">Gender</th>-->
+    <!--            <th class="large-font">Communication Frequency</th>-->
+    <!--            <th class="large-font">Bio</th>-->
+    <!--            <th class="large-font">Motivation</th>-->
+    <!--        </tr>-->
+    <!--    </thead> -->
+        
+    <!--    <tbody>-->
+    <!--    <%# matches.each do |match| %>-->
+    <!--        <tr>-->
+    <!--            <td><%#= link_to 'Show', match[0] %></td>-->
+    <!--            <td><%#= match[0].current_role %></td>-->
+    <!--            <td><%#= match[0].mentor_roles %></td>-->
+    <!--            <td><%#= match[0].specialized_skills %></td>-->
+    <!--            <td><%#= match[0].years_in_field %></td>-->
+    <!--            <td><%#= match[0].years_in_lead %></td>-->
+    <!--            <td><%#= match[0].gender %></td>-->
+    <!--            <td><%#= match[0].comm_frequency %></td>-->
+    <!--            <td><%#= match[0].bio %></td>-->
+    <!--            <td><%#= match[0].motivation %></td>-->
+    <!--            <td><%#= link_to 'Request Mentor', mentorships_path(mentor_id: match[0].id, mentee_id: mentee.id, state: 'pending'), method: :post %></td>-->
+    <!--            </tr>-->
+    <!--    <%# end %>-->
+    <!--    </tbody>-->
+    <!--</table>-->
 <% end %>

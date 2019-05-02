@@ -1,8 +1,6 @@
 class SessionsController < ApplicationController
   
   def create
-    puts "AUTHENTICATION!!!!!!!!!!"
-    puts params
     begin
       if params[:commit]
         @user = User.find_by_username(params[:username])
@@ -15,11 +13,9 @@ class SessionsController < ApplicationController
         end
       else
         auth_hash = request.env['omniauth.auth']
-        puts "AUTH HASH!!!"
         puts auth_hash
         @user = User.from_omniauth(auth_hash)
         if @user.nil? 
-          puts "HI NUPUR user is Nil as expected"
           @user = User.new(uid: auth_hash['uid'], provider: auth_hash['provider'], 
           role: 'contributor', first_name: auth_hash['info']['first_name'], 
           last_name: auth_hash['info']['last_name'], image_url: auth_hash['info']['picture_url'],
