@@ -45,7 +45,7 @@
           <%= link_to "Become a Mentee", new_mentee_path, :class => "btn-large waves-effect waves-light red" %>
         </div>
       </div>
-   <% elsif !current_user.active %>
+   <% elsif !current_user.nil? && !current_user.active %>
       <div class="card">
         <div class="card-content">
           <h4>Unfortunately, your account has been deactivated.</h4>

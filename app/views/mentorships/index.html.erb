@@ -1,5 +1,9 @@
 <% if @mentorships.empty? %> 
-    <h4>There are currently no mentorships in the system at this time.</h4>
+    <% if current_user.role?(:admin) %>
+        <h4>There are currently no mentorships in the system at this time.</h4>
+    <% elsif current_user.role?(:contributor) %> 
+        <h4>You currently have no mentorships.</h4>
+    <% end %>
 <% else %>
     <h4>Active Mentorships</h4>
     <table> 

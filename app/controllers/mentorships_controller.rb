@@ -4,7 +4,24 @@ class MentorshipsController < ApplicationController
     authorize_resource
     
     def index 
-        @mentorships = Mentorship.all
+        if current_user.role?(:admin)
+            @mentorships = Mentorship.all
+        else 
+        #     mentor = Mentor.find(mentorship.mentor_id).first 
+        #     mentee = Mentee.find(mentorship.mentee_id).first
+        #     user.id == mentor.user_id || user.id == mentee.user_id 
+            mentors = Mentor.for_user(current_user.id).all 
+            mentees = Mentee.for_user(current_user.id).all 
+            user_mentorships = [] 
+            mentors.each do |mentor|
+                user_mentorships += Mentorship.for_mentor(mentor.id).all 
+            end 
+            
+            mentees.each do |mentee| 
+                user_mentorships += Mentorship.for_mentee(mentee.id).all 
+            end 
+            @mentorships = user_mentorships
+        end 
     end 
     
     def create 
