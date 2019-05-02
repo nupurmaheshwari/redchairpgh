@@ -7,8 +7,8 @@ class Ability
     # permissions for admins
     if user.role? :admin
       can [:read, :show, :edit, :update, :deactivate], :all
-      can :create, Mentor 
-      can :create, Mentee
+      can [:create, :requests], Mentor 
+      can [:create, :matches], Mentee
       can :create, Mentorship
       can :manage, User 
 
