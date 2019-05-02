@@ -1,6 +1,7 @@
 <div class="imgimg">
 <%= image_tag("bg.jpg", :alt => "rss feed")%>
 </div>
+
 <div class="row">  
 
   <h4>Welcome to RedChairPGH Mentorship</h4> 
@@ -8,7 +9,6 @@
   <div class="col s8">
 
     <div class="card">
-
 
       <div class="card-content">
         <p>RedChairPGH was formed in 2015 as a grassroots effort in response to 
@@ -32,25 +32,26 @@
       </div>
     </div>
   </div>
-  <% if logged_in? %>
   <div class="col s4">
-   <div class="center">
-   <br>
-      <br>
-   <br>
-   <br>
-   
-
-    <div class="card">
-      <div class="card-content">
-      
-        <%= link_to "Become a Mentor", new_mentor_path, :class => "btn-large waves-effect waves-light red" %><br><br><br>
-        <%= link_to "Become a Mentee", new_mentee_path, :class => "btn-large waves-effect waves-light red" %>
-       </div>
+    <div class="center">
+    <br>
+    <br>
+    <br>
+    <br>
+    <% if logged_in? && current_user.active %>
+      <div class="card">
+        <div class="card-content">
+          <%= link_to "Become a Mentor", new_mentor_path, :class => "btn-large waves-effect waves-light red" %><br><br><br>
+          <%= link_to "Become a Mentee", new_mentee_path, :class => "btn-large waves-effect waves-light red" %>
+        </div>
       </div>
+   <% elsif !current_user.active %>
+      <div class="card">
+        <div class="card-content">
+          <h4>Unfortunately, your account has been deactivated.</h4>
+        </div>
+      </div>
+   <% end %>
     </div>
   </div>
-    <% end %>
 </div>
-
-

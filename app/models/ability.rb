@@ -44,6 +44,9 @@ class Ability
       end
     else 
       can [:index, :about, :contact, :privacy], :home
+      can [:show], User do |u|
+        u.id == user.id
+      end
     end
   end
 end
