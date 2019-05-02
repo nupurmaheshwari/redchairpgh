@@ -6,9 +6,6 @@ class Mentee < ApplicationRecord
 	has_many :mentors, through: :mentorships
 
     scope :for_user,     -> (user_id){ where(user_id: user_id) }
-
-	
-	## ADD SCOPE: MENTORS_LIST 
 	
 	ROLE = [['Nurturer', 'Nurturer'],['Colleague', 'Colleague'],['Sounding board', 'Sounding board'], ['Motivator','Motivator']]
 	IMPACT = [['Knowledge of professional etiquette and standards of personal presentation', 'Knowledge of professional etiquette and standards of personal presentation'],['Knowledge of career field', 'Knowledge of career field'],['Expanded social support network', 'Expanded social support network'], ['Increased self-confidence','Increased self-confidence'],['Improved communication skills','Improved communication skills'],['Increased professional network','Increased professional network'], ['Improved supervisory/leadership Skills','Improved supervisory/leadership Skills'],['Career planning/progression & professional development','Career planning/progression & professional development'],['Work\life balance','Work\life balance'],['Negotiation tactics','Negotiation tactics'],['Developing technical skills','Developing technical skills'], ['Entrepreneurship','Entrepreneurship']]
@@ -23,18 +20,38 @@ class Mentee < ApplicationRecord
 		match.get_mentor_ids 
 	end 
 	
+	def get_pending_mentors 
+		mentor_ids = []
+		Mentorship.pending.for_mentee(self).each do |mentorship|
+			mentor_ids += [mentorship.mentor_id]
+		end 
+		mentor_ids
+	end 
+	
+	def get_accepted_mentors 
+		mentor_ids = []
+		Mentorship.accepted.for_mentee(self).each do |mentorship|
+			mentor_ids += (mentorship.mentor_id)
+		end 
+		mentor_ids
+	end 
+	
 	def can_request?(mentor)	
 		!self.mentorships.include?(mentor)
 	end 
 	
 	def full_name 
-		#user = User.find(self.user_id).first
-		#user.first_name + " " + user.last_name 
-		self.id
+		user = User.find(self.user_id)
+		user.first_name + " " + user.last_name 
 	end
 	
 	def email 
-		#User.find(self.user_id).first.email
+		email = User.find(self.user_id).email
+		if email.nil? 
+			return "N/A"
+		else 
+			return email
+		end 
 	end 
 
 	def connections

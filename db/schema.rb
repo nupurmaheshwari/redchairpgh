@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190426004455) do
+ActiveRecord::Schema.define(version: 20190502160551) do
 
   create_table "mentees", force: :cascade do |t|
     t.boolean "is_active"
@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(version: 20190426004455) do
     t.boolean "mentor_approved"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "status"
     t.index ["mentee_id"], name: "index_mentorships_on_mentee_id"
     t.index ["mentor_id"], name: "index_mentorships_on_mentor_id"
   end

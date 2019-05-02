@@ -20,24 +20,28 @@ class Mentor < ApplicationRecord
 	MENTOR_ROLES = [['Nurturer', 'Nurturer'],['Colleague', 'Colleague'],['Sounding board', 'Sounding board'],['Teacher', 'Teacher'],['Motivator', 'Motivator']]
 
 	def get_requests 
-		Mentorship.for_mentor(self.id)
+		Mentorship.for_mentor(self.id).all
 	end
 	
 	def full_name 
-		#user = User.find(self.user_id).first
-		#user.first_name + " " + user.last_name 
-		self.id
+		user = User.find(self.user_id)
+		user.first_name + " " + user.last_name 
 	end
 	
 	def email 
-		#User.find(self.user_id).first.email
-		self.id
+		email = User.find(self.user_id).email
+		if email.nil? 
+			return "N/A"
+		else 
+			return email
+		end 
 	end 
-
-	private 
 	
+	#private 
+
 	def is_valid
-		!self.paused && self.active
+		#!self.paused && self.active
+		!paused && is_active
 	end
 
 end

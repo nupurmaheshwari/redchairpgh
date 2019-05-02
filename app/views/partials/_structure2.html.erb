@@ -12,4 +12,8 @@
   <div class="row">
     <%= render :partial => "partials/object_options", locals: {model_name: model_name, object: object} %>
   </div>
+<% elsif !current_user.nil? && current_user.role?(:contributor) %> 
+  <div class="row">
+    <%= render :partial => "partials/object_options2", locals: {model_name: model_name, object: object} %>
+  </div>
 <% end %>

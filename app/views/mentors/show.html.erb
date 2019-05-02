@@ -1,72 +1,140 @@
-<div class="imgimg">
-<%= image_tag("bg.jpeg", :alt => "rss feed")%>
-</div>
-<div class="row">
-  <div class="col s9">
-    <div class="card">    
-      <div class="card-content">
-<p id="notice"><%= notice %></p>
+<h4>Mentor Profile</h4>
+<% if Mentor.for_user(current_user).first != @mentor && !Mentee.for_user(current_user).first.id.nil? %>
+<% mentee = Mentee.for_user(current_user).first %>
+  <div class="imgimg">
+  <%= image_tag("bg.jpg", :alt => "rss feed")%>
+  </div>
+  <div class="row">
+    <div class="col s9">
+      <div class="card">    
+        <div class="card-content">
+  <p id="notice"><%= notice %></p>
+  <% if mentee.get_pending_mentors.include? @mentor.id %> 
+    <h5><i style="color:blue;">Requested</i></h5>
+  <% end %>
+  <p>
+    <strong>Full Name:</strong>
+    <%= @mentor.full_name %>
+  </p>
+  
+  <p>
+    <strong>Current role:</strong>
+    <%= @mentor.current_role %>
+  </p>
+  
+  <p>
+    <strong>Mentor role:</strong>
+    <%= @mentor.mentor_roles %>
+  </p>
+  
+  <p>
+    <strong>Specialized skills:</strong>
+    <%= @mentor.specialized_skills %>
+  </p>
+  
+  <p>
+  
+  <p>
+    <strong>Years in field:</strong>
+    <%= @mentor.years_in_field %>
+  </p>
+  
+  <p>
+    <strong>Years in Lead:</strong>
+    <%= @mentor.years_in_lead %>
+  </p>
 
-<p>
-  <strong>Full Name:</strong>
-  <%= @mentor.full_name %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @mentor.email %>
-</p>
-
-<p>
-  <strong>Current role:</strong>
-  <%= @mentor.current_role %>
-</p>
-
-<p>
-  <strong>Mentor role:</strong>
-  <%= @mentor.mentor_roles %>
-</p>
-
-<p>
-  <strong>Specialized skills:</strong>
-  <%= @mentor.specialized_skills %>
-</p>
-
-<p>
-
-<p>
-  <strong>Years in field:</strong>
-  <%= @mentor.years_in_field %>
-</p>
-
-<p>
-  <strong>Years in Lead:</strong>
-  <%= @mentor.years_in_lead %>
-</p>
-
-<p>
-  <strong>Mentor gender:</strong>
-  <%= @mentor.gender %>
-</p>
-
-<p>
-  <strong>Comm frequency:</strong>
-  <%= @mentor.comm_frequency %>
-</p>
-
-<p>
-  <strong>Bio:</strong>
-  <%= @mentor.bio %>
-</p>
-
-<p>
-  <strong>Motivation:</strong>
-  <%= @mentor.motivation %>
-</p>
-</div>
-</div>
-</div>
-</div>
-
-<%= link_to 'Edit', edit_mentor_path(@mentor) %> |
-<%= link_to 'Back', mentors_path %>
+  <p>
+    <strong>Bio:</strong>
+    <%= @mentor.bio %>
+  </p>
+  
+  <p>
+    <strong>Motivation:</strong>
+    <%= @mentor.motivation %>
+  </p>
+  </div>
+  </div>
+  <% if !mentee.get_pending_mentors.include? @mentor.id %> 
+    <%= link_to 'Request Mentor', mentorships_path(mentor_id: @mentor.id, mentee_id: mentee.id, state: 'pending'), method: :post, :class => "btn-large waves-effect waves-light light-blue" %>
+  <% end %>
+  </br></br>
+  <%= link_to 'Back', mentee_matches_path(mentee), :class => "btn-large waves-effect waves-light grey" %>
+  
+  </div>
+  </div>
+<% else %>
+  <div class="imgimg">
+  <%= image_tag("bg.jpg", :alt => "rss feed")%>
+  </div>
+  <div class="row">
+    <div class="col s9">
+      <div class="card">    
+        <div class="card-content">
+  <p id="notice"><%= notice %></p>
+  
+  <p>
+    <strong>Full Name:</strong>
+    <%= @mentor.full_name %>
+  </p>
+  
+  <p>
+    <strong>Email:</strong>
+    <%= @mentor.email %>
+  </p>
+  
+  <p>
+    <strong>Current role:</strong>
+    <%= @mentor.current_role %>
+  </p>
+  
+  <p>
+    <strong>Mentor role:</strong>
+    <%= @mentor.mentor_roles %>
+  </p>
+  
+  <p>
+    <strong>Specialized skills:</strong>
+    <%= @mentor.specialized_skills %>
+  </p>
+  
+  <p>
+  
+  <p>
+    <strong>Years in field:</strong>
+    <%= @mentor.years_in_field %>
+  </p>
+  
+  <p>
+    <strong>Years in Lead:</strong>
+    <%= @mentor.years_in_lead %>
+  </p>
+  
+  <p>
+    <strong>Mentor gender:</strong>
+    <%= @mentor.gender %>
+  </p>
+  
+  <p>
+    <strong>Comm frequency:</strong>
+    <%= @mentor.comm_frequency %>
+  </p>
+  
+  <p>
+    <strong>Bio:</strong>
+    <%= @mentor.bio %>
+  </p>
+  
+  <p>
+    <strong>Motivation:</strong>
+    <%= @mentor.motivation %>
+  </p>
+  </div>
+  </div>
+  
+  <%= link_to 'Edit', edit_mentor_path(@mentor) %> |
+  <%= link_to 'Back', @mentor %>
+  
+  </div>
+  </div>
+<% end %>
