@@ -20,7 +20,7 @@ class Mentor < ApplicationRecord
 	MENTOR_ROLES = [['Nurturer', 'Nurturer'],['Colleague', 'Colleague'],['Sounding board', 'Sounding board'],['Teacher', 'Teacher'],['Motivator', 'Motivator']]
 
 	def get_requests 
-		Mentorship.for_mentor(self.id)
+		Mentorship.for_mentor(self.id).all
 	end
 	
 	def full_name 
