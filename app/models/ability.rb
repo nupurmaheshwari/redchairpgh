@@ -22,8 +22,11 @@ class Ability
       
       can [:index], Mentorship
       
-      if !user.is_mentor? && !user.is_mentee? 
-        can :create, Mentor 
+      if !user.is_mentor?
+        can :create, Mentor
+      end 
+      
+      if !user.is_mentee?
         can :create, Mentee 
       end 
         

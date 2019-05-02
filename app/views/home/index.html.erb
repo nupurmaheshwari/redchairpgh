@@ -41,8 +41,20 @@
     <% if logged_in? && current_user.active %>
       <div class="card">
         <div class="card-content">
-          <%= link_to "Become a Mentor", new_mentor_path, :class => "btn-large waves-effect waves-light red" %><br><br><br>
-          <%= link_to "Become a Mentee", new_mentee_path, :class => "btn-large waves-effect waves-light red" %>
+          <% if !current_user.is_mentor? %>
+            <%= link_to "Become a Mentor", new_mentor_path, :class => "btn-large waves-effect waves-light red" %><br><br><br>
+          <% else %>
+            <%= link_to "Check your mentee requests", mentorships_path, :class => "btn-large waves-effect waves-light red" %>
+          <% end %>
+          </br></br>
+          <% if !current_user.is_mentee? %>
+            <%= link_to "Become a Mentee", new_mentee_path, :class => "btn-large waves-effect waves-light red" %>
+          <% else %>
+            <%= link_to "Check your mentor matches", mentorships_path, :class => "btn-large waves-effect waves-light red" %>
+          <% end %> 
+          <% if current_user.is_mentor? && current_user.is_mentee? %>
+            <%= link_to "Check updates in your mentorship network", mentorships_path, :class => "btn-large waves-effect waves-light blue" %>
+          <% end %>
         </div>
       </div>
    <% elsif !current_user.nil? && !current_user.active %>
