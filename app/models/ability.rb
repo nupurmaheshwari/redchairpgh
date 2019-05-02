@@ -10,7 +10,7 @@ class Ability
 
     elsif user.role?(:contributor) && user.active
       can [:index, :about, :contact, :privacy], :home
-      can [:show, :setup, :create_profile, :edit, :update, :change_password], User do |u|
+      can [:show, :setup, :create_profile, :edit, :update, :new, :change_password], User do |u|
         u.id == user.id
       end
       
@@ -19,6 +19,8 @@ class Ability
         mentee = Mentee.find(mentorship.mentee_id).first
         user.id == mentor.user_id || user.id == mentee.user_id 
       end
+      
+      can [:index], Mentorship
       
       if !user.is_mentor? && !user.is_mentee? 
         can :create, Mentor 
