@@ -1,12 +1,12 @@
-<span><b>Mentorship Matches</b></span>
-<hr>
-<% matches = mentee.get_matches %> 
+<h5>New Matches</h5>
+
+<% matches = @mentee.get_matches %> 
 <% if matches.nil? %> 
     <p>You currently have no mentor matches! Be patient, matches are more likely to appear when more appropriate mentors join the platform.</p> 
-<% elsif mentee.paused %> 
+<% elsif @mentee.paused %> 
     <p>You are currently paused. If you would like to receive matches again, please unpause yourself above!</p> 
 <% else %>
-    <table class = "left"> 
+    <table> 
         <tbody>
             <% matches.each do |match| %>
                 <tr>
@@ -15,6 +15,9 @@
             <% end %>
         </tbody>
     </table>
+    
+<h5>Pending Requests</h5>
+
 
     <!--<table>-->
     <!--    <thead>-->

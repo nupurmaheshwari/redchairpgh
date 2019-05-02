@@ -1,6 +1,6 @@
 <span><b>Mentorship Requests</b></span>
 <hr>
-<% requests = mentor.get_requests %> 
+<% requests = @mentor.get_requests %> 
 <% if requests.empty? %> 
     <p>You currently have no mentor requests! Be patient, requests are more likely to appear when more appropriate mentees join the platform.</p> 
 <% else %>
@@ -25,8 +25,6 @@
         <tbody>
         <% requests.each do |request| %>
             <% mentee = Mentee.find(request.mentee_id) %>
-            <% puts "MENTEEEEEEEEEEEEEEEEE" %>
-            <% puts mentee %>
             <tr>
                 <td><%= link_to 'Show', mentee %></td>
                 <td><%= mentee.current_role %></td>
