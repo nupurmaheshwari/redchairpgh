@@ -57,6 +57,7 @@ class MentorsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_mentor
       @mentor = Mentor.find(params[:id])
+      #@mentor = Mentor.where(user_id: params[:id])
     end
     def mentor_params
       params.require(:mentor).permit(:user_id, :is_active, :years_in_field, :years_in_lead, :gender, :comm_frequency, 

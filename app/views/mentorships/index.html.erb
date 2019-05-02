@@ -23,17 +23,17 @@
     </table>
 <% end %>
 
-<div class = "right">
-    <table>
-        <div class = "center" %>
-            <% if current_user.role?(:contributor) %> 
-                <% if current_user.is_mentor? %> 
-                    <%= render 'requests', mentor: @mentor %>
-                <% end %>
-                <% if current_user.is_mentee? %> 
-                    <%= render 'matches', mentee: @mentee %>
-                <% end %>
-            <% end %>
-        </div>
-    </table>
-</div>
+<!--<div class = "right">-->
+<!--    <table>-->
+<!--        <div class = "center" %>-->
+<!--            <%# if current_user.role?(:contributor) %> -->
+<!--                <%# if current_user.is_mentor? %> -->
+<!--                    <%#= render 'requests', mentor: @mentor %>-->
+<!--                <%# end %>-->
+<!--                <%# if current_user.is_mentee? %> -->
+<!--                    <%#= render 'matches', mentee: @mentee %>-->
+<!--                <%# end %>-->
+<!--            <%# end %>-->
+<!--        </div>-->
+<!--    </table>-->
+<!--</div>-->
