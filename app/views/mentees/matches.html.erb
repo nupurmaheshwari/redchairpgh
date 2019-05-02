@@ -1,22 +1,41 @@
 <h5>New Matches</h5>
 
 <% matches = @mentee.get_matches %> 
-<% if matches.nil? %> 
-    <p>You currently have no mentor matches! Be patient, matches are more likely to appear when more appropriate mentors join the platform.</p> 
+<% match_ids = matches.each{ |match| match[0].id } %>
+<% pending_mentors = @mentee.get_pending_mentors %>
+<% new_matches = match_ids & pending_mentors %>
+
+<% if new_matches.nil? || new_matches.empty? %> 
+    <p>You currently have no new mentor matches! Be patient, matches are more likely to appear when more appropriate mentors join the platform.</p> 
 <% elsif @mentee.paused %> 
     <p>You are currently paused. If you would like to receive matches again, please unpause yourself above!</p> 
 <% else %>
     <table> 
         <tbody>
-            <% matches.each do |match| %>
+            <% new_matches.each do |match| %>
                 <tr>
                     <td><%= link_to 'View Match', mentor_path(match[0].id) %></td>
                 </tr>
             <% end %>
         </tbody>
     </table>
+<% end %>
     
-<h5>Pending Requests</h5>
+<% if pending_mentors.nil? || pending_mentors.empty? %>
+    <p>You currently have not requested any mentors.</p> 
+<% else %>
+    <h5>Pending Requests</h5>
+    <table> 
+        <tbody>
+            <% pending_mentors.each do |mid| %>
+                <tr>
+                    <% mentor = Mentor.find(mid) %>
+                    <td><%= link_to 'View Request',  mentor_path(mentor) %></td> 
+                </tr>
+            <% end %> 
+        </tbody> 
+    </table>
+                
 
 
     <!--<table>-->

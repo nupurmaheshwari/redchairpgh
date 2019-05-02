@@ -9,7 +9,9 @@
       <div class="card">    
         <div class="card-content">
   <p id="notice"><%= notice %></p>
-  
+  <% if mentee.get_pending_mentors.include? @mentor.id %> 
+    <h5><i style="color:blue;">Requested</i></h5>
+  <% end %>
   <p>
     <strong>Full Name:</strong>
     <%= @mentor.full_name %>
@@ -53,8 +55,9 @@
   </p>
   </div>
   </div>
-  
-  <%= link_to 'Request Mentor', mentorships_path(mentor_id: @mentor.id, mentee_id: mentee.id, state: 'pending'), method: :post, :class => "btn-large waves-effect waves-light light-blue" %>
+  <% if !mentee.get_pending_mentors.include? @mentor.id %> 
+    <%= link_to 'Request Mentor', mentorships_path(mentor_id: @mentor.id, mentee_id: mentee.id, state: 'pending'), method: :post, :class => "btn-large waves-effect waves-light light-blue" %>
+  <% end %>
   </br></br>
   <%= link_to 'Back', mentee_matches_path(mentee), :class => "btn-large waves-effect waves-light grey" %>
   
