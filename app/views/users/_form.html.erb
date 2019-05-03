@@ -37,7 +37,7 @@
                 <p>In order to maintain a healthy and safe mentorship environment,
                 all members must agree to all terms in the code of conduct.</p>
                 <p>Do you agree to follow these rules?</p>
-                <%= f.label :code_of_conduct, 'Agree to Code of Conduct' %> 
+                <%= f.label :code_of_conduct, required :true %> 
                 <%= f.input_field :code_of_conduct, as: :boolean, boolean_style: :inline %>
                 <%= f.hidden_field :active, value: true %>
                 <%= f.hidden_field :is_new, value: true %>
@@ -51,8 +51,6 @@
     </div>
   </div>
 </div>
-</br>
-</br>
 <% end %>
 
 
