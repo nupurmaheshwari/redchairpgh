@@ -19,8 +19,8 @@ class Ability
       end
       
       can [:show, :update, :destroy], Mentorship do |mentorship|
-        mentor = Mentor.find(mentorship.mentor_id).first 
-        mentee = Mentee.find(mentorship.mentee_id).first
+        mentor = Mentor.find(mentorship.mentor_id) 
+        mentee = Mentee.find(mentorship.mentee_id)
         user.id == mentor.user_id || user.id == mentee.user_id 
       end
       

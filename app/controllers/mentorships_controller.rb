@@ -14,24 +14,25 @@ class MentorshipsController < ApplicationController
         #     user.id == mentor.user_id || user.id == mentee.user_id 
             @mentor = Mentor.for_user(current_user.id).first 
             @mentee = Mentee.for_user(current_user.id).first 
-            user_mentorships = [] 
+            @active_mentorships = [] 
+            #user_mentorships = [] 
             # mentors.each do |mentor|
             #     user_mentorships += Mentorship.for_mentor(mentor.id).all 
             # end 
             if @mentor
-                user_mentorships += Mentorship.for_mentor(@mentor.id).all 
-                @requests = @mentor.get_requests
+                @mentor_mentorships = Mentorship.for_mentor(@mentor.id).all 
+                @active_mentorships += @mentor_mentorships.active
+            #     @requests = @mentor.get_requests
             end 
             
             # mentees.each do |mentee| 
             #     user_mentorships += Mentorship.for_mentee(mentee.id).all 
             # end 
             if @mentee 
-                user_mentorships += Mentorship.for_mentee(@mentee.id).all 
-                @matches = @mentee.get_matches
+                @mentee_mentorships = Mentorship.for_mentee(@mentee.id).all 
+                @active_mentorships += @mentee_mentorships.active
+            #     @matches = @mentee.get_matches
             end 
-            
-            @mentorships = user_mentorships
         end 
     end 
     

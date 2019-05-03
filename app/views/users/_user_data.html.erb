@@ -157,17 +157,17 @@
   
   <p>
     <strong>Current role:</strong>
-    <%= @mentor.current_role %>
+    <%= @mentor.current_role[5...-1] %>
   </p>
   
   <p>
     <strong>Mentor role:</strong>
-    <%= @mentor.mentor_roles %>
+    <%= @mentor.mentor_roles[5...-1] %>
   </p>
   
   <p>
     <strong>Specialized skills:</strong>
-    <%= @mentor.specialized_skills %>
+    <%= @mentor.specialized_skills[5...-1] %>
   </p>
   
   <p>
