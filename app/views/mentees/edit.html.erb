@@ -2,5 +2,7 @@
 
 <%= render 'form', mentee: @mentee %>
 
-<%= link_to 'Show', @mentee %> |
-<%= link_to 'Back', mentees_path %>
+<%= link_to 'Show', @mentee %> 
+<% if current_user.role? :admin %>
+    <%= link_to 'Back', mentees_path %>
+<% end %>
