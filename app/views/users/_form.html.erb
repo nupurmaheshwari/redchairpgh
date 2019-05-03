@@ -18,18 +18,20 @@
     
     <h4>Account Information</h4>
     
-    <div class="card">    
-        <div class="card-content">
-          <p>Almost there! Verify your information</p>
-          <%= simple_form_for(@user) do |f| %>
-            <%= f.error_notification %>
-            <div class="row">
-              <div class="form-inputs">
-                <%= f.input :first_name %> 
+  <div class="card">    
+  <div class="card-content">
+    <%= simple_form_for(@mentor) do |f| %>
+      <%= f.error_notification %>
+      <div class="row">
+        <div class="form-inputs">
+          
+          <%# f.input :role, collection: Mentor::ROLE, include_blank: true %>
+          <!--matching algo fields -->          
+          <%#= f.input :current_role, :as => :check_boxes, collection: Mentor::BACKGROUND, :label => '1. What is your background?  Check all that apply.' %>
+           <%= f.input :first_name %> 
                 <%= f.input :last_name %> 
                 <%= f.input :email %>
-                <%= f.label :url, 'LinkedIn URL' %>
-                <%= f.input :url %> 
+                <%= f.label :url, :label => 'LALALA' %>
                 <%= f.label :location, 'Primary Location' %>
                 <%= f.input :location %> 
                 <br>CODE OF CONDUCT</br>
@@ -40,19 +42,21 @@
                 <%= f.input_field :code_of_conduct, as: :boolean, boolean_style: :inline %>
                 <%= f.hidden_field :active, value: true %>
                 <%= f.hidden_field :is_new, value: true %>
-              </div>
-            </div>
-        
-            <div class="row">
-              <div class="form-actions col s7">
-                <%= f.button :submit, :value => "Create Account"%>
-              </div>
-            </div>
-          <% end %>
-        </div>
-    </div>
 
+          <div class="form-actions col s7">
+            <%= f.button :submit %>
+          </div>
+
+
+      </div>
+    </div>
+  </div>
+</div>
 <% end %>
 
-<br>
-<br>
+
+
+
+
+
+
