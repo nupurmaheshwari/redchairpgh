@@ -23,7 +23,7 @@ class UsersController < ApplicationController
   
   def profile 
     if !current_user.is_new 
-      redirect_to current_user
+      redirect_to home_path
     end
   end
   
