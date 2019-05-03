@@ -30,15 +30,14 @@
           <%#= f.input :current_role, :as => :check_boxes, collection: Mentor::BACKGROUND, :label => '1. What is your background?  Check all that apply.' %>
            <%= f.input :first_name %> 
                 <%= f.input :last_name %> 
-                <%= f.input :email %>
-                <%= f.input :linkedin_url %> 
-                <%= f.input :location %> 
+                <%= f.input :email, required :true %>
+                <%= f.input :linkedin_url, required :true %> 
+                <%= f.input :location, required :true  %> 
                 <br>CODE OF CONDUCT</br>
                 <p>In order to maintain a healthy and safe mentorship environment,
                 all members must agree to all terms in the code of conduct.</p>
                 <p>Do you agree to follow these rules?</p>
-                <%= f.label :code_of_conduct, required :true %> 
-                <%= f.input_field :code_of_conduct, as: :boolean, boolean_style: :inline %>
+                <%= f.label :code_of_conduct %> 
                 <%= f.hidden_field :active, value: true %>
                 <%= f.hidden_field :is_new, value: true %>
 

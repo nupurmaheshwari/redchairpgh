@@ -1,7 +1,10 @@
 class User < ApplicationRecord
   has_secure_password validations: false
 
-  validates_acceptance_of :code_of_conduct, :message => "must be accepted.", :on => :update
+  validates_acceptance_of :code_of_conduct, :message => "must be accepted", :on => :update
+  # validates_acceptance_of :linkedin_url, :message => "must be filled out", :on => :update
+  # validates_acceptance_of :email, :message => "must be filled out", :on => :update
+  # validates_acceptance_of :location, :message => "must be filled out", :on => :update
   
   scope :alphabetical,       -> { order('last_name, first_name') }
   scope :is_active,          -> { where('active = ?', true) }
