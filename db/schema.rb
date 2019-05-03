@@ -74,8 +74,6 @@ ActiveRecord::Schema.define(version: 20190502160551) do
     t.text "image_url"
     t.string "url"
     t.boolean "agreed"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.boolean "is_new"
     t.boolean "code_of_conduct"
     t.boolean "active"

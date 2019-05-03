@@ -28,12 +28,15 @@
                 <%= f.input :first_name %> 
                 <%= f.input :last_name %> 
                 <%= f.input :email %>
+                <%= f.label :url, 'LinkedIn URL' %>
                 <%= f.input :url %> 
+                <%= f.label :location, 'Primary Location' %>
                 <%= f.input :location %> 
                 <br>CODE OF CONDUCT</br>
                 <p>In order to maintain a healthy and safe mentorship environment,
                 all members must agree to all terms in the code of conduct.</p>
                 <p>Do you agree to follow these rules?</p>
+                <%= f.label :code_of_conduct, 'Agree to Code of Conduct' %> 
                 <%= f.input_field :code_of_conduct, as: :boolean, boolean_style: :inline %>
                 <%= f.hidden_field :active, value: true %>
                 <%= f.hidden_field :is_new, value: true %>
