@@ -15,6 +15,11 @@
   <p id="notice"><%= notice %></p>
   
   <p>
+    <h5>LinkedIn URL:</h5>
+    <%= User.find(@mentee.user_id).url %>
+  </p>
+  
+  <p>
     <strong>Full Name:</strong>
     <%= @mentee.full_name %>
   </p>
@@ -26,7 +31,7 @@
   
   <p>
     <strong>Current role:</strong>
-    <%= @mentee.current_role[5...-1] %>
+    <%= @mentee.current_role %>
   </p>
   
   <p>
@@ -98,6 +103,11 @@
       <div class="card">    
         <div class="card-content">
   <p id="notice"><%= notice %></p>
+  
+  <p>
+    <h5>LinkedIn URL:</h5>
+    <%= User.find(@mentee.user_id).url %>
+  </p>
   
   <p>
     <strong>Full Name:</strong>

@@ -1,4 +1,11 @@
 <h4>Mentor Profile</h4>
+
+<% unless User.find(@mentor.user_id).image_url.nil? %> 
+  <p> 
+    <%= image_tag User.find(@mentor.user_id).image_url, :class => "round", :size => "180x180" %> 
+  </p>
+<% end %>
+
 <% if Mentor.for_user(current_user).first != @mentor && !Mentee.for_user(current_user).first.id.nil? %>
 <% mentee = Mentee.for_user(current_user).first %>
   <div class="imgimg">
@@ -12,6 +19,12 @@
   <% if mentee.get_pending_mentors.include? @mentor.id %> 
     <h5><i style="color:blue;">Requested</i></h5>
   <% end %>
+  
+  <p>
+    <h5>LinkedIn URL:</h5>
+    <%= User.find(@mentor.user_id).url %>
+  </p>
+  
   <p>
     <strong>Full Name:</strong>
     <%= @mentor.full_name %>
@@ -75,6 +88,11 @@
       <div class="card">    
         <div class="card-content">
   <p id="notice"><%= notice %></p>
+  
+  <p>
+    <h5>LinkedIn URL:</h5>
+    <%= User.find(@mentor.user_id).url %>
+  </p>
   
   <p>
     <strong>Full Name:</strong>
