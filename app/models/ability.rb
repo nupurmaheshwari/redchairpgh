@@ -7,8 +7,8 @@ class Ability
     # permissions for admins
     if user.role? :admin
       can [:read, :show, :edit, :update, :deactivate], :all
-      can [:create, :requests], Mentor 
-      can [:create, :matches], Mentee
+      can [:create, :requests, :pause, :update_pause], Mentor 
+      can [:create, :matches, :pause, :update_pause], Mentee
       can :create, Mentorship
       can :manage, User 
 
@@ -36,7 +36,7 @@ class Ability
         
       if user.is_mentor? 
         can [:requests], Mentor
-        can [:show, :update, :destroy], Mentor do |mentor|
+        can [:show, :update, :destroy, :pause, :update_pause_mentor], Mentor do |mentor|
           mentor.user_id == user.id
         end
         can [:show], Mentee do |mentee| 
@@ -47,7 +47,7 @@ class Ability
       
       if user.is_mentee? 
         can [:matches], Mentee
-        can [:show, :update, :destroy], Mentee do |mentee|
+        can [:show, :update, :destroy, :pause, :update_pause_mentee], Mentee do |mentee|
           mentee.user_id == user.id
         end
         can [:show], Mentor do |mentor| 

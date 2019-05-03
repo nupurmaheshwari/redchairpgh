@@ -1,6 +1,6 @@
 class MenteesController < ApplicationController
   # before_action :check_login
-  before_action :set_mentee, only: [:show, :edit, :update, :destroy, :matches]
+  before_action :set_mentee, only: [:show, :edit, :update, :destroy, :matches, :pause, :update_pause]
   authorize_resource
   
   # GET /mentees
@@ -24,6 +24,20 @@ class MenteesController < ApplicationController
   end
 
   def matches 
+  end
+  
+  def pause 
+  end 
+  
+  def update_pause 
+    puts "MENTE PAUSED?"
+    puts @mentee.paused
+    if @mentee.paused 
+      @mentee.update_attributes(:paused => false) 
+    else 
+      @mentee.update_attributes(:paused => true) 
+    end 
+    redirect_to mentee_matches_path(@mentee)
   end 
     
   # POST /mentees

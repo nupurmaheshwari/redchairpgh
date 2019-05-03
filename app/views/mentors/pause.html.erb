@@ -1,0 +1,16 @@
+</br>
+<% if !@mentor.paused %>
+    <h6>Are you sure you want to pause your mentor profile? If you are paused, you won't get any new requests
+        but your existing requests and mentorships will remain active.</h6>
+<% else %>
+    <h6>Are you sure you want to unpause your mentor profile? If you unpause, you'll 
+        get new requests from mentees.</h6>
+<% end %>
+<table>
+    <td>
+        <%= link_to 'Yes', update_pause_mentor_path(@mentor), method: 'put', :class => "btn-large waves-effect waves-light light-blue" %>
+        <%= link_to 'Cancel', mentor_requests_path(@mentor), :class => "btn-large waves-effect waves-light grey" %>
+    </td>
+</table>
+
+  

@@ -1,0 +1,16 @@
+</br>
+<% if !@mentee.paused %>
+    <h6>Are you sure you want to pause your mentee profile? If you are paused, you won't get any new matches
+        but your existing matches and mentorships will remain active.</h6>
+<% else %>
+    <h6>Are you sure you want to unpause your mentee profile? If you unpause, you'll 
+        get new mentor matches.</h6>
+<% end %>
+<table>
+    <td>
+        <%= link_to 'Yes', update_pause_mentee_path(@mentee), method: 'put', :class => "btn-large waves-effect waves-light light-blue" %>
+        <%= link_to 'Cancel', mentee_matches_path(@mentee), :class => "btn-large waves-effect waves-light grey" %>
+    </td>
+</table>
+
+  
