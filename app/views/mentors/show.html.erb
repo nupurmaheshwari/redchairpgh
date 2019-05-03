@@ -1,9 +1,7 @@
 <h4>Mentor Profile</h4>
 <% if Mentor.for_user(current_user).first != @mentor && !Mentee.for_user(current_user).first.id.nil? %>
 <% mentee = Mentee.for_user(current_user).first %>
-  <div class="imgimg">
-  <%= image_tag("bg.jpg", :alt => "rss feed")%>
-  </div>
+ 
   <div class="row">
     <div class="col s9">
       <div class="card">    
