@@ -9,7 +9,7 @@ class Mentorship < ApplicationRecord
     scope :pending, -> { where('status = ?', 'pending') }
     scope :accepted, -> { where('status = ?', 'accepted') }
     scope :active, -> { where('is_active = ?', true) }
-    scope :inactive, -> { where('is_active = ?', false ) }
+    scope :inactive, -> { where('is_active = ? & status = ?', false, 'accepted' ) }
 
     def valid_mentorship? 
         mentor.user_id != mentee.user_id 
