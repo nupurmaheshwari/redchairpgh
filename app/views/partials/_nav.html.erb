@@ -12,10 +12,12 @@
       <% end %>
       <li><%= link_to 'Mentorships', mentorships_path %></li>
       <% if current_user.is_mentee? %>
-        <li><%= link_to 'Matches', mentee_matches_path(current_user.id) %></li>
+        <% mentee = Mentee.for_user(current_user.id).first.id %>
+        <li><%= link_to 'Matches', mentee_matches_path(mentee) %></li>
       <% end %>
       <% if current_user.is_mentor? %>
-        <li><%= link_to 'Requests', mentor_requests_path(current_user.id) %></li>
+        <% mentor = Mentor.for_user(current_user.id).first.id %>
+        <li><%= link_to 'Requests', mentor_requests_path(mentor) %></li>
       <% end %>
       <li><%= link_to 'My Account', account_path(current_user.id) %></li>
     </ul>

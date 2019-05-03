@@ -6,47 +6,51 @@
         <div class="card-content">
 <h5>Mentorship Requests</h5>
 <hr>
-<% requests = @mentor.get_requests %> 
-<% if requests.empty? %> 
-    <p>You currently have no mentor requests! Be patient, requests are more likely to appear when more appropriate mentees join the platform.</p> 
+<% if @mentor.paused %> 
+    <i>You are currently paused. If you would like to receive requests again, please unpause yourself below!</i>
 <% else %>
-    <font size="2">
-    <table>
-        <thead>
-            <tr>
-                <th class="large-font center">Current Role</th>
-                <th class="large-font center">Mentor Role</th>
-                <th class="large-font center">Skill 1</th>
-                <th class="large-font center">Skill 2</th>
-                <th class="large-font center">Skill 3</th>
-                <th class="large-font center">Years in Field</th>
-                <th class="large-font center">Lead Team?</th>
-                <th class="large-font center">Bio</th>
-                <th class="large-font center">5-Year Goals</th>
-                <th></th>
-                <th></th>
-            </tr>
-        </thead> 
-        
-        <tbody>
-        <% requests.each do |request| %>
-            <% mentee = Mentee.find(request.mentee_id) %>
-            <tr>
-                <td><%= mentee.current_role %></td>
-                <td><%= mentee.mentor_role %></td>
-                <td><%= mentee.skill_1 %></td>
-                <td><%= mentee.skill_2 %></td>
-                <td><%= mentee.skill_3 %></td>
-                <td><%= mentee.years_in_field %></td>
-                <td><%= mentee.lead_team == false ? "No" : "Yes" %></td>
-                <td><%= mentee.bio.empty? ? "N/A" : mentee.bio %></td>
-                <td><%= mentee.in_five_years.empty? ? "N/A" : mentee.in_five_years %></td>
-                <td><%= link_to 'View More', mentee, :class => "btn-large waves-effect waves-light grey" %></td>
-                <td><%= link_to 'Accept Mentee', edit_mentorship_path, :class => "btn-large waves-effect waves-light light-blue" %></td>
-            </tr>
-        <% end %>
-        </tbody>
-    </table>
+    <% requests = @mentor.get_requests %> 
+    <% if requests.empty? %> 
+        <p>You currently have no mentor requests! Be patient, requests are more likely to appear when more appropriate mentees join the platform.</p> 
+    <% else %>
+        <font size="2">
+        <table>
+            <thead>
+                <tr>
+                    <th class="large-font center">Current Role</th>
+                    <th class="large-font center">Mentor Role</th>
+                    <th class="large-font center">Skill 1</th>
+                    <th class="large-font center">Skill 2</th>
+                    <th class="large-font center">Skill 3</th>
+                    <th class="large-font center">Years in Field</th>
+                    <th class="large-font center">Lead Team?</th>
+                    <th class="large-font center">Bio</th>
+                    <th class="large-font center">5-Year Goals</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead> 
+            
+            <tbody>
+            <% requests.each do |request| %>
+                <% mentee = Mentee.find(request.mentee_id) %>
+                <tr>
+                    <td><%= mentee.current_role %></td>
+                    <td><%= mentee.mentor_role %></td>
+                    <td><%= mentee.skill_1 %></td>
+                    <td><%= mentee.skill_2 %></td>
+                    <td><%= mentee.skill_3 %></td>
+                    <td><%= mentee.years_in_field %></td>
+                    <td><%= mentee.lead_team == false ? "No" : "Yes" %></td>
+                    <td><%= mentee.bio.empty? ? "N/A" : mentee.bio %></td>
+                    <td><%= mentee.in_five_years.empty? ? "N/A" : mentee.in_five_years %></td>
+                    <td><%= link_to 'View More', mentee, :class => "btn-large waves-effect waves-light grey" %></td>
+                    <td><%= link_to 'Accept Mentee', edit_mentorship_path, :class => "btn-large waves-effect waves-light light-blue" %></td>
+                </tr>
+            <% end %>
+            </tbody>
+        </table>
+    <% end %>
 <% end %>
 </div>
 </div>
