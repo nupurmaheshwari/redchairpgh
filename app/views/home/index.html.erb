@@ -44,13 +44,13 @@
           <% if !current_user.is_mentor? %>
             <%= link_to "Become a Mentor", new_mentor_path, :class => "btn-large waves-effect waves-light red" %><br><br><br>
           <% else %>
-            <%= link_to "Check your mentee requests", mentorships_path, :class => "btn-large waves-effect waves-light red" %>
+            <%= link_to "Check new requests", mentorships_path, :class => "btn-large waves-effect waves-light red" %>
           <% end %>
           </br></br>
           <% if !current_user.is_mentee? %>
             <%= link_to "Become a Mentee", new_mentee_path, :class => "btn-large waves-effect waves-light red" %>
           <% else %>
-            <%= link_to "Check your mentor matches", mentorships_path, :class => "btn-large waves-effect waves-light red" %>
+            <%= link_to "Check new matches", mentorships_path, :class => "btn-large waves-effect waves-light red" %>
           <% end %> 
         </div>
       </div>

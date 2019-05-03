@@ -6,6 +6,8 @@ class MentorshipsController < ApplicationController
     def index 
         if current_user.role?(:admin)
             @mentorships = Mentorship.all
+            @active_mentorships = Mentorship.active.all 
+            @inactive_mentorships = Mentorship.inactive.all
         else 
         #     mentor = Mentor.find(mentorship.mentor_id).first 
         #     mentee = Mentee.find(mentorship.mentee_id).first
