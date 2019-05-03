@@ -26,7 +26,7 @@
   
   <p>
     <strong>Current role:</strong>
-    <%= @mentee.current_role %>
+    <%= @mentee.current_role[5...-1] %>
   </p>
   
   <p>
@@ -169,8 +169,8 @@
   </div>
   </div>
   
-  <%= link_to 'Edit', edit_mentee_path(@mentee) %> |
-  <%= link_to 'Back', mentees_path %>
+  <%= link_to 'Edit', edit_mentee_path(@mentee), :class => "btn-large waves-effect waves-light light-blue" %> 
+  <%= link_to 'Back', mentees_path, :class => "btn-large waves-effect waves-light grey" %>
   
   </div>
   </div>

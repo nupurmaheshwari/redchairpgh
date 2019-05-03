@@ -6,30 +6,36 @@ class MentorshipsController < ApplicationController
     def index 
         if current_user.role?(:admin)
             @mentorships = Mentorship.all
+            @active_mentorships = Mentorship.active.all 
+            @inactive_mentorships = Mentorship.inactive.all
         else 
         #     mentor = Mentor.find(mentorship.mentor_id).first 
         #     mentee = Mentee.find(mentorship.mentee_id).first
         #     user.id == mentor.user_id || user.id == mentee.user_id 
             @mentor = Mentor.for_user(current_user.id).first 
             @mentee = Mentee.for_user(current_user.id).first 
-            user_mentorships = [] 
+            @active_mentorships = [] 
+            @inactive_mentorships = []
+            #user_mentorships = [] 
             # mentors.each do |mentor|
             #     user_mentorships += Mentorship.for_mentor(mentor.id).all 
             # end 
             if @mentor
-                user_mentorships += Mentorship.for_mentor(@mentor.id).all 
-                @requests = @mentor.get_requests
+                @mentor_mentorships = Mentorship.for_mentor(@mentor.id).all 
+                @active_mentorships += @mentor_mentorships.active
+                @inactive_mentorships += @mentor_mentorships.inactive
+            #     @requests = @mentor.get_requests
             end 
             
             # mentees.each do |mentee| 
             #     user_mentorships += Mentorship.for_mentee(mentee.id).all 
             # end 
             if @mentee 
-                user_mentorships += Mentorship.for_mentee(@mentee.id).all 
-                @matches = @mentee.get_matches
+                @mentee_mentorships = Mentorship.for_mentee(@mentee.id).all 
+                @active_mentorships += @mentee_mentorships.active
+                @inactive_mentorships += @mentee_mentorships.inactive
+            #     @matches = @mentee.get_matches
             end 
-            
-            @mentorships = user_mentorships
         end 
     end 
     
@@ -65,7 +71,7 @@ class MentorshipsController < ApplicationController
         MentorshipMailer.acceptance_email_to_mentee(mentor, mentee).deliver_later!
         MentorshipMailer.acceptance_email_to_mentor(mentor, mentee).deliver_later!
         flash[:notice] = 'Mentorship approved!' 
-        redirect_to root_path
+        redirect_to mentorships_path
     end 
     
     private

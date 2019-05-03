@@ -1,83 +1,58 @@
+</br>
+<h5>Your Mentor Network</h5>
 <div class="row">
-    <div class="center">
+    <div class="left">
       <div class="card">    
         <div class="card-content">
 <h5>New Matches</h5>
 
 <% matches = @mentee.get_matches %> 
-<% match_ids = matches.each{ |match| match[0].id } %>
+<% match_ids = matches.map { |match| match[0].id } %>
 <% pending_mentors = @mentee.get_pending_mentors %>
-<% new_matches = match_ids & pending_mentors %>
+<% new_matches = match_ids %>
+<% if !pending_mentors.empty? %>
+    <% new_matches = pending_mentors - match_ids %> 
+<% end %>
 
-<% if new_matches.nil? || new_matches.empty? %> 
+<% if @mentee.paused %> 
+    <i>You are currently paused. If you would like to receive matches again, please unpause yourself below!</i>
+<% elsif new_matches.nil? || new_matches.empty? %> 
     <p>You currently have no new mentor matches! Be patient, matches are more likely to appear when more appropriate mentors join the platform.</p> 
-<% elsif @mentee.paused %> 
-    <p>You are currently paused. If you would like to receive matches again, please unpause yourself above!</p> 
 <% else %>
     <table> 
         <tbody>
-            <% new_matches.each do |match| %>
+            <% new_matches.each do |match_id| %>
                 <tr>
-                    <td><%= link_to 'View Match', mentor_path(match[0].id) %></td>
+                    <td><%= link_to 'View Match', mentor_path(match_id) %></td>
                 </tr>
             <% end %>
         </tbody>
     </table>
 <% end %>
+</br></br>
+<h5>Pending Requests</h5>
     
 <% if pending_mentors.nil? || pending_mentors.empty? %>
-    <p>You currently have not requested any mentors.</p> 
+    <p>You have not requested any mentors at this time.</p> 
 <% else %>
-    <h5>Pending Requests</h5>
     <table> 
         <tbody>
-            <% pending_mentors.each do |mid| %>
+            <% pending_mentors.each do |mentor_id| %>
                 <tr>
-                    <% mentor = Mentor.find(mid) %>
-                    <td><%= link_to 'View Request',  mentor_path(mentor) %></td> 
+                    <td><%= link_to 'View Request',  mentor_path(mentor_id) %></td> 
                 </tr>
             <% end %> 
         </tbody> 
     </table>
-                
-
-
-    <!--<table>-->
-    <!--    <thead>-->
-    <!--        <tr>-->
-    <!--            <th></th>-->
-    <!--            <th class="large-font">Current Role</th>-->
-    <!--            <th class="large-font">Mentor Role</th>-->
-    <!--            <th class="large-font">Specialized Skills</th>-->
-    <!--            <th class="large-font">Years in Field</th>-->
-    <!--            <th class="large-font">Years in Lead</th>-->
-    <!--            <th class="large-font">Gender</th>-->
-    <!--            <th class="large-font">Communication Frequency</th>-->
-    <!--            <th class="large-font">Bio</th>-->
-    <!--            <th class="large-font">Motivation</th>-->
-    <!--        </tr>-->
-    <!--    </thead> -->
-        
-    <!--    <tbody>-->
-    <!--    <%# matches.each do |match| %>-->
-    <!--        <tr>-->
-    <!--            <td><%#= link_to 'Show', match[0] %></td>-->
-    <!--            <td><%#= match[0].current_role %></td>-->
-    <!--            <td><%#= match[0].mentor_roles %></td>-->
-    <!--            <td><%#= match[0].specialized_skills %></td>-->
-    <!--            <td><%#= match[0].years_in_field %></td>-->
-    <!--            <td><%#= match[0].years_in_lead %></td>-->
-    <!--            <td><%#= match[0].gender %></td>-->
-    <!--            <td><%#= match[0].comm_frequency %></td>-->
-    <!--            <td><%#= match[0].bio %></td>-->
-    <!--            <td><%#= match[0].motivation %></td>-->
-    <!--            <td><%#= link_to 'Request Mentor', mentorships_path(mentor_id: match[0].id, mentee_id: mentee.id, state: 'pending'), method: :post %></td>-->
-    <!--            </tr>-->
-    <!--    <%# end %>-->
-    <!--    </tbody>-->
-    <!--</table>-->
 <% end %>
+            </div>
+        </div>
+    </div>
 </div>
+            
+<div>
+    <%= link_to 'Manage Mentee Profile', edit_mentee_path(@mentee), :class => "btn-large waves-effect waves-light red" %>  
+    <%= link_to @mentee.paused ? 'Unpause' : 'Pause', pause_mentee_path(@mentee), :class => "btn-large waves-effect waves-light light-blue" %>
 </div>
-</div>
-</div>
+
+        

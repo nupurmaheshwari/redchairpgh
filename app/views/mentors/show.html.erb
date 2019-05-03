@@ -19,17 +19,17 @@
   
   <p>
     <strong>Current role:</strong>
-    <%= @mentor.current_role %>
+    <%= @mentor.current_role[5...-1] %>
   </p>
   
   <p>
     <strong>Mentor role:</strong>
-    <%= @mentor.mentor_roles %>
+    <%= @mentor.mentor_roles[5...-1] %>
   </p>
   
   <p>
     <strong>Specialized skills:</strong>
-    <%= @mentor.specialized_skills %>
+    <%= @mentor.specialized_skills[5...-1] %>
   </p>
   
   <p>
@@ -56,7 +56,7 @@
   </div>
   </div>
   <% if !mentee.get_pending_mentors.include? @mentor.id %> 
-    <%= link_to 'Request Mentor', mentorships_path(mentor_id: @mentor.id, mentee_id: mentee.id, state: 'pending'), method: :post, :class => "btn-large waves-effect waves-light light-blue" %>
+    <%= link_to 'Request Mentor', mentorships_path(mentor_id: @mentor.id, mentee_id: mentee.id, is_active: true, state: 'pending'), method: :post, :class => "btn-large waves-effect waves-light light-blue" %>
   <% end %>
   </br></br>
   <%= link_to 'Back', mentee_matches_path(mentee), :class => "btn-large waves-effect waves-light grey" %>
@@ -80,22 +80,22 @@
   
   <p>
     <strong>Email:</strong>
-    <%= @mentor.email %>
+    <%= @mentor.email.empty? ? "N/A" : @mentor.email %>
   </p>
   
   <p>
     <strong>Current role:</strong>
-    <%= @mentor.current_role %>
+    <%= @mentor.current_role[5...-1] %>
   </p>
   
   <p>
     <strong>Mentor role:</strong>
-    <%= @mentor.mentor_roles %>
+    <%= @mentor.mentor_roles[5...-1] %>
   </p>
   
   <p>
     <strong>Specialized skills:</strong>
-    <%= @mentor.specialized_skills %>
+    <%= @mentor.specialized_skills[5...-1] %>
   </p>
   
   <p>
@@ -122,18 +122,18 @@
   
   <p>
     <strong>Bio:</strong>
-    <%= @mentor.bio %>
+    <%= @mentor.bio.empty? ? "N/A" : @mentor.bio %>
   </p>
   
   <p>
     <strong>Motivation:</strong>
-    <%= @mentor.motivation %>
+    <%= @mentor.motivation.empty? ? "N/A" : @mentor.motivation %>
   </p>
   </div>
   </div>
   
-  <%= link_to 'Edit', edit_mentor_path(@mentor) %> |
-  <%= link_to 'Back', @mentor %>
+  <%= link_to 'Edit', edit_mentor_path(@mentor), :class => "btn-large waves-effect waves-light light-blue" %> 
+  <%= link_to 'Back', @mentor, :class => "btn-large waves-effect waves-light grey" %>
   
   </div>
   </div>

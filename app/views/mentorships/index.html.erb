@@ -1,47 +1,5 @@
-<div class="row">
-    <div class="center">
-      <div class="card">    
-        <div class="card-content">
-<% if @mentorships.empty? %> 
-    <% if current_user.role?(:admin) %>
-        <h5>There are currently no mentorships in the system at this time.</h5>
-    <% elsif current_user.role?(:contributor) %> 
-        <br>
-        <h5>You currently have no mentorships.</h5>
-    <% end %>
-<% else %>
-    <h4>Active Mentorships</h4>
-    <table class = "left"> 
-        <thead> 
-            <th>Mentor</th>
-            <th>Mentee</th>
-            <th>Status</th>
-        </thead>
-        <% for mentorship in @mentorships %> 
-            <tr>
-                <td><%= mentorship.mentor_id %></td>
-                <td><%= mentorship.mentee_id %></td> 
-                <td><%= mentorship.status %></td>
-            </tr>
-        <% end %> 
-    </table>
+<% if current_user.role?(:admin) %>
+    <%= render :partial => "admin_index" %>
+ <% else %> 
+    <%= render :partial => "user_index" %>
 <% end %>
-
-<!--<div class = "right">-->
-<!--    <table>-->
-<!--        <div class = "center" %>-->
-<!--            <%# if current_user.role?(:contributor) %> -->
-<!--                <%# if current_user.is_mentor? %> -->
-<!--                    <%#= render 'requests', mentor: @mentor %>-->
-<!--                <%# end %>-->
-<!--                <%# if current_user.is_mentee? %> -->
-<!--                    <%#= render 'matches', mentee: @mentee %>-->
-<!--                <%# end %>-->
-<!--            <%# end %>-->
-<!--        </div>-->
-<!--    </table>-->
-<!--</div>-->
-</div>
-</div>
-</div>
-</div>

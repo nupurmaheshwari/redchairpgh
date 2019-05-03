@@ -1,6 +1,6 @@
 class MentorsController < ApplicationController
     # before_action :check_login
-    before_action :set_mentor, only: [:show, :edit, :update, :destroy, :requests]
+    before_action :set_mentor, only: [:show, :edit, :update, :destroy, :requests, :pause, :update_pause]
     authorize_resource
     
     def index
@@ -19,6 +19,18 @@ class MentorsController < ApplicationController
     end
     
     def requests 
+    end 
+    
+    def pause
+    end 
+    
+    def update_pause 
+      if @mentor.paused 
+        @mentor.update_attributes(:paused => false) 
+      else 
+        @mentor.update_attributes(:paused => true) 
+      end 
+      redirect_to mentor_requests_path(@mentor)
     end 
   
     def update

@@ -43,9 +43,13 @@ Rails.application.routes.draw do
   
   #mentee matches route 
   get 'mentees/:id/matches', to: 'mentees#matches', as: :mentee_matches
+  get 'mentees/:id/pause', to: 'mentees#pause', as: :pause_mentee
+  put 'mentees/:id/pause', to: 'mentees#update_pause', as: :update_pause_mentee
   
   #mentor matches route 
   get 'mentors/:id/requests', to: 'mentors#requests', as: :mentor_requests
+  get 'mentors/:id/pause', to: 'mentors#pause', as: :pause_mentor
+  put 'mentors/:id/pause', to: 'mentors#update_pause', as: :update_pause_mentor
   
   # Routes for searching
   get 'mentees/search', to: 'mentees#search', as: :mentees_search
