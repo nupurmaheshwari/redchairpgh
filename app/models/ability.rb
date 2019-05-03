@@ -41,7 +41,8 @@ class Ability
         end
         can [:show], Mentee do |mentee| 
           mentor = Mentor.for_user(user.id).first
-          mentor.get_requests.include? mentee 
+          mentee_ids = Mentorship.for_mentor(mentor).all.map { |mentorship| mentorship.mentee_id } 
+          mentee_ids.include? mentee.id
         end 
       end 
       

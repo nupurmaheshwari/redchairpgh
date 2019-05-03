@@ -10,11 +10,17 @@
           
             <%= f.hidden_field :mentor_id, value: true %>
             <%= f.hidden_field :mentee_id, value: true %>
-            <p>In order to maintain a healthy and safe mentorship environment,
-            all mentors must agree to communicate with their mentees as 
-            specified in the code of conduct.</p>
-            <p>Do you agree to follow these rules?</p>
-            <%= f.input_field :status, as: :boolean, boolean_style: :inline %>
+            <% if @mentorship.status == 'pending' %>
+              <p>In order to maintain a healthy and safe mentorship environment,
+              all mentors must agree to communicate with their mentees as 
+              specified in the code of conduct.</p>
+              <p>Do you agree to follow these rules?</p>
+              <%= f.input_field :status, as: :boolean, boolean_style: :inline %>
+            <% else %>
+              <p>Are you sure you want to remove this mentorship? Doing so will remove
+              this person from  your network and they will be notified.</p>
+              <%= f.input_field :is_active, as: :boolean, boolean_style: :inline %>
+            <% end %>
 
       </div>
     </div>
@@ -23,7 +29,7 @@
   
   <div class="row">
     <div class="form-actions col s7">
-      <%= f.button :submit, :value => "Accept Mentee" %>
+      <%= f.button :submit, :value => (@mentorship.status ==  'pending' ? "Accept Mentee" : "Remove Mentorship") %>
     </div>
   </div>
 <% end %>

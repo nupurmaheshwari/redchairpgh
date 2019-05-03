@@ -7,7 +7,7 @@ class MentorshipsController < ApplicationController
         if current_user.role?(:admin)
             @mentorships = Mentorship.all
             @active_mentorships = Mentorship.active.all 
-            @inactive_mentorships = Mentorship.inactive.all
+            @removed_mentorships = Mentorship.removed.all
         else 
         #     mentor = Mentor.find(mentorship.mentor_id).first 
         #     mentee = Mentee.find(mentorship.mentee_id).first
@@ -15,7 +15,7 @@ class MentorshipsController < ApplicationController
             @mentor = Mentor.for_user(current_user.id).first 
             @mentee = Mentee.for_user(current_user.id).first 
             @active_mentorships = [] 
-            @inactive_mentorships = []
+            @removed_mentorships = []
             #user_mentorships = [] 
             # mentors.each do |mentor|
             #     user_mentorships += Mentorship.for_mentor(mentor.id).all 
@@ -23,7 +23,7 @@ class MentorshipsController < ApplicationController
             if @mentor
                 @mentor_mentorships = Mentorship.for_mentor(@mentor.id).all 
                 @active_mentorships += @mentor_mentorships.active
-                @inactive_mentorships += @mentor_mentorships.inactive
+                @removed_mentorships += @mentor_mentorships.removed
             #     @requests = @mentor.get_requests
             end 
             
@@ -33,7 +33,7 @@ class MentorshipsController < ApplicationController
             if @mentee 
                 @mentee_mentorships = Mentorship.for_mentee(@mentee.id).all 
                 @active_mentorships += @mentee_mentorships.active
-                @inactive_mentorships += @mentee_mentorships.inactive
+                @removed_mentorships += @mentee_mentorships.removed
             #     @matches = @mentee.get_matches
             end 
         end 
@@ -66,11 +66,18 @@ class MentorshipsController < ApplicationController
     def update 
         mentor = @mentorship.find_mentor 
         mentee = @mentorship.find_mentee 
-        @mentorship.accept 
-        @mentorship.save! 
-        MentorshipMailer.acceptance_email_to_mentee(mentor, mentee).deliver_later!
-        MentorshipMailer.acceptance_email_to_mentor(mentor, mentee).deliver_later!
-        flash[:notice] = 'Mentorship approved!' 
+        
+        if @mentorship.status == 'pending'
+            @mentorship.update_attributes(:status => 'active')
+            #@mentorship.save! 
+            MentorshipMailer.acceptance_email_to_mentee(mentor, mentee).deliver_later!
+            MentorshipMailer.acceptance_email_to_mentor(mentor, mentee).deliver_later!
+            flash[:notice] = 'Mentorship approved!' 
+        elsif @mentorship.status == 'active'
+            @mentorship.update_attributes(:status => 'removed')
+            flash[:notice] = 'Mentorship removed.' 
+        end 
+        
         redirect_to mentorships_path
     end 
     

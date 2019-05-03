@@ -81,9 +81,12 @@
   
   </div>
   </div>
-  
-  <%= link_to 'Accept Mentee', edit_mentorship_path, :class => "btn-large waves-effect waves-light light-blue" %> 
-  <%= link_to 'Back', mentor_requests_path(mentor), :class => "btn-large waves-effect waves-light grey" %>
+  <% if Mentorship.where(mentor_id: mentor.id, mentee_id: @mentee.id).empty? %>
+    <%= link_to 'Accept Mentee', edit_mentorship_path, :class => "btn-large waves-effect waves-light light-blue" %> 
+    <%= link_to 'Back', mentor_requests_path(mentor), :class => "btn-large waves-effect waves-light grey" %>
+  <% else %>
+    <%= link_to 'Back', mentorships_path, :class => "btn-large waves-effect waves-light grey" %>
+  <% end %>
 
   </div>
   </div>

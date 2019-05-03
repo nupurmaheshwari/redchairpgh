@@ -2,45 +2,48 @@
 <h5>Your Mentorship Network</h5>
 
 <div class="row">
-    <div class="center">
+    <div>
       <div class="card">    
         <div class="card-content">
-            <h5>Current Mentees</h5>
             <% if @mentor %>
+                <div class="center"><h5>Mentees</h5></div>
+                <h5>Current</h5>
                 <% if @mentor_mentorships.nil? | @mentor_mentorships.active.nil? | @mentor_mentorships.active.empty? %>
-                    <h6>You are not currently engaged in any mentorships.</h6>
+                    <h6><i>You currently do not have any mentees.</i></h6>
                 <% else %>
                     <table> 
                         <thead> 
                             <th>Mentee</th>
-                            <th>Mentor</th>
                             <th>Start Date</th>
+                            <th>Duration (days)</th>
                             <th>Status</th>
                         </thead>
                         <% for mentorship in @mentor_mentorships.active %> 
                             <tr>
                                 <td><%= link_to Mentee.find(mentorship.mentee_id).full_name, mentee_path(mentorship.mentee_id) %></td> 
-                                <td><%= Mentor.find(mentorship.mentor_id).full_name %></td>
                                 <td><%= mentorship.updated_at.strftime("%m/%d/%y") %> </td>
-                                <td><%= mentorship.is_active ? "Active" : "Inactive" %></td>
+                                <td><%= (DateTime.now.to_date - mentorship.created_at.to_date).to_i %></td> 
+                                <td><%= mentorship.status == 'active' ? "Active" : "Removed" %></td>
+                                <td></td>
+                                <td><%= link_to 'Remove', edit_mentorship_path(mentorship), :class => "btn-large waves-effect waves-light grey" %></td>
                             </tr>
                         <% end %> 
                     </table>
                 <% end %>
-                
-                <% if !@mentor_mentorships.inactive.empty? %>
-                    <h5>Past Mentees</h5>
+                </br></br>
+                <% if !@mentor_mentorships.removed.empty? %>
+                    <h5>Past</h5>
                     <table class> 
                         <thead> 
                             <th>Mentee</th>
-                            <th>Mentor</th>
+                            <th>Duration (days)</th>
                             <th>Status</th>
                         </thead>
-                        <% for mentorship in @mentor_mentorships.inactive %> 
+                        <% for mentorship in @mentor_mentorships.removed %> 
                             <tr>
                                 <td><%= Mentee.find(mentorship.mentee_id).full_name %></td> 
-                                <td><%= Mentor.find(mentorship.mentor_id).full_name %></td>
-                                <td><%= mentorship.is_active ? "Active" : "Inactive" %></td>
+                                <td><%= (mentorship.updated_at.to_date - mentorship.created_at.to_date).to_i %></td>
+                                <td><%= mentorship.status == 'active' ? "Active" : "Removed" %></td>
                             </tr>
                         <% end %> 
                     </table>
@@ -52,45 +55,48 @@
 </div>
 
 <div class="row">
-    <div class="center">
+    <div>
       <div class="card">    
         <div class="card-content">
-            <h5>Current Mentors</h5>
             <% if @mentee %>
+                <div class="center"><h5>Mentors</h5></div>
+                <h5>Current</h5>
                 <% if @mentee_mentorships.nil? | @mentee_mentorships.active.nil? | @mentee_mentorships.active.empty? %>
-                    <h6>You are not currently engaged in any mentorships.</h6>
+                    <h6><i>You currently do not have any mentors.</i></h6>
                 <% else %>
                     <table> 
                         <thead> 
-                            <th>Mentee</th>
                             <th>Mentor</th>
                             <th>Start Date</th>
+                            <th>Duration (days)</th>
                             <th>Status</th>
                         </thead>
-                        <% for mentorship in @mentor_mentorships.active %> 
+                        <% for mentorship in @mentee_mentorships.active %> 
                             <tr>
-                                <td><%= Mentee.find(mentorship.mentee_id).full_name %></td> 
                                 <td><%= link_to Mentor.find(mentorship.mentor_id).full_name, mentor_path(mentorship.mentor_id) %></td>
                                 <td><%= mentorship.updated_at.strftime("%m/%d/%y") %> </td>
-                                <td><%= mentorship.is_active ? "Active" : "Inactive" %></td>
+                                <td><%= (DateTime.now.to_date - mentorship.updated_at.to_date).to_i %></td> 
+                                <td><%= mentorship.status == 'active' ? "Active" : "Removed" %></td>
+                                <td></td>
+                                <td><%= link_to 'Remove', edit_mentorship_path(mentorship), :class => "btn-large waves-effect waves-light grey" %></td>
                             </tr>
                         <% end %> 
                     </table>
                 <% end %>
-                
-                <% if !@mentee_mentorships.inactive.empty? %>
-                   <h5>Past Mentors</h5> 
+                </br></br>
+                <% if !@mentee_mentorships.removed.empty? %>
+                   <h5>Past</h5> 
                     <table> 
                         <thead> 
-                            <th>Mentee</th>
                             <th>Mentor</th>
+                            <th>Duration (days)</th>
                             <th>Status</th>
                         </thead>
-                        <% for mentorship in @mentee_mentorships.inactive %> 
+                        <% for mentorship in @mentee_mentorships.removed %> 
                             <tr>
-                                <td><%= Mentee.find(mentorship.mentee_id).full_name %></td> 
                                 <td><%= Mentor.find(mentorship.mentor_id).full_name %></td>
-                                <td><%= mentorship.is_active ? "Active" : "Inactive" %></td>
+                                <td><%= (mentorship.updated_at.to_date - mentorship.created_at.to_date).to_i %></td> 
+                                <td><%= mentorship.status == 'active' ? "Active" : "Removed" %></td>
                             </tr>
                         <% end %> 
                     </table>

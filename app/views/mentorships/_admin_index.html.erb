@@ -7,7 +7,7 @@
         <div class="card-content">
             <h5>Active Mentorships</h5>    
             <% if @active_mentorships.nil? || @active_mentorships.empty? %>
-                <h6>There are currently no active mentorships in the system at this time.</h6>
+                <h6>There are currently no current (active) mentorships in the system at this time.</h6>
             <% else %> 
                 <table> 
                     <thead> 
@@ -33,9 +33,9 @@
     <div class="center">
       <div class="card">    
         <div class="card-content">
-            <h5>Inactive Mentorships</h5>     
-            <% if @inactive_mentorships.nil? || @inactive_mentorships.empty? %> 
-                <h6>There are currently no inactive mentorships in the system.</h6>
+            <h5>Past Mentorships</h5>     
+            <% if @removed_mentorships.nil? || @removed__mentorships.empty? %> 
+                <h6>There are currently no past (removed) mentorships in the system.</h6>
             <% else %>
                 <table> 
                     <thead> 
@@ -43,7 +43,7 @@
                         <th>Mentee</th>
                         <th>Status</th>
                     </thead>
-                    <% for mentorship in @inactive_mentorships %> 
+                    <% for mentorship in @removed_mentorships %> 
                         <tr>
                             <td><%= mentorship.mentor_id %></td>
                             <td><%= mentorship.mentee_id %></td> 

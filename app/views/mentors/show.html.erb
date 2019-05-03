@@ -55,11 +55,14 @@
   </p>
   </div>
   </div>
-  <% if !mentee.get_pending_mentors.include? @mentor.id %> 
+  <%# if !mentee.get_pending_mentors.include? @mentor.id %> 
+  <% if Mentorship.where(mentor_id: @mentor.id, mentee_id: mentee.id).empty? %>
     <%= link_to 'Request Mentor', mentorships_path(mentor_id: @mentor.id, mentee_id: mentee.id, is_active: true, state: 'pending'), method: :post, :class => "btn-large waves-effect waves-light light-blue" %>
+    <%= link_to 'Back', mentee_matches_path(mentee), :class => "btn-large waves-effect waves-light grey" %>
+  <% else %>
+    <%= link_to 'Back', mentorships_path, :class => "btn-large waves-effect waves-light grey" %>
   <% end %>
   </br></br>
-  <%= link_to 'Back', mentee_matches_path(mentee), :class => "btn-large waves-effect waves-light grey" %>
   
   </div>
   </div>
