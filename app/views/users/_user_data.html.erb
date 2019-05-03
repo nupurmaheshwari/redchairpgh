@@ -134,12 +134,12 @@
   </p>
   
   <%= link_to 'Edit', edit_mentee_path(@mentee),:class => "btn-large waves-effect waves-light red" %> 
-
+<% end %>
   </div>
   </div>
   </div>
   
-<% elsif @user.is_mentor? %>  
+<% if @user.is_mentor? %>  
   <div class="col s6">
   <div class="card">
   <div class="card-content">
@@ -207,6 +207,7 @@
   </div>
   </div>
 <% end %>
+
 </div>
 </div>
 
