@@ -9,7 +9,7 @@ class CreateUsers < ActiveRecord::Migration[5.1]
       t.string :last_name
       t.string :location
       t.text   :image_url
-      t.string :url
+      t.string :linkedin_url
       t.boolean :agreed
 
       #t.timestamps null: false
