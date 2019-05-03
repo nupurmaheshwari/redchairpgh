@@ -10,7 +10,9 @@
         <li><%= link_to 'Mentors', mentors_path %></li>
         <li><%= link_to 'Mentees', mentees_path %></li>
       <% end %>
+      <% if (current_user.is_mentor?) || (current_user.is_mentee?) %>
       <li><%= link_to 'Mentorships', mentorships_path %></li>
+        <% end %>
       <% if current_user.is_mentee? %>
         <li><%= link_to 'Matches', mentee_matches_path(current_user.id) %></li>
       <% end %>
