@@ -8,7 +8,8 @@ html {
 }
 
 /********** Background for Homepage ********/
-body{ background-image: url("bg.jpg");
+
+body{ background-image: url(<%= asset_path 'bg.jpg' %>);
 width: 100%;
 height: 800px;
 background-repeat: no-repeat;
