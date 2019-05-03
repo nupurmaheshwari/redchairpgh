@@ -1,3 +1,5 @@
+</br> 
+<h5>Your Mentee Network</h5>
 <div class="row">
     <div class="center">
       <div class="card">    
@@ -8,18 +10,20 @@
 <% if requests.empty? %> 
     <p>You currently have no mentor requests! Be patient, requests are more likely to appear when more appropriate mentees join the platform.</p> 
 <% else %>
+    <font size="2">
     <table>
         <thead>
             <tr>
-                <th class="large-font">Current Role</th>
-                <th class="large-font">Mentor Role</th>
-                <th class="large-font">Skill 1</th>
-                <th class="large-font">Skill 2</th>
-                <th class="large-font">Skill 3</th>
-                <th class="large-font">Years in Field</th>
-                <th class="large-font">Lead Team?</th>
-                <th class="large-font">Bio</th>
-                <th class="large-font">5-Year Goals</th>
+                <th class="large-font center">Current Role</th>
+                <th class="large-font center">Mentor Role</th>
+                <th class="large-font center">Skill 1</th>
+                <th class="large-font center">Skill 2</th>
+                <th class="large-font center">Skill 3</th>
+                <th class="large-font center">Years in Field</th>
+                <th class="large-font center">Lead Team?</th>
+                <th class="large-font center">Bio</th>
+                <th class="large-font center">5-Year Goals</th>
+                <th></th>
                 <th></th>
             </tr>
         </thead> 
@@ -37,8 +41,8 @@
                 <td><%= mentee.lead_team == false ? "No" : "Yes" %></td>
                 <td><%= mentee.bio.empty? ? "N/A" : mentee.bio %></td>
                 <td><%= mentee.in_five_years.empty? ? "N/A" : mentee.in_five_years %></td>
-                <td><%= link_to 'View More', mentee %></td>
-                <td><%= link_to 'Accept Mentee', edit_mentorship_path %></td>
+                <td><%= link_to 'View More', mentee, :class => "btn-large waves-effect waves-light grey" %></td>
+                <td><%= link_to 'Accept Mentee', edit_mentorship_path, :class => "btn-large waves-effect waves-light light-blue" %></td>
             </tr>
         <% end %>
         </tbody>
@@ -51,7 +55,7 @@
 
 <div>
     <%= link_to 'Manage Mentor Profile', edit_mentor_path(@mentor), :class => "btn-large waves-effect waves-light red" %>  
-    <%= link_to 'Pause', pause_mentor_path(@mentor), :class => "btn-large waves-effect waves-light light-blue" %>
+    <%= link_to @mentor.paused ? 'Unpause' : 'Pause', pause_mentor_path(@mentor), :class => "btn-large waves-effect waves-light light-blue" %>
 </div>
 
   
