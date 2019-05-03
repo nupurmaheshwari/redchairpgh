@@ -67,7 +67,7 @@ class MentorshipsController < ApplicationController
         MentorshipMailer.acceptance_email_to_mentee(mentor, mentee).deliver_later!
         MentorshipMailer.acceptance_email_to_mentor(mentor, mentee).deliver_later!
         flash[:notice] = 'Mentorship approved!' 
-        redirect_to root_path
+        redirect_to mentorships_path
     end 
     
     private

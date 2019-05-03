@@ -17,6 +17,7 @@ class Mentorship < ApplicationRecord
     
     def accept
         update(status: 'accepted')
+        update(is_active: 'true')
     end
     
     def find_mentor
