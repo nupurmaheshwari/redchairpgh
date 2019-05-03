@@ -1,4 +1,11 @@
 <h4>Mentor Profile</h4>
+
+<% unless User.find(@mentor.user_id).image_url.nil? %> 
+  <p> 
+    <%= image_tag User.find(@mentor.user_id).image_url, :class => "round", :size => "180x180" %> 
+  </p>
+<% end %>
+
 <% if Mentor.for_user(current_user).first != @mentor && !Mentee.for_user(current_user).first.id.nil? %>
 <% mentee = Mentee.for_user(current_user).first %>
   <div class="imgimg">
@@ -12,6 +19,12 @@
   <% if mentee.get_pending_mentors.include? @mentor.id %> 
     <h5><i style="color:blue;">Requested</i></h5>
   <% end %>
+  
+  <p>
+    <h5>LinkedIn URL:</h5>
+    <%= User.find(@mentor.user_id).url %>
+  </p>
+  
   <p>
     <strong>Full Name:</strong>
     <%= @mentor.full_name %>
@@ -55,11 +68,14 @@
   </p>
   </div>
   </div>
-  <% if !mentee.get_pending_mentors.include? @mentor.id %> 
+  <%# if !mentee.get_pending_mentors.include? @mentor.id %> 
+  <% if Mentorship.where(mentor_id: @mentor.id, mentee_id: mentee.id).empty? %>
     <%= link_to 'Request Mentor', mentorships_path(mentor_id: @mentor.id, mentee_id: mentee.id, is_active: true, state: 'pending'), method: :post, :class => "btn-large waves-effect waves-light light-blue" %>
+    <%= link_to 'Back', mentee_matches_path(mentee), :class => "btn-large waves-effect waves-light grey" %>
+  <% else %>
+    <%= link_to 'Back', mentorships_path, :class => "btn-large waves-effect waves-light grey" %>
   <% end %>
   </br></br>
-  <%= link_to 'Back', mentee_matches_path(mentee), :class => "btn-large waves-effect waves-light grey" %>
   
   </div>
   </div>
@@ -72,6 +88,11 @@
       <div class="card">    
         <div class="card-content">
   <p id="notice"><%= notice %></p>
+  
+  <p>
+    <h5>LinkedIn URL:</h5>
+    <%= User.find(@mentor.user_id).url %>
+  </p>
   
   <p>
     <strong>Full Name:</strong>

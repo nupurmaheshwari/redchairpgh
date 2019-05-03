@@ -7,18 +7,17 @@ class Mentorship < ApplicationRecord
     scope :for_mentor, ->(mentor_id) { where('mentor_id = ?', mentor_id) } 
     scope :find_mentorship, ->(mentor_id, mentee_id) { where('mentor_id = ? AND mentee_id = ?', mentor_id, mentee_id) }
     scope :pending, -> { where('status = ?', 'pending') }
-    scope :accepted, -> { where('status = ?', 'accepted') }
-    scope :active, -> { where('is_active = ?', true) }
-    scope :inactive, -> { where('is_active = ? & status = ?', false, 'accepted' ) }
+    scope :active, -> { where('status = ?', 'active') }
+    scope :removed, -> { where('status = ?', 'removed') }
 
     def valid_mentorship? 
         mentor.user_id != mentee.user_id 
     end
     
-    def accept
-        update(status: 'accepted')
-        update(is_active: 'true')
-    end
+    # def accept
+    #     update(status: 'accepted')
+    #     #update(is_active: 'true')
+    # end
     
     def find_mentor
         Mentor.find(self.mentor_id)
