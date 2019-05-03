@@ -72,7 +72,7 @@ ActiveRecord::Schema.define(version: 20190502160551) do
     t.string "last_name"
     t.string "location"
     t.text "image_url"
-    t.string "url"
+    t.string "linkedin_url"
     t.boolean "agreed"
     t.boolean "is_new"
     t.boolean "code_of_conduct"

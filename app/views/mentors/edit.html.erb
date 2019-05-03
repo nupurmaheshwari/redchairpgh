@@ -5,5 +5,7 @@
 
 <%= render 'form', mentor: @mentor %>
 
-<%= link_to 'Show', @mentor %> |
-<%= link_to 'Back', mentors_path %>
+<%= link_to 'Show', @mentor %> 
+<% if current_user.role? :admin %>
+    <%= link_to 'Back', mentors_path %>
+<% end %>
