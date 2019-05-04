@@ -17,8 +17,7 @@ class UsersController < ApplicationController
   end
   
   def new
-    puts "HI"
-    @user = User.new
+    #@user = User.new
   end
   
   def profile 

@@ -36,7 +36,7 @@ class Ability
         
       if user.is_mentor? 
         can [:requests], Mentor
-        can [:show, :update, :destroy, :pause, :update_pause_mentor, :edit], Mentor do |mentor|
+        can [:show, :update, :destroy, :pause, :update_pause, :edit], Mentor do |mentor|
           mentor.user_id == user.id
         end
         can [:show], Mentee do |mentee| 
@@ -48,7 +48,7 @@ class Ability
       
       if user.is_mentee? 
         can [:matches], Mentee
-        can [:show, :update, :destroy, :pause, :update_pause_mentee, :edit], Mentee do |mentee|
+        can [:show, :update, :destroy, :pause, :update_pause, :edit], Mentee do |mentee|
           mentee.user_id == user.id
         end
         can [:show], Mentor do |mentor| 

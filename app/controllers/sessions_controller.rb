@@ -13,7 +13,6 @@ class SessionsController < ApplicationController
         end
       else
         auth_hash = request.env['omniauth.auth']
-        puts auth_hash
         @user = User.from_omniauth(auth_hash)
         if @user.nil? 
           @user = User.new(uid: auth_hash['uid'], provider: auth_hash['provider'], 
