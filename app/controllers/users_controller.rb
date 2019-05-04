@@ -22,7 +22,7 @@ class UsersController < ApplicationController
   
   def profile 
     if !current_user.is_new 
-      redirect_to current_user
+      redirect_to home_path
     end
   end
   
@@ -76,7 +76,7 @@ class UsersController < ApplicationController
             if @user.active.nil? || !@user.active
               redirect_to setup_account_path(@user) 
             else 
-              redirect_to @user 
+              redirect_to home_path 
             end 
           else 
             flash[:notice] = "Successfully updated your account."
@@ -105,6 +105,6 @@ class UsersController < ApplicationController
     end
     
     def user_params
-      params.require(:user).permit(:uid, :provider, :role, :first_name, :last_name, :image_url, :email, :image_url, :url, :location, :code_of_conduct, :active, :is_new, :username, :agreed, :password, :password_confirmation, :created_at, :updated_at)
+      params.require(:user).permit(:uid, :provider, :role, :first_name, :last_name, :image_url, :email, :image_url, :linkedin_url, :location, :code_of_conduct, :active, :is_new, :username, :agreed, :password, :password_confirmation, :created_at, :updated_at)
     end
 end

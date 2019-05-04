@@ -26,7 +26,11 @@
                                     <%= image_tag User.find(Mentee.find(mentorship.mentee_id).user_id).image_url, :class => "round", :size => "70x70" %> 
                                 <% end %></td>
                                 <td><strong><%= link_to Mentee.find(mentorship.mentee_id).full_name, mentee_path(mentorship.mentee_id) %></strong></td> 
+<<<<<<< HEAD
+                                <td><%= User.find(Mentee.find(mentorship.mentee_id).user_id).linkedin_url %></td>
+=======
                                 <td><%= link_to User.find(Mentee.find(mentorship.mentee_id).user_id).url %></td>
+>>>>>>> 6567c047ff12331ba8b29111069737454eaa7e99
                                 <td><%= mentorship.updated_at.strftime("%m/%d/%y") %> </td>
                                 <td><%= (DateTime.now.to_date - mentorship.created_at.to_date).to_i %></td> 
                                 <td><%= mentorship.status == 'active' ? "Active" : "Removed" %></td>
@@ -85,7 +89,7 @@
                                     <%= image_tag User.find(Mentor.find(mentorship.mentor_id).user_id).image_url, :class => "round", :size => "70x70" %> 
                                 <% end %></td>
                                 <td><strong><%= link_to Mentor.find(mentorship.mentor_id).full_name, mentor_path(mentorship.mentor_id) %></strong></td>
-                                <td><%= link_to User.find(Mentor.find(mentorship.mentor_id).user_id).url %></td>
+                                <td><%= link_to User.find(Mentor.find(mentorship.mentor_id).user_id).linkedin_url %></td>
                                 <td><%= mentorship.updated_at.strftime("%m/%d/%y") %> </td>
                                 <td><%= (DateTime.now.to_date - mentorship.updated_at.to_date).to_i %></td> 
                                 <td><%= mentorship.status == 'active' ? "Active" : "Removed" %></td>

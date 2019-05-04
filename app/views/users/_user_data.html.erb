@@ -1,6 +1,4 @@
-<div class="imgimg">
-<%= image_tag("bg.jpg", :alt => "rss feed")%>
-</div>
+
 <div class="row">
 <div class="center">
 <div class="col s12 center">
@@ -33,8 +31,8 @@
       <% end %>
     
     <b>LinkedIn URL:&nbsp;&nbsp;</b>
-      <% if !@user.url.blank? %>
-        <%= @user.url %><br/>
+      <% if !@user.linkedin_url.blank? %>
+        <%= @user.linkedin_url %><br/>
       <% else %>
         <%= "N/A" %><br/>
       <% end %>
@@ -59,7 +57,7 @@
 
 <% if @user.is_mentee? %>
   <div class="col s6">
-  <div class="card">
+  <div class="card center">
   <div class="card-content">
   <p id="notice"><%= notice %></p>
   <h5> Your Mentee Profile </h5>
@@ -141,7 +139,7 @@
   
 <% if @user.is_mentor? %>  
   <div class="col s6">
-  <div class="card">
+  <div class="card center">
   <div class="card-content">
   <p id="notice"><%= notice %></p>
   <h5> Your Mentor Profile </h5>

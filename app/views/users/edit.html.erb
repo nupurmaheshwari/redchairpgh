@@ -5,30 +5,29 @@
         <%= f.error_notification %>
         <div class="row">
           <div class="form-inputs">
-            <% if @user.username %>
-                <%= f.input :username %>
-            <% end %>
             <%= f.input :first_name %> 
             <%= f.input :last_name %> 
-            <%= f.input :email %> 
-            <%= f.input :url %>
+            <%= f.input :email %>
+            <%= f.input :linkedin_url %> 
             <%= f.input :location %> 
+            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+            <% if @user.code_of_conduct == false %>
+              <br>CODE OF CONDUCT</br>
+              <p>In order to maintain a healthy and safe mentorship environment,
+              all members must agree to all terms in the code of conduct.</p>
+              <p>Do you agree to follow these rules?</p>
+              <%= f.input :code_of_conduct%>
+            <% end %>
             <%= f.hidden_field :active, value: true %>
             <%= f.hidden_field :is_new, value: true %>
           </div>
         </div>
-    
+
         <div class="row">
           <div class="form-actions col s7">
-            <%= f.button :submit, :value => "Save Changes"%>
+            <%= f.button :submit, :value => "Create Account"%>
           </div>
         </div>
       <% end %>
-      <p align="center">
-        <% if @user.username %>
-            <h6><a <%= link_to 'Change Password', change_password_path(@user) %> </a></h6>
-        <% end %>
-      </p>
-      <%= link_to 'Cancel', user_path %>
     </div>
-</div>
+  </div>
