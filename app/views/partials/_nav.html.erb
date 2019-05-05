@@ -1,7 +1,7 @@
 <nav id="nav">
   <div class="container">
     <ul class="left hide-on-med-and-down">
-      <% if current_user.code_of_conduct && !current_user.is_mentee? && !current_user.is_mentor? %>
+      <% if current_user.code_of_conduct && (!current_user.is_mentee? || !current_user.is_mentor?) %>
         <li><%= link_to 'Get Started', home_path %></li>
       <% end %> 
       

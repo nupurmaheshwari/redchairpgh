@@ -14,7 +14,7 @@ class Ability
 
     elsif user.role?(:contributor) && user.active
       can [:index, :about, :contact, :privacy], :home
-      can [:show, :setup_account, :profile, :edit, :update, :new, :change_password, :update_user, :account, :signup], User do |u|
+      can [:show, :setup, :profile, :edit, :update, :new, :change_password, :update_user, :account, :signup], User do |u|
         u.id == user.id
       end
       
