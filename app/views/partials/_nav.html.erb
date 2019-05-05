@@ -19,7 +19,7 @@
       <% end %>
       <% if current_user.is_mentor? %>
         <% mentor = Mentor.for_user(current_user.id).first.id %>
-        <li><%= link_to 'Requests', mentor_requests_path(@mentor) %></li>
+        <li><%= link_to 'Requests', mentor_requests_path(mentor) %></li>
       <% end %>
       <li><%= link_to 'My Account', account_path(current_user.id) %></li>
     </ul>
