@@ -15,7 +15,7 @@
         <% end %>
       <% if current_user.is_mentee? %>
         <% mentee = Mentee.for_user(current_user.id).first.id %>
-        <li><%= link_to 'Matches', mentee_matches_path(mentee) %></li>
+        <li><%= link_to 'Matches', mentee_matches_path(@mentee) %></li>
       <% end %>
       <% if current_user.is_mentor? %>
         <% mentor = Mentor.for_user(current_user.id).first.id %>

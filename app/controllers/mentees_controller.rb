@@ -47,7 +47,7 @@ class MenteesController < ApplicationController
 
     respond_to do |format|
       if @mentee.save
-        format.html { redirect_to @mentee, notice: 'Mentee was successfully created.' }
+        format.html { redirect_to @mentee, notice: 'Successfully created mentee profile.' }
         format.json { render :show, status: :created, location: @mentee }
       else
         format.html { render :new }
@@ -64,7 +64,7 @@ class MenteesController < ApplicationController
         format.html { redirect_to @mentee, notice: 'Mentee was successfully updated.' }
         format.json { render :show, status: :ok, location: @mentee }
       else
-        format.html { render :edit }
+        format.html { render :edit, notice: 'Mentor cannot be updated.' }
         format.json { render json: @mentee.errors, status: :unprocessable_entity }
       end
     end

@@ -14,10 +14,6 @@ class MentorsController < ApplicationController
     def edit
     end 
     
-    def index
-      @mentors = Mentor.all
-    end
-    
     def requests 
     end 
     
