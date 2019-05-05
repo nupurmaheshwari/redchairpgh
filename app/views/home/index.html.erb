@@ -42,17 +42,25 @@
           <% if !current_user.is_mentor? %>
             <%= link_to "Become a Mentor", new_mentor_path, :class => "btn-large waves-effect waves-light red" %><br><br><br>
           <% else %>
-            <%= link_to "Check new requests", mentorships_path, :class => "btn-large waves-effect waves-light red" %>
+            <%= link_to "Check new requests", mentor_requests_path, :class => "btn-large waves-effect waves-light red" %>
           <% end %>
           </br></br>
           <% if !current_user.is_mentee? %>
             <%= link_to "Become a Mentee", new_mentee_path, :class => "btn-large waves-effect waves-light red" %>
           <% else %>
-            <%= link_to "Check new matches", mentorships_path, :class => "btn-large waves-effect waves-light red" %>
+            <%= link_to "Check new matches", mentee_matches_path, :class => "btn-large waves-effect waves-light red" %>
           <% end %> 
         </div>
       </div>
-   <% elsif !current_user.nil? && !current_user.active %>
+    <% elsif !logged_in? %>
+      <div class="card">
+        <div class="card-content">
+          <h5>New user?</h5>
+            <br>
+            <%= link_to "Join the Community", signup_path, :class => "btn-large waves-effect waves-light red" %>
+        </div>
+      </div>
+    <% elsif !current_user.nil? && !current_user.active %>
       <div class="card">
         <div class="card-content">
           <h4>Unfortunately, your account has been deactivated.</h4>
