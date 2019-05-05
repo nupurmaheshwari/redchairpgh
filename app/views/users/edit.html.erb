@@ -1,4 +1,8 @@
-<h1>Editing Account</h1>
+<% if @user.is_new %>
+  <h1>Verifying Account</h1>
+<% else %>
+  <h1>Editing Account</h1>
+<% end %>
 <div class="card">    
     <div class="card-content">
       <%= simple_form_for(@user) do |f| %>
@@ -18,8 +22,8 @@
               <p>Do you agree to follow these rules?</p>
               <%= f.input :code_of_conduct%>
             <% end %>
-            <%= f.hidden_field :active, value: true %>
-            <%= f.hidden_field :is_new, value: true %>
+            <%= f.hidden_field :active, value: false %>
+            <%#= f.hidden_field :is_new, value: false %>
           </div>
         </div>
 
