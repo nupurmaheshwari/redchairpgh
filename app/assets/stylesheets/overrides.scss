@@ -10,7 +10,7 @@ html {
 /********** Background for Homepage ********/
 
 body{ 
-  background: url('images/bg.jpg') no-repeat;
+  background: url('bg.jpg') no-repeat;
   background-size: cover; 
   width: 100%;
   height: 800px;
@@ -23,6 +23,8 @@ body{
   background-color: red;
   color: white;
   text-align: center;}
+
+
 
 [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
     position: absolute;
