@@ -64,7 +64,7 @@ class MenteesController < ApplicationController
         format.html { redirect_to @mentee, notice: 'Mentee was successfully updated.' }
         format.json { render :show, status: :ok, location: @mentee }
       else
-        format.html { render :edit, notice: 'Mentor cannot be updated.'i }
+        format.html { render :edit, notice: 'Mentor cannot be updated.' }
         format.json { render json: @mentee.errors, status: :unprocessable_entity }
       end
     end
