@@ -21,12 +21,13 @@ class UsersController < ApplicationController
   end
   
   def profile 
-    if !current_user.is_new 
+    if !current_user.new_user?
       redirect_to home_path
     end
   end
   
   def setup
+    @user.update_attributes(:active => true)
   end 
   
   def deactivate 
@@ -64,13 +65,14 @@ class UsersController < ApplicationController
       if user_params[:password]
         @user.update(user_params)
         if @user.save #.update_attributes(user_params)
-          redirect_to (@user), notice: "Password was successfully changed."
+          redirect_to (@user), notice: "Password was successfully updated."
         else
           render action: 'change_password'
         end
       else
         if @user.update_attributes(user_params)
           if @user.new_user? 
+            puts "NEW USER!!!!!!!"
             @user.update_attributes(:code_of_conduct => true) 
             @user.update_attributes(:is_new => false) 
             if @user.active.nil? || !@user.active
