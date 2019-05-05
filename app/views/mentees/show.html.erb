@@ -189,7 +189,11 @@
   </div>
   
   <%= link_to 'Edit', edit_mentee_path(@mentee), :class => "btn-large waves-effect waves-light light-blue" %> 
-  <%= link_to 'Back', mentees_path, :class => "btn-large waves-effect waves-light grey" %>
+  <% if current_user.role?(:admin) %>
+    <%= link_to 'Back', mentees_path, :class => "btn-large waves-effect waves-light grey" %>
+  <% else %>
+    <%= link_to 'Back', mentorships_path, :class => "btn-large waves-effect waves-light grey" %>
+  <% end %>
   
   </div>
   </div>
