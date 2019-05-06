@@ -27,6 +27,7 @@ class SessionsController < ApplicationController
             last_name: auth_hash['info']['last_name'], image_url: auth_hash['info']['picture_url'],
             code_of_conduct: false, active: false, is_new: true)
             @user.save 
+          end
         end
         session[:user_id] = @user.id
         flash[:success] = "Welcome, #{@user.first_name}!"
