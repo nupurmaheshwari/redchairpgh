@@ -6,8 +6,6 @@
   </p>
 <% end %>
 
-<%# if !Mentor.for_user(current_user).first.id.nil? && Mentee.for_user(current_user).first != @mentee %>
-<%# mentor = Mentor.for_user(current_user).first %>
 <% if @mentee.user_id != current_user.id && (current_user.role?(:admin) || !Mentor.for_user(current_user).nil?) %>
   <div class="row">
     <div class="col s9">

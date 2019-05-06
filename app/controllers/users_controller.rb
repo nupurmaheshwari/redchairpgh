@@ -64,8 +64,8 @@ class UsersController < ApplicationController
     else
       if user_params[:password]
         @user.update(user_params)
-        if @user.save #.update_attributes(user_params)
-          redirect_to (@user), notice: "Password was successfully updated."
+        if @user.save 
+          redirect_to home_path, notice: "Username and password successfully saved."
         else
           render action: 'change_password'
         end
