@@ -45,7 +45,7 @@
                     <td><%= mentee.bio.empty? ? "N/A" : mentee.bio %></td>
                     <td><%= mentee.in_five_years.empty? ? "N/A" : mentee.in_five_years %></td>
                     <td><%= link_to 'View More', mentee, :class => "btn-large waves-effect waves-light grey" %></td>
-                    <td><%= link_to 'Accept Mentee', edit_mentorship_path, :class => "btn-large waves-effect waves-light light-blue" %></td>
+                    <td><%= link_to 'Accept Mentee', edit_mentorship_path(mentorship), :class => "btn-large waves-effect waves-light light-blue" %></td>
                 </tr>
             <% end %>
             </tbody>
