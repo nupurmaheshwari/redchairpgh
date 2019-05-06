@@ -109,14 +109,15 @@
   <p id="notice"><%= notice %></p>
   
   <p>
-    <h5>LinkedIn URL:</h5>
+    <h5>Name:</h5>
+    <%= @mentee.full_name %>
+  </p>
+
+  <p>
+    <strong>LinkedIn URL:</strong>
     <%= User.find(@mentee.user_id).linkedin_url %>
   </p>
   
-  <p>
-    <strong>Full Name:</strong>
-    <%= @mentee.full_name %>
-  </p>
   
   <p>
     <strong>Email:</strong>

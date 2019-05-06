@@ -17,6 +17,7 @@
         <table>
             <thead>
                 <tr>
+                    <th class="large-font center">Name</th>
                     <th class="large-font center">Current Role</th>
                     <th class="large-font center">Mentor Role</th>
                     <th class="large-font center">Skill 1</th>
@@ -35,6 +36,7 @@
             <% requests.each do |request| %>
                 <% mentee = Mentee.find(request.mentee_id) %>
                 <tr>
+                    <td><%= mentee.full_name %></td>
                     <td><%= mentee.current_role %></td>
                     <td><%= mentee.mentor_role %></td>
                     <td><%= mentee.skill_1 %></td>
