@@ -18,6 +18,7 @@
             <thead>
                 <tr>
                     <th class="large-font center">Name</th>
+                    <th class="large-font center">LinkedIn URL</th>
                     <th class="large-font center">Current Role</th>
                     <th class="large-font center">Mentor Role</th>
                     <th class="large-font center">Skill 1</th>
@@ -37,6 +38,7 @@
                 <% mentee = Mentee.find(request.mentee_id) %>
                 <tr>
                     <td><%= mentee.full_name %></td>
+                    <td><%= User.find(@mentee.user_id).linkedin_url %></td>
                     <td><%= mentee.current_role %></td>
                     <td><%= mentee.mentor_role %></td>
                     <td><%= mentee.skill_1 %></td>
