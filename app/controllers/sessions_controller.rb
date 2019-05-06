@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
         auth_hash = request.env['omniauth.auth']
         @user = User.from_omniauth(auth_hash)
         if @user.nil? 
-          if User.empty?
+          if User.all.empty?
             @user = User.new(uid: auth_hash['uid'], provider: auth_hash['provider'], 
             role: 'admin', first_name: auth_hash['info']['first_name'], 
             last_name: auth_hash['info']['last_name'], image_url: auth_hash['info']['picture_url'],
