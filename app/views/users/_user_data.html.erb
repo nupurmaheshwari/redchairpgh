@@ -46,7 +46,7 @@
 
     <h5><%#= link_to 'Edit Account', edit_user_path(@user) %></h5>
     <% if @user.username.nil? %>
-      <%= link_to 'Setup username and password', setup_account_path, :class => "btn-large waves-effect waves-light red"%>
+      <%= link_to 'Setup username and password', setup_account_path, :class => "waves-effect waves-light btn"%>
     <% end %>
 
 
@@ -131,7 +131,7 @@
     <%= @mentee.is_active %>
   </p>
   
-  <%= link_to 'Edit', edit_mentee_path(@mentee),:class => "btn-large waves-effect waves-light red" %> 
+  <%= link_to 'Edit', edit_mentee_path(@mentee),:class => "waves-effect waves-light btn" %> 
 <% end %>
   </div>
   </div>
@@ -199,8 +199,9 @@
     <strong>Motivation:</strong>
     <%= @mentor.motivation %>
   </p>
-      <%= link_to 'Edit', edit_mentor_path(@mentor), :class => "btn-large waves-effect waves-light red" %> 
-  
+  <div>
+      <%= link_to 'Edit', edit_mentor_path(@mentor), :class => "waves-effect waves-light btn" %> 
+  </div>
   </div>
   </div>
   </div>

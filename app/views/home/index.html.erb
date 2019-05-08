@@ -1,5 +1,3 @@
-
-
 <div class="row">  
 
   <h4>Welcome to RedChairPGH Mentorship</h4> 
@@ -32,27 +30,39 @@
   </div>
   <div class="col s4">
     <div class="center">
-    <br>
-    <br>
-    <br>
-    <br>
+   
     <% if logged_in? && current_user.active %>
       <div class="card">
         <div class="card-content">
           <% if !current_user.is_mentor? %>
             <%= link_to "Become a Mentor", new_mentor_path, :class => "btn-large waves-effect waves-light red" %><br><br><br>
           <% else %>
-            <%= link_to "Check new requests", mentorships_path, :class => "btn-large waves-effect waves-light red" %>
+            <% mentor = Mentor.for_user(current_user.id).first %>
+            <%= link_to "Check new requests", mentor_requests_path(mentor), :class => "btn-large waves-effect waves-light red" %>
           <% end %>
           </br></br>
           <% if !current_user.is_mentee? %>
             <%= link_to "Become a Mentee", new_mentee_path, :class => "btn-large waves-effect waves-light red" %>
           <% else %>
-            <%= link_to "Check new matches", mentorships_path, :class => "btn-large waves-effect waves-light red" %>
+            <% mentee = Mentee.for_user(current_user.id).first %>
+            <%= link_to "Check new matches", mentee_matches_path(mentee), :class => "btn-large waves-effect waves-light red" %>
           <% end %> 
         </div>
       </div>
-   <% elsif !current_user.nil? && !current_user.active %>
+      <div class="card">
+        <div class="card-content center">
+            <%= link_to "Checkout our Slack Community", "https://join.slack.com/t/redchairpgh/shared_invite/enQtNjE1NDkwMjA5MzYzLTk3ZDljYWUzYmVlOTJhZTRhMTM3YTMyYmQwNDRlN2ViYmE5NDZlYTA0NTQ3ZmQzYTU3YWRkNGE1Mzg1ZTI0NmI", :class => "btn-large waves-effect waves-light red" %><br><br><br>
+        </div>
+      </div>
+    <% elsif !logged_in? %>
+      <div class="card">
+        <div class="card-content">
+          <h5>New user?</h5>
+            <br>
+            <%= link_to "Join the Community", signup_path, :class => "btn-large waves-effect waves-light red" %>
+        </div>
+      </div>
+    <% elsif !current_user.nil? && !current_user.active %>
       <div class="card">
         <div class="card-content">
           <h4>Unfortunately, your account has been deactivated.</h4>

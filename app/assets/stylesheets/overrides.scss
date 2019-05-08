@@ -9,11 +9,17 @@ html {
 
 /********** Background for Homepage ********/
 
-body{ background-image: url("bg.jpg");
+body{ background-image: url("https://www.nextpittsburgh.com/wp-content/uploads/2015/10/OpCORJvh8ZbjvP-1200x520.jpeg");
 width: 100%;
 height: 800px;
 background-repeat: no-repeat;
  background-size: cover;}
+
+ .fixed_button{
+    position:absolute !important;
+    margin-top:1900px;
+    bottom: auto !important;
+}
 
 #footer{position: fixed;
   left: 0;
