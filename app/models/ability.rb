@@ -14,7 +14,7 @@ class Ability
 
     elsif user.role?(:contributor) && user.active
       can [:index, :about, :contact, :privacy], :home
-      can [:show, :setup_account, :profile, :edit, :update, :new, :change_password, :update_user, :account, :signup], User do |u|
+      can [:show, :setup, :profile, :edit, :update, :new, :change_password, :update_user, :account, :signup], User do |u|
         u.id == user.id
       end
       
@@ -36,7 +36,7 @@ class Ability
         
       if user.is_mentor? 
         can [:requests], Mentor
-        can [:show, :update, :destroy, :pause, :update_pause_mentor, :edit], Mentor do |mentor|
+        can [:show, :update, :destroy, :pause, :update_pause, :edit], Mentor do |mentor|
           mentor.user_id == user.id
         end
         can [:show], Mentee do |mentee| 
@@ -48,7 +48,7 @@ class Ability
       
       if user.is_mentee? 
         can [:matches], Mentee
-        can [:show, :update, :destroy, :pause, :update_pause_mentee, :edit], Mentee do |mentee|
+        can [:show, :update, :destroy, :pause, :update_pause, :edit], Mentee do |mentee|
           mentee.user_id == user.id
         end
         can [:show], Mentor do |mentor| 

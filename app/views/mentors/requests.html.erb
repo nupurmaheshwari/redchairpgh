@@ -17,6 +17,7 @@
         <table>
             <thead>
                 <tr>
+                    <th class="large-font center">Name</th>
                     <th class="large-font center">Current Role</th>
                     <th class="large-font center">Mentor Role</th>
                     <th class="large-font center">Skill 1</th>
@@ -35,6 +36,7 @@
             <% requests.each do |request| %>
                 <% mentee = Mentee.find(request.mentee_id) %>
                 <tr>
+                    <td><%= mentee.full_name %></td>
                     <td><%= mentee.current_role %></td>
                     <td><%= mentee.mentor_role %></td>
                     <td><%= mentee.skill_1 %></td>
@@ -45,7 +47,7 @@
                     <td><%= mentee.bio.empty? ? "N/A" : mentee.bio %></td>
                     <td><%= mentee.in_five_years.empty? ? "N/A" : mentee.in_five_years %></td>
                     <td><%= link_to 'View More', mentee, :class => "btn-large waves-effect waves-light grey" %></td>
-                    <td><%= link_to 'Accept Mentee', edit_mentorship_path, :class => "btn-large waves-effect waves-light light-blue" %></td>
+                    <td><%= link_to 'Accept Mentee', edit_mentorship_path(request), :class => "btn-large waves-effect waves-light light-blue" %></td>
                 </tr>
             <% end %>
             </tbody>

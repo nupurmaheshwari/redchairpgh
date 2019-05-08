@@ -6,9 +6,8 @@
   </p>
 <% end %>
 
-<% if Mentor.for_user(current_user).first != @mentor && !Mentee.for_user(current_user).first.id.nil? %>
-<% mentee = Mentee.for_user(current_user).first %>
- 
+<% if @mentor.user_id != current_user.id && (current_user.role?(:admin) || !Mentee.for_user(current_user).nil?) %>
+  <% mentee = Mentee.for_user(current_user).first %>
   <div class="row">
     <div class="col s9">
       <div class="card">    
@@ -66,10 +65,16 @@
   </p>
   </div>
   </div>
-  <%# if !mentee.get_pending_mentors.include? @mentor.id %> 
-  <% if Mentorship.where(mentor_id: @mentor.id, mentee_id: mentee.id).empty? %>
-    <%= link_to 'Request Mentor', mentorships_path(mentor_id: @mentor.id, mentee_id: mentee.id, is_active: true, state: 'pending'), method: :post, :class => "btn-large waves-effect waves-light light-blue" %>
-    <%= link_to 'Back', mentee_matches_path(mentee), :class => "btn-large waves-effect waves-light grey" %>
+
+  
+  <% if !Mentee.for_user(current_user).nil? %>
+    <% mentee = Mentee.for_user(current_user).first %>
+    <% if Mentorship.where(mentor_id: @mentor.id, mentee_id: mentee.id).empty? %>
+      <%= link_to 'Request Mentor', mentorships_path(mentor_id: @mentor.id, mentee_id: mentee.id, is_active: true, state: 'pending'), method: :post, :class => "btn-large waves-effect waves-light light-blue" %>
+      <%= link_to 'Back', mentee_matches_path(mentee), :class => "btn-large waves-effect waves-light grey" %>
+    <% else %>
+      <%= link_to 'Back', mentorships_path, :class => "btn-large waves-effect waves-light grey" %>
+    <% end %>
   <% else %>
     <%= link_to 'Back', mentorships_path, :class => "btn-large waves-effect waves-light grey" %>
   <% end %>
@@ -150,7 +155,11 @@
   </div>
   
   <%= link_to 'Edit', edit_mentor_path(@mentor), :class => "btn-large waves-effect waves-light light-blue" %> 
-  <%= link_to 'Back', @mentor, :class => "btn-large waves-effect waves-light grey" %>
+  <% if current_user.role?(:admin) %>
+    <%= link_to 'Back', mentors_path, :class => "btn-large waves-effect waves-light grey" %>
+  <% else %>
+    <%= link_to 'Back', mentorships_path, :class => "btn-large waves-effect waves-light grey" %>
+  <% end %>
   
   </div>
   </div>

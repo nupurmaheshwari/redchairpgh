@@ -17,17 +17,17 @@ class UsersController < ApplicationController
   end
   
   def new
-    puts "HI"
-    @user = User.new
+    #@user = User.new
   end
   
   def profile 
-    if !current_user.is_new 
+    if !current_user.new_user?
       redirect_to home_path
     end
   end
   
   def setup
+    @user.update_attributes(:active => true)
   end 
   
   def deactivate 
@@ -64,14 +64,15 @@ class UsersController < ApplicationController
     else
       if user_params[:password]
         @user.update(user_params)
-        if @user.save #.update_attributes(user_params)
-          redirect_to (@user), notice: "Password was successfully changed."
+        if @user.save 
+          redirect_to home_path, notice: "Username and password successfully saved."
         else
           render action: 'change_password'
         end
       else
         if @user.update_attributes(user_params)
           if @user.new_user? 
+            puts "NEW USER!!!!!!!"
             @user.update_attributes(:code_of_conduct => true) 
             @user.update_attributes(:is_new => false) 
             if @user.active.nil? || !@user.active
@@ -106,6 +107,6 @@ class UsersController < ApplicationController
     end
     
     def user_params
-      params.require(:user).permit(:uid, :provider, :role, :first_name, :last_name, :image_url, :email, :image_url, :linkedin_url, :location, :code_of_conduct, :active, :is_new, :username, :agreed, :password, :password_confirmation, :created_at, :updated_at)
+      params.require(:user).permit(:uid, :provider, :role, :first_name, :last_name, :image_url, :email, :linkedin_url, :location, :code_of_conduct, :active, :is_new, :username, :agreed, :password, :password_confirmation, :created_at, :updated_at)
     end
 end

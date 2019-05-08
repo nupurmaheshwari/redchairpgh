@@ -6,8 +6,7 @@
   </p>
 <% end %>
 
-<% if !Mentor.for_user(current_user).first.id.nil? && Mentee.for_user(current_user).first != @mentee %>
-<% mentor = Mentor.for_user(current_user).first %>
+<% if @mentee.user_id != current_user.id && (current_user.role?(:admin) || !Mentor.for_user(current_user).nil?) %>
   <div class="row">
     <div class="col s9">
       <div class="card">    
@@ -86,9 +85,15 @@
   
   </div>
   </div>
-  <% if Mentorship.where(mentor_id: mentor.id, mentee_id: @mentee.id).empty? %>
-    <%= link_to 'Accept Mentee', edit_mentorship_path, :class => "btn-large waves-effect waves-light light-blue" %> 
-    <%= link_to 'Back', mentor_requests_path(mentor), :class => "btn-large waves-effect waves-light grey" %>
+  <% if !Mentor.for_user(current_user).nil? %>
+    <% mentor = Mentor.for_user(current_user).first %>
+    <% mentorship = Mentorship.where(mentor_id: mentor.id, mentee_id: @mentee.id).first %>
+    <% if mentorship.status == 'pending' %>
+      <%= link_to 'Accept Mentee', edit_mentorship_path(mentorship), :class => "btn-large waves-effect waves-light light-blue" %> 
+      <%= link_to 'Back', mentor_requests_path(mentor), :class => "btn-large waves-effect waves-light grey" %>
+    <% else %>
+      <%= link_to 'Back', mentorships_path, :class => "btn-large waves-effect waves-light grey" %>
+    <% end %>
   <% else %>
     <%= link_to 'Back', mentorships_path, :class => "btn-large waves-effect waves-light grey" %>
   <% end %>
@@ -105,14 +110,15 @@
   <p id="notice"><%= notice %></p>
   
   <p>
-    <h5>LinkedIn URL:</h5>
+    <h5>Name:</h5>
+    <%= @mentee.full_name %>
+  </p>
+
+  <p>
+    <strong>LinkedIn URL:</strong>
     <%= User.find(@mentee.user_id).linkedin_url %>
   </p>
   
-  <p>
-    <strong>Full Name:</strong>
-    <%= @mentee.full_name %>
-  </p>
   
   <p>
     <strong>Email:</strong>
@@ -183,7 +189,11 @@
   </div>
   
   <%= link_to 'Edit', edit_mentee_path(@mentee), :class => "btn-large waves-effect waves-light light-blue" %> 
-  <%= link_to 'Back', mentees_path, :class => "btn-large waves-effect waves-light grey" %>
+  <% if current_user.role?(:admin) %>
+    <%= link_to 'Back', mentees_path, :class => "btn-large waves-effect waves-light grey" %>
+  <% else %>
+    <%= link_to 'Back', mentorships_path, :class => "btn-large waves-effect waves-light grey" %>
+  <% end %>
   
   </div>
   </div>
