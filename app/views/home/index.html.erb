@@ -31,28 +31,31 @@
   </div>
   <div class="col s4">
     <div class="center">
-   
+    </br></br></br>
     <% if logged_in? && current_user.active %>
-      <div class="card">
+      <div class="card2">
         <div class="card-content">
           <% if !current_user.is_mentor? %>
-            <%= link_to "Become a Mentor", new_mentor_path, :class => "btn-large waves-effect waves-light red" %><br><br><br>
+            <%= link_to "Become a Mentor", new_mentor_path, :class => "btn-large waves-effect waves-light sky-blue" %><br><br><br>
           <% else %>
             <% mentor = Mentor.for_user(current_user.id).first %>
-            <%= link_to "Check new requests", mentor_requests_path(mentor), :class => "btn-large waves-effect waves-light red" %>
+            <%= link_to "Check new requests", mentor_requests_path(mentor), :class => "btn-large waves-effect waves-light sky-blue" %>
           <% end %>
           </br></br>
           <% if !current_user.is_mentee? %>
-            <%= link_to "Become a Mentee", new_mentee_path, :class => "btn-large waves-effect waves-light red" %>
+            <%= link_to "Become a Mentee", new_mentee_path, :class => "btn-large waves-effect waves-light sky-blue" %>
           <% else %>
             <% mentee = Mentee.for_user(current_user.id).first %>
-            <%= link_to "Check new matches", mentee_matches_path(mentee), :class => "btn-large waves-effect waves-light red" %>
+            <%= link_to "Check new matches", mentee_matches_path(mentee), :class => "btn-large waves-effect waves-light sky-blue" %>
           <% end %> 
         </div>
       </div>
-      <div class="card">
-        <div class="card-content center">
-            <%= link_to "Checkout our Slack Community", "https://join.slack.com/t/redchairpgh/shared_invite/enQtNjE1NDkwMjA5MzYzLTk3ZDljYWUzYmVlOTJhZTRhMTM3YTMyYmQwNDRlN2ViYmE5NDZlYTA0NTQ3ZmQzYTU3YWRkNGE1Mzg1ZTI0NmI", :class => "btn-large waves-effect waves-light black", :target => "_blank" %><br><br><br>
+      </br></br>
+      <div class="card2">
+        <div class="card-content3 center">
+            <p>Join our Slack community</p>
+            <%= link_to(image_tag('logos/slack_logo.png', :size => "125x37"), "https://join.slack.com/t/redchairpgh/shared_invite/enQtNjE1NDkwMjA5MzYzLTk3ZDljYWUzYmVlOTJhZTRhMTM3YTMyYmQwNDRlN2ViYmE5NDZlYTA0NTQ3ZmQzYTU3YWRkNGE1Mzg1ZTI0NmI") %>
+            <br><br><br>
         </div>
       </div>
     <% elsif !logged_in? %>
