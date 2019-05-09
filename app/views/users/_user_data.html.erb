@@ -5,9 +5,10 @@
 
 <div class="card">
 <div class="card-content">
-<h5>Account Information for <%= @user.first_name %></h5><br />
-    
-    <b>Profile Photo:&nbsp;&nbsp;</b>
+<div class="page-header">
+    <p>Account Information for <%= @user.first_name %></p>
+</div>
+</br>
     <% unless @user.image_url.nil? %> 
       <p> 
         <%= image_tag @user.image_url, :class => "round", :size => "180x180" %> 
@@ -15,40 +16,50 @@
     <% end %>
     <br/>
     
-    <% if @user.username %>
-      <b>Username:&nbsp;&nbsp;</b>
-      <%= @user.username %><br />
-    <% end %>
-      
-    <b>Full Name:&nbsp;&nbsp;</b>
-      <%= @user.first_name%> <%= @user.last_name %><br />
+      <table class="center">
+      <tbody>
+        <% if @user.username %>
+          <tr>
+            <td><b>Username: </b></td>
+            <td><%= @user.username %></td>
+          </tr>
+        <% end %>
+        <tr>
+          <td><b>Full Name: </b></td>
+          <td><%= @user.first_name%> <%= @user.last_name %></td>
+        </tr>
+        <tr>
+          <td><b>Email: </b></td>
+          <td><% if !@user.email.blank? %>
+                <%= @user.email %><br/>
+              <% else %>
+                <%= "N/A" %><br/>
+              <% end %></td>
+        </tr>
+        <tr>
+          <td><b>LinkedIn URL: </b></td>
+          <td><% if !@user.linkedin_url.blank? %>
+                <%= @user.linkedin_url %><br/>
+              <% else %>
+                <%= "N/A" %><br/>
+              <% end %></td>
+        </tr>
+        <tr>
+          <td><b>Location: </b></td>
+          <td><% if !@user.location.blank? %>
+                <%= @user.location %><br/>
+              <% else %>
+                <%= "N/A" %><br/>
+              <% end %></td>
+        </tr>
+      </tbody>
+    </table>
 
-    <b>Email:&nbsp;&nbsp;</b>
-      <% if !@user.email.blank? %>
-        <%= @user.email %><br/>
-      <% else %>
-        <%= "N/A" %><br/>
-      <% end %>
-    
-    <b>LinkedIn URL:&nbsp;&nbsp;</b>
-      <% if !@user.linkedin_url.blank? %>
-        <%= @user.linkedin_url %><br/>
-      <% else %>
-        <%= "N/A" %><br/>
-      <% end %>
-      
-    <b>Location:&nbsp;&nbsp;</b>
-      <% if !@user.location.blank? %>
-        <%= @user.location %><br/>
-      <% else %>
-        <%= "N/A" %><br/>
-      <% end %>
-
-    <h5><%#= link_to 'Edit Account', edit_user_path(@user) %></h5>
+    <%= link_to 'Edit Account', edit_user_path(@user), :class => "btn-large waves-effect waves-light grey"%>
+    <br></br>
     <% if @user.username.nil? %>
       <%= link_to 'Setup username and password', setup_account_path, :class => "waves-effect waves-light btn"%>
     <% end %>
-
 
 
 </div>

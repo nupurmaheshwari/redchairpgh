@@ -1,44 +1,45 @@
-</br>
-<h5>Your Mentorship Network</h5>
+<div class="page-header">
+    <p>Your Mentorship Network</p>
+</div>
 
-<div class="row">
-    <div>
-      <div class="card">    
-        <div class="card-content">
-            <% if @mentor %>
-                <div class="center"><h5>Mentees</h5></div>
-                <h5><i>Current</i></h5>
+<% if @mentor %>
+    <div class="row">
+        <div>
+          <div class="card">    
+            <div class="card-content">
+                <!--<div class="center"><h5>Mentees</h5></div>-->
+                <p><i>Current Mentees</i></p>
                 <% if @mentor_mentorships.nil? | @mentor_mentorships.active.nil? | @mentor_mentorships.active.empty? %>
                     <h6><i>You currently do not have any mentees.</i></h6>
                 <% else %>
                     <table> 
                         <thead> 
                             <th></th>
-                            <th>Mentee</th>
-                            <th>LinkedIn</th>
-                            <th>Start Date</th>
-                            <th>Duration (days)</th>
-                            <th>Status</th>
+                            <th class="align_center">Mentee</th>
+                            <th class="align_center">LinkedIn</th>
+                            <th class="align_center">Start Date</th>
+                            <th class="align_center">Duration (days)</th>
+                            <th class="align_center">Status</th>
                         </thead>
                         <% for mentorship in @mentor_mentorships.active %> 
                             <tr>
                                 <td><% unless User.find(Mentee.find(mentorship.mentee_id).user_id).image_url.nil? %> 
                                     <%= image_tag User.find(Mentee.find(mentorship.mentee_id).user_id).image_url, :class => "round", :size => "70x70" %> 
                                 <% end %></td>
-                                <td><strong><%= link_to Mentee.find(mentorship.mentee_id).full_name, mentee_path(mentorship.mentee_id) %></strong></td> 
-                                <td><%= User.find(Mentee.find(mentorship.mentee_id).user_id).linkedin_url %></td>
-                                <td><%= mentorship.updated_at.strftime("%m/%d/%y") %> </td>
-                                <td><%= (DateTime.now.to_date - mentorship.created_at.to_date).to_i %></td> 
-                                <td><%= mentorship.status == 'active' ? "Active" : "Removed" %></td>
+                                <td class="align_center"><strong><%= link_to Mentee.find(mentorship.mentee_id).full_name, mentee_path(mentorship.mentee_id) %></strong></td> 
+                                <td class="align_center"><%= User.find(Mentee.find(mentorship.mentee_id).user_id).linkedin_url %></td>
+                                <td class="align_center"><%= mentorship.updated_at.strftime("%m/%d/%y") %> </td>
+                                <td class="align_center"><%= (DateTime.now.to_date - mentorship.created_at.to_date).to_i %></td> 
+                                <td class="align_center"><%= mentorship.status == 'active' ? "Active" : "Removed" %></td>
                                 <td></td>
                                 <td><%= link_to 'Remove', edit_mentorship_path(mentorship), :class => "btn-large waves-effect waves-light grey" %></td>
                             </tr>
                         <% end %> 
                     </table>
                 <% end %>
-                </br></br>
                 <% if !@mentor_mentorships.removed.empty? %>
-                    <h5><i>Past</i></h5>
+                    </br></br>
+                    <h5><i>Past Mentees</i></h5>
                     <table class> 
                         <thead> 
                             <th>Mentee</th>
@@ -54,19 +55,19 @@
                         <% end %> 
                     </table>
                 <% end %>
-            <% end %>
+            </div>
+          </div>
         </div>
-      </div>
     </div>
-</div>
+<% end %>
 
-<div class="row">
-    <div>
-      <div class="card">    
-        <div class="card-content">
-            <% if @mentee %>
-                <div class="center"><h5>Mentors</h5></div>
-                <h5><i>Current</i></h5>
+<% if @mentee %>
+    <div class="row">
+        <div>
+          <div class="card">    
+            <div class="card-content">
+                <!--<div class="center"><h5>Mentors</h5></div>-->
+                <h5><i>Current Mentors</i></h5>
                 <% if @mentee_mentorships.nil? | @mentee_mentorships.active.nil? | @mentee_mentorships.active.empty? %>
                     <h6><i>You currently do not have any mentors.</i></h6>
                 <% else %>
@@ -97,7 +98,7 @@
                 <% end %>
                 </br></br>
                 <% if !@mentee_mentorships.removed.empty? %>
-                   <h5><i>Past</i></h5> 
+                   <h5><i>Past Mentors</i></h5> 
                     <table> 
                         <thead> 
                             <th>Mentor</th>
@@ -113,8 +114,8 @@
                         <% end %> 
                     </table>
                 <% end %>
-            <% end %>
+                </div>
+          </div>
         </div>
-      </div>
-    </div>
-</div>
+    </div>    
+<% end %>

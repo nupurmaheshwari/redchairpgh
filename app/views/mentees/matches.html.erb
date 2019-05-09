@@ -1,10 +1,11 @@
-</br>
-<h5>Your Mentor Network</h5>
+<div class="page-header">
+    <p>Your Mentor Network</p>
+</div>
 <div class="row">
     <div class="left">
       <div class="card">    
         <div class="card-content">
-<h5>New Matches</h5>
+        <p><i>New Matches</i></p>
 
 <% matches = @mentee.get_matches %> 
 <% match_ids = matches.map { |match| match[0].id } %>
@@ -23,14 +24,14 @@
         <tbody>
             <% new_matches.each do |match_id| %>
                 <tr>
-                    <td><h6><%= link_to 'View Match', mentor_path(match_id) %></h6></td>
+                    <td><%= link_to 'View Match', mentor_path(match_id), :class => "btn-large waves-effect waves-light sky-blue" %></td>
                 </tr>
             <% end %>
         </tbody>
     </table>
 <% end %>
 </br></br>
-<h5>Pending Requests</h5>
+<p><i>Pending Requests</i></p>
     
 <% if pending_mentors.nil? || pending_mentors.empty? %>
     <p>You have not requested any mentors at this time.</p> 

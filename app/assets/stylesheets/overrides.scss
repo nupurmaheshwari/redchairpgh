@@ -107,6 +107,20 @@ body{
 }
 
 /********** TABLES ********/
+
+table {
+  font-family: 'Open Sans';
+}
+
+table.center {
+    width: 75%;
+    font-family: 'Open Sans';
+    margin-left:275px; 
+    margin-right:auto;
+    border-collapse:separate; 
+    border-spacing:5px;
+  }
+
 table.striped > tbody > tr:nth-child(odd) {
   background-color: #fff;
 }
@@ -151,6 +165,12 @@ th.align_center {
   color: white;
 }
 
+.btn-large {
+  font-family: Montserrat;
+  font-weight:500;
+  background-color: #43A8CD;
+}
+
 .btn:hover {
   background-color: #e02636;
   color: #000;
@@ -176,6 +196,20 @@ th.align_center {
 }
 
 /********** FORMS ********/
+
+.form-inputs {
+  text-align: center; 
+}
+
+.form_labels {
+  color: #505050;  
+}
+
+.row .col.s9 {
+  font-family: 'Open Sans';
+  font-weight: 600;
+}
+
 .switch label input[type=checkbox]:checked + .lever {
   background-color: #ffea00;
 }
@@ -247,7 +281,13 @@ input[type=text].search {
 }
 
 .card {
-  opacity: 0.9;  
+  opacity: 0.93;  
+}
+
+.container .row {
+  width:75%;
+  margin-left:auto;
+  margin-right:auto;
 }
 
 .card-title {
@@ -258,6 +298,14 @@ input[type=text].search {
 .card .card-content p {
   font-family: 'Open Sans'; 
   font-weight: 400;
+}
+
+.card .card-content p i {
+  font-size: 20px;
+}
+
+.card-content h5 {
+  font-family: 'Open Sans';
 }
 
 .card2 {
@@ -281,6 +329,12 @@ input[type=text].search {
 .card-content2-button {
   font-family: Montserrat;
   font-weight: 500;
+}
+
+.row .col.s7 {
+  width: 48%;
+  margin-left: 280px;
+  margin-right: auto;
 }
 
 .vertical-center {
@@ -370,3 +424,12 @@ li.no_bullet {
     color: #4f4f4f; }
   .alert-box.alert-close {
     opacity: 0; }
+
+
+/********** FLASH MSGs ********/
+
+.page-header {
+  font-family: Montserrat;
+  font-weight: 500;
+  font-size: 22px;
+}

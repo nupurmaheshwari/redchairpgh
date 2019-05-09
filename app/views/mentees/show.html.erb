@@ -1,5 +1,6 @@
-<h4>Mentee Profile</h4>
-
+<div class="page-header">
+    <p>Mentee Profile</p>
+</div>
 <% unless User.find(@mentee.user_id).image_url.nil? %> 
   <p> 
     <%= image_tag User.find(@mentee.user_id).image_url, :class => "round", :size => "180x180" %> 
@@ -14,72 +15,72 @@
   <p id="notice"><%= notice %></p>
   
   <p>
-    <h5>LinkedIn URL:</h5>
+    <h5>LinkedIn URL:</h6>
     <%= User.find(@mentee.user_id).linkedin_url %>
   </p>
-  
+  </br>
   <p>
-    <strong>Full Name:</strong>
+    <strong><b>Full Name:</b></strong>
     <%= @mentee.full_name %>
   </p>
   
   <p>
-    <strong>Email:</strong>
+    <strong><b>Email:</b></strong>
     <%= @mentee.email.empty? ? "N/A" : @mentee.email %>
   </p>
   
   <p>
-    <strong>Current role:</strong>
+    <strong><b>Current role:</b></strong>
     <%= @mentee.current_role %>
   </p>
   
   <p>
-    <strong>Mentor role:</strong>
+    <strong><b>Mentor role:</b></strong>
     <%= @mentee.mentor_role %>
   </p>
   
   <p>
-    <strong>Skill 1:</strong>
+    <strong><b>Skill 1:</b></strong>
     <%= @mentee.skill_1 %>
   </p>
   
   <p>
-    <strong>Skill 2:</strong>
+    <strong><b>Skill 2:</strong>
     <%= @mentee.skill_2 %>
   </p>
   
   <p>
-    <strong>Skill 3:</strong>
+    <strong><b>Skill 3:</b></strong>
     <%= @mentee.skill_3 %>
   </p>
   
   <p>
-    <strong>Years in field:</strong>
+    <strong><b>Years in field:</b></strong>
     <%= @mentee.years_in_field %>
   </p>
   
   <p>
-    <strong>Lead team:</strong>
+    <strong><b>Leading a team?</b></strong>
     <%= @mentee.lead_team == false ? "No" : "Yes" %>
   </p>
   
   <p>
-    <strong>Mentor gender:</strong>
+    <strong><b>Mentor's preferred gender:</b></strong>
     <%= @mentee.mentor_gender %>
   </p>
   
   <p>
-    <strong>Comm frequency:</strong>
+    <strong><b>Preferred communication frequency:</b></strong>
     <%= @mentee.comm_frequency %>
   </p>
   
   <p>
-    <strong>Bio:</strong>
+    <strong><b>Bio:</b></strong>
     <%= @mentee.bio.empty? ? "N/A" : @mentee.bio %>
   </p>
   
   <p>
-    <strong>In five years:</strong>
+    <strong><b>5-Year Goals:</b></strong>
     <%= @mentee.in_five_years.empty? ? "N/A" : @mentee.in_five_years %>
   </p>
   

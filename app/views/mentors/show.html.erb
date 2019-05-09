@@ -1,4 +1,6 @@
-<h4>Mentor Profile</h4>
+<div class="page-header">
+    <p>Mentor Profile</p>
+</div>
 
 <% unless User.find(@mentor.user_id).image_url.nil? %> 
   <p> 
@@ -21,46 +23,46 @@
     <h5>LinkedIn URL:</h5>
     <%= User.find(@mentor.user_id).linkedin_url %>
   </p>
-  
+  </br>
   <p>
-    <strong>Full Name:</strong>
+    <strong><b>Full Name:</b></strong>
     <%= @mentor.full_name %>
   </p>
   
   <p>
-    <strong>Current role:</strong>
+    <strong><b>Current role:</b></strong>
     <%= @mentor.current_role[5...-1] %>
   </p>
   
   <p>
-    <strong>Mentor role:</strong>
+    <strong><b>Mentor role:</b></strong>
     <%= @mentor.mentor_roles[5...-1] %>
   </p>
   
   <p>
-    <strong>Specialized skills:</strong>
+    <strong><b>Specialized skills:</b></strong>
     <%= @mentor.specialized_skills[5...-1] %>
   </p>
   
   <p>
   
   <p>
-    <strong>Years in field:</strong>
+    <strong><b>Years in field:</b></strong>
     <%= @mentor.years_in_field %>
   </p>
   
   <p>
-    <strong>Years in Lead:</strong>
+    <strong><b>Years in Lead:</b></strong>
     <%= @mentor.years_in_lead %>
   </p>
 
   <p>
-    <strong>Bio:</strong>
+    <strong><b>Bio:</b></strong>
     <%= @mentor.bio %>
   </p>
   
   <p>
-    <strong>Motivation:</strong>
+    <strong><b>Motivation:</b></strong>
     <%= @mentor.motivation %>
   </p>
   </div>

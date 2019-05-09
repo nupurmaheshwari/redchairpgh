@@ -36,12 +36,11 @@
       <div class="card2">
         <div class="card-content">
           <% if !current_user.is_mentor? %>
-            <%= link_to "Become a Mentor", new_mentor_path, :class => "btn-large waves-effect waves-light sky-blue" %><br><br><br>
+            <%= link_to "Become a Mentor", new_mentor_path, :class => "btn-large waves-effect waves-light sky-blue" %><br><br>
           <% else %>
             <% mentor = Mentor.for_user(current_user.id).first %>
             <%= link_to "Check new requests", mentor_requests_path(mentor), :class => "btn-large waves-effect waves-light sky-blue" %>
           <% end %>
-          </br></br>
           <% if !current_user.is_mentee? %>
             <%= link_to "Become a Mentee", new_mentee_path, :class => "btn-large waves-effect waves-light sky-blue" %>
           <% else %>
@@ -59,7 +58,7 @@
         </div>
       </div>
     <% elsif !logged_in? %>
-      </br></br></br></br></br></br>
+      </br></br></br></br>
       <div class="card2">
         <div class="card-content2">
           <h5>Want to join the community?</h5>
