@@ -1,7 +1,7 @@
 <div class="row">  
 
   
-
+  </br>
   <div class="col s8">
 
     <div class="card center">
@@ -56,11 +56,11 @@
         </div>
       </div>
     <% elsif !logged_in? %>
-      <div class="card">
-        <div class="card-content">
-          <h5>New user?</h5>
-            <br>
-            <%= link_to "Join the Community", signup_path, :class => "btn-large waves-effect waves-light red" %>
+      </br></br></br></br></br></br>
+      <div class="card2">
+        <div class="card-content2">
+          <h5>Want to join the community?</h5>
+            <%= link_to "Create Account", signup_path, :class => "btn-large waves-effect waves-light sky-blue" %>
         </div>
       </div>
     <% elsif !current_user.nil? && !current_user.active %>
