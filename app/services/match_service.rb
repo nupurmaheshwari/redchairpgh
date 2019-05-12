@@ -43,7 +43,7 @@ class Match
         #create array to hold filtered down mentors
         acceptable = []
         mentor_list.each do |mentor|
-            if (mentee.mentor_gender == 'As needed' || mentee.mentor_gender == mentor.gender)
+            if (mentee.mentor_gender == 'No preference' || mentee.mentor_gender == mentor.gender)
                 if (mentor.mentor_roles.include? mentee.mentor_role) && !(mentee.connections.include? mentor.id)
                     if (mentor.is_valid && mentee.user_id != mentor.user_id)
                         if frequency(mentee, mentor) == true

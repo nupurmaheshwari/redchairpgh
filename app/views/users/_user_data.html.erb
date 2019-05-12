@@ -16,7 +16,7 @@
     <% end %>
     <br/>
     
-      <table class="center">
+      <table>
       <tbody>
         <% if @user.username %>
           <tr>
@@ -67,6 +67,7 @@
 </div>
 
 <% if @user.is_mentee? %>
+<% @mentee = Mentee.for_user(@user.id).first %> 
   <div class="col s6">
   <div class="card center">
   <div class="card-content">
@@ -148,7 +149,8 @@
   </div>
   </div>
   
-<% if @user.is_mentor? %>  
+<% if @user.is_mentor? %> 
+<% @mentor = Mentor.for_user(@user.id).first %> 
   <div class="col s6">
   <div class="card center">
   <div class="card-content">
