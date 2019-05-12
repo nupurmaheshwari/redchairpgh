@@ -1,91 +1,61 @@
-
-<div class="row">
+<div class="row" style="width:73rem; border-left:0px">
   <div class="center">
     <div class="card">    
       <div class="card-content">
-<p id="notice"><%= notice %></p>
+        <p id="notice"><%= notice %></p>
 
-<h3>Mentors</h3>
+        <h3>Mentors</h3>
 
-<% if !current_user.nil? && current_user.role?(:contributor) %>
-    <% if !current_user.is_mentee? %>  
-        <p>You are currently not a mentor. Create a profile!</p>
-    <% else %>
-        <table class="striped">
-          <thead>
-            <tr>
-              <th>Current role</th>
-              <th>Years in field</th>
-              <th>Years in lead</th>
-              <th>Specialized skills</th>
-              <th>Mentor roles</th>
-              <th>Gender</th>
-              <th>Comm frequency</th>
-              <th>Bio</th>
-              <th>Motivation</th>
-              <th>Is active</th>
-              <th colspan="3"></th>
-            </tr>
-          </thead>
-        </table>
-    <% end %>
-<% end %>
-
-<%# if !current_user.nil? && current_user.role?(:contributor) && current_user.is_mentee? %>
-   <%# mentors = current_user.mentors_list %>  <!-- need to fix this to reference the mentee profile of user, then call mentors_list scope -->
-<%# elsif !current_user.nil? && current_user.role?(:admin) %> 
-  <% mentors = @mentors %>
-<%# end %>
-
-<% if mentors.empty? %> 
-  <p>Currently no mentors in the system.</p>
-<% else %> 
-    <font size="2">
-    <table class="striped"> 
-      <thead>
-        <tr>
-          <th>Full Name</th>
-          <th>Current role</th>
-          <th>Mentor roles</th>
-          <th>Specialized skills</th>
-          <th>Years in field</th>
-          <th>Years in lead</th>
-          <th>Gender</th>
-          <th>Comm frequency</th>
-          <th>Bio</th>
-          <th>Motivation</th>
-          <th>Is active</th>
-          <th colspan="3"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% mentors.each do |mentor| %>
-          <tr>
-            <td><%= User.find(mentor.user_id).name %></td>
-            <td><%= mentor.current_role[5...-1] %></td>
-            <td><%= mentor.mentor_roles[5...-1] %></td>
-            <td><%= mentor.specialized_skills[5...-1] %></td>
-            <td><%= mentor.years_in_field %></td>
-            <td><%= mentor.years_in_lead %></td>
-            <td><%= mentor.gender %></td>
-            <td><%= mentor.comm_frequency %></td>
-            <td><%= mentor.bio %></td>
-            <td><%= mentor.motivation %></td>
-            <td><%= mentor.is_active %></td>
-            <td><%= link_to 'Show', mentor %></td>
-            <%# if !current_user.nil? && current_user.role(:admin) %>
-                <td><%#= link_to 'Edit', edit_mentor_path(mentor) %></td>
-                <td><%#= link_to 'Destroy', mentor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-            <%# end %>
-          </tr>
+        <% if !current_user.nil? && current_user.role?(:contributor) %>
+          <% if !current_user.is_mentee? %>  
+            <p>You are currently not a mentor. Create a profile!</p>
+          <% end %>
         <% end %>
-      </tbody>
-    </table>
-<% end %>
- </div>
+
+        <% mentors = @mentors %>
+
+        <% if mentors.empty? %> 
+          <p>Currently no mentors in the system.</p>
+        <% else %> 
+            <font size="2">
+            <table class="striped"> 
+              <thead>
+                <tr>
+                  <th>Full Name</th>
+                  <th>Current role</th>
+                  <th>Mentor roles</th>
+                  <th>Specialized skills</th>
+                  <th>Years in field</th>
+                  <th>Years in lead</th>
+                  <th>Gender</th>
+                  <th>Comm frequency</th>
+                  <th>Bio</th>
+                  <th>Motivation</th>
+                  <th>Is active</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% mentors.each do |mentor| %>
+                  <tr>
+                    <td><%= User.find(mentor.user_id).name %></td>
+                    <td><%= mentor.current_role[5...-1] %></td>
+                    <td><%= mentor.mentor_roles[5...-1] %></td>
+                    <td><%= mentor.specialized_skills[5...-1] %></td>
+                    <td><%= mentor.years_in_field %></td>
+                    <td><%= mentor.years_in_lead %></td>
+                    <td><%= mentor.gender %></td>
+                    <td><%= mentor.comm_frequency %></td>
+                    <td><%= mentor.bio %></td>
+                    <td><%= mentor.motivation %></td>
+                    <td><%= mentor.is_active %></td>
+                    <td><%= link_to 'Show', mentor %></td>
+    
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
-</div>
-</div>
-<%# if !current_user.nil? && (current_user.role?(:contributor) && !current_user.is_mentor?) || (current_user.role(:admin)) %>
-    <%#= link_to 'New Mentor', new_mentor_path %>
-<%# end %>

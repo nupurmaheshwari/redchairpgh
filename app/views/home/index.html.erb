@@ -36,7 +36,7 @@
             <%= link_to "Become a Mentor", new_mentor_path, :class => "btn-large waves-effect waves-light sky-blue" %><br><br>
           <% else %>
             <% mentor = Mentor.for_user(current_user.id).first %>
-            <%= link_to "Check new requests", mentor_requests_path(mentor), :class => "btn-large waves-effect waves-light sky-blue" %>
+            <%= link_to "Check new requests", mentor_requests_path(mentor), :class => "btn-large waves-effect waves-light sky-blue" %><br><br>
           <% end %>
           <% if !current_user.is_mentee? %>
             <%= link_to "Become a Mentee", new_mentee_path, :class => "btn-large waves-effect waves-light sky-blue" %>
