@@ -9,14 +9,16 @@
 <% end %>
 
 <% if @mentor.user_id != current_user.id && (current_user.role?(:admin) || !Mentee.for_user(current_user).nil?) %>
-  <% mentee = Mentee.for_user(current_user).first %>
-  <div class="row">
-    <div class="col s9">
-      <div class="card">    
-        <div class="card-content">
-  <p id="notice"><%= notice %></p>
-  <% if mentee.get_pending_mentors.include? @mentor.id %> 
-    <h5><i style="color:blue;">Requested</i></h5>
+  <% if !Mentee.for_user(current_user).nil? %>
+    <% mentee = Mentee.for_user(current_user).first %>
+    <div class="row">
+      <div class="col s9">
+        <div class="card">    
+          <div class="card-content">
+    <p id="notice"><%= notice %></p>
+    <% if mentee.get_pending_mentors.include? @mentor.id %> 
+      <h5><i style="color:blue;">Requested</i></h5>
+    <% end %>
   <% end %>
   
   <p>
