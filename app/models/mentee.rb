@@ -28,9 +28,9 @@ class Mentee < ApplicationRecord
 		mentor_ids
 	end 
 	
-	def get_accepted_mentors 
+	def get_active_mentors 
 		mentor_ids = []
-		Mentorship.accepted.for_mentee(self).each do |mentorship|
+		Mentorship.active.for_mentee(self).each do |mentorship|
 			mentor_ids += (mentorship.mentor_id)
 		end 
 		mentor_ids

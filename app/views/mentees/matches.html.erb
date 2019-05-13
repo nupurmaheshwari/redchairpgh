@@ -10,13 +10,13 @@
 <% matches = @mentee.get_matches %> 
 <% match_ids = matches.map { |match| match[0].id } %>
 <% pending_mentors = @mentee.get_pending_mentors %>
+<% active_mentors = @mentee.get_active_mentors %>
 <% new_matches = match_ids %>
 <% if !pending_mentors.empty? %>
-    <% new_matches = pending_mentors - match_ids %> 
+    <% new_matches = pending_mentors - new_matches %> 
 <% end %>
-<% if !Mentorship.for_mentee(@mentee).empty? %>
-    <% mentorships = Mentorship.for_mentee(@mentee).all %> 
-    <% new_matches = mentorships - pending_mentors - match_ids %>
+<% if !active_mentors.empty? %>
+    <% new_matches = active_mentors - new_matches %>
 <% end %>
 
 <% if @mentee.paused %> 
