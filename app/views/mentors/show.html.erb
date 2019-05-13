@@ -1,5 +1,5 @@
-<div class="card">
-<div class="card-content">
+<!-- <div class="card">
+<div class="card-content"> -->
 <div class="page-header">
     <p>Mentor Profile</p>
 </div>
@@ -150,12 +150,12 @@
   
   <p>
     <strong>Bio:</strong>
-    <%= if mentor.bio.empty? then "N/A" else mentor.bio end %>
+    <%= if @mentor.bio.empty? then "N/A" else @mentor.bio end %>
   </p>
   
   <p>
     <strong>Motivation:</strong>
-    <%= if mentor.motivation.empty? then "N/A" else mentor.motivation end %>
+    <%= if @mentor.motivation.empty? then "N/A" else @mentor.motivation end %>
   </p>
   </div>
   </div>
@@ -170,5 +170,5 @@
   </div>
   </div>
 <% end %>
-</div>
-</div>
+<!-- </div>
+</div> -->
