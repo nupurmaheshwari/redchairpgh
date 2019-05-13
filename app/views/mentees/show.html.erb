@@ -9,7 +9,7 @@
   </p>
 <% end %>
 
-<% if @mentee.user_id != current_user.id && (current_user.role?(:admin) || current_user.is_mentor? %>
+<% if @mentee.user_id != current_user.id && (current_user.role?(:admin) || current_user.is_mentor?) %>
   <div class="row">
     <div class="col s9">
       <div class="card">    
@@ -28,7 +28,7 @@
   
   <p>
     <strong><b>Email:</b></strong>
-    <%= @mentee.email.empty? ? "N/A" : @mentee.email %>
+    <%= if @mentee.email.empty? then "N/A" else @mentee.email end %>
   </p>
   
   <p>
@@ -159,28 +159,28 @@
   </p>
   
   <p>
-    <strong>Lead team:</strong>
+    <strong>Leading a team?:</strong>
     <%= if @mentee.lead_team == false then "No" else "Yes" end %>
   </p>
   
   <p>
-    <strong>Mentor gender:</strong>
+    <strong>Mentor's preferred gender:</strong>
     <%= @mentee.mentor_gender %>
   </p>
   
   <p>
-    <strong>Comm frequency:</strong>
+    <strong>Preferred communication frequency:</strong>
     <%= @mentee.comm_frequency %>
   </p>
   
   <p>
     <strong>Bio:</strong>
-    <%= @mentee.bio %>
+    <%= if @mentee.bio.empty? then "N/A" else @mentee.bio end %>
   </p>
   
   <p>
-    <strong>In five years:</strong>
-    <%= @mentee.in_five_years %>
+    <strong>5-Year Goals:</strong>
+    <%= if @mentee.in_five_years.empty? then "N/A" else @mentee.in_five_years end %>
   </p>
   
   <p>
