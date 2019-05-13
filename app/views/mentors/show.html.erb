@@ -150,12 +150,12 @@
   
   <p>
     <strong>Bio:</strong>
-    <%= if mentor.bio.empty? then "N/A" else mentor.bio end %>
+    <%= if @mentor.bio.empty? then "N/A" else @mentor.bio end %>
   </p>
   
   <p>
     <strong>Motivation:</strong>
-    <%= if mentor.motivation.empty? then "N/A" else mentor.motivation end %>
+    <%= if @mentor.motivation.empty? then "N/A" else @mentor.motivation end %>
   </p>
   </div>
   </div>
