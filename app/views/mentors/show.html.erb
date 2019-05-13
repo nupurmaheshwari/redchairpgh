@@ -1,174 +1,189 @@
-<!-- <div class="card">
-<div class="card-content"> -->
-<div class="page-header">
-    <p>Mentor Profile</p>
-</div>
+<div class="card">
+<div class="card-content">
 
-<% unless User.find(@mentor.user_id).image_url.nil? %> 
-  <p> 
-    <%= image_tag User.find(@mentor.user_id).image_url, :class => "round", :size => "180x180" %> 
-  </p>
-<% end %>
 
 <% if @mentor.user_id != current_user.id && (current_user.role?(:admin) || current_user.is_mentee?) %>
   <% if current_user.is_mentee? %>
     <% mentee = Mentee.for_user(current_user).first %>
     <div class="row">
       <div class="col s9">
+        
+        <div class="page-header">
+          <p><b>Mentor Profile</b></p>
+        </div>
+        <br>
+        <% unless User.find(@mentor.user_id).image_url.nil? %> 
+          <p><%= image_tag User.find(@mentor.user_id).image_url, :class => "round", :size => "180x180" %> </p>
+        <% end %>
+        <br>
+
         <div class="card">    
           <div class="card-content">
-    <p id="notice"><%= notice %></p>
-    <% if mentee.get_pending_mentors.include? @mentor.id %> 
-      <h5><i style="color:blue;">Requested</i></h5>
-    <% end %>
-  <% end %>
+            <p id="notice"><%= notice %></p>
+            <% if mentee.get_pending_mentors.include? @mentor.id %> 
+              <h5><i style="color:blue;">Requested</i></h5>
+            <% end %>
+        <% end %>
   
-  <p>
-    <h5>LinkedIn URL:</h5>
-    <%= User.find(@mentor.user_id).linkedin_url %>
-  </p>
-  </br>
-  <p>
-    <strong><b>Full Name:</b></strong>
-    <%= @mentor.full_name %>
-  </p>
-  
-  <p>
-    <strong><b>Current role:</b></strong>
-    <%= @mentor.current_role[5...-1] %>
-  </p>
-  
-  <p>
-    <strong><b>Mentor role:</b></strong>
-    <%= @mentor.mentor_roles[5...-1] %>
-  </p>
-  
-  <p>
-    <strong><b>Specialized skills:</b></strong>
-    <%= @mentor.specialized_skills[5...-1] %>
-  </p>
-  
-  <p>
-  
-  <p>
-    <strong><b>Years in field:</b></strong>
-    <%= @mentor.years_in_field %>
-  </p>
-  
-  <p>
-    <strong><b>Years in Lead:</b></strong>
-    <%= @mentor.years_in_lead %>
-  </p>
+          <p>
+            <strong><b>Name:</b></strong>
+            <%= @mentor.full_name %>
+          </p>
 
-  <p>
-    <strong><b>Bio:</b></strong>
-    <%= if @mentor.bio.empty? then "N/A" else @mentor.bio end %>
-  </p>
-  
-  <p>
-    <strong><b>Motivation:</b></strong>
-    <%= if @mentor.motivation.empty? then "N/A" else @mentor.motivation end %>
-  </p>
-  </div>
-  </div>
+          <p>
+            <strong><b>LinkedIn URL:</b></strong>
+            <%= User.find(@mentor.user_id).linkedin_url %>
+          </p>
+          
+          <p>
+            <strong><b>Current role:</b></strong>
+            <%= @mentor.current_role[5...-1] %>
+          </p>
+          
+          <p>
+            <strong><b>Mentor role:</b></strong>
+            <%= @mentor.mentor_roles[5...-1] %>
+          </p>
+          
+          <p>
+            <strong><b>Specialized skills:</b></strong>
+            <%= @mentor.specialized_skills[5...-1] %>
+          </p>
+          
+          <p>
+          
+          <p>
+            <strong><b>Years in field:</b></strong>
+            <%= @mentor.years_in_field %>
+          </p>
+          
+          <p>
+            <strong><b>Years in Lead:</b></strong>
+            <%= @mentor.years_in_lead %>
+          </p>
+
+          <p>
+            <strong><b>Bio:</b></strong>
+            <%= if @mentor.bio.empty? then "N/A" else @mentor.bio end %>
+          </p>
+          
+          <p>
+            <strong><b>Motivation:</b></strong>
+            <%= if @mentor.motivation.empty? then "N/A" else @mentor.motivation end %>
+          </p>
+        </div>
+      </div>
 
   
-  <% if current_user.is_mentee? %>
-    <% mentee = Mentee.for_user(current_user).first %>
-    <% if Mentorship.where(mentor_id: @mentor.id, mentee_id: mentee.id).empty? %>
-      <%= link_to 'Request Mentor', mentorships_path(mentor_id: @mentor.id, mentee_id: mentee.id, is_active: true, state: 'pending'), method: :post, :class => "btn-large waves-effect waves-light light-blue" %>
-      <%= link_to 'Back', mentee_matches_path(mentee), :class => "btn-large waves-effect waves-light grey" %>
-    <% else %>
-      <%= link_to 'Back', mentorships_path, :class => "btn-large waves-effect waves-light grey" %>
-    <% end %>
-  <% else %>
-    <%= link_to 'Back', mentorships_path, :class => "btn-large waves-effect waves-light grey" %>
-  <% end %>
-  </br></br>
-  
-  </div>
-  </div>
+      <% if current_user.is_mentee? %>
+        <% mentee = Mentee.for_user(current_user).first %>
+        <% if Mentorship.where(mentor_id: @mentor.id, mentee_id: mentee.id).empty? %>
+          <%= link_to 'Request Mentor', mentorships_path(mentor_id: @mentor.id, mentee_id: mentee.id, is_active: true, state: 'pending'), method: :post, :class => "btn-large waves-effect waves-light light-blue" %>
+          <%= link_to 'Back', mentee_matches_path(mentee), :class => "btn-large waves-effect waves-light grey" %>
+        <% else %>
+          <%= link_to 'Back', mentorships_path, :class => "btn-large waves-effect waves-light grey" %>
+        <% end %>
+      <% else %>
+        <%= link_to 'Back', mentorships_path, :class => "btn-large waves-effect waves-light grey" %>
+      <% end %>
+      </br></br>
+      
+      </div>
+      </div>
+
 <% else %>
- 
   <div class="row">
     <div class="col s9">
+
+      <div class="page-header">
+        <p><b>Mentor Profile</b></p>
+      </div>
+      <br>
+      <% unless User.find(@mentor.user_id).image_url.nil? %> 
+        <p><%= image_tag User.find(@mentor.user_id).image_url, :class => "round", :size => "180x180" %> </p>
+      <% end %>
+      <br>
+
       <div class="card">    
         <div class="card-content">
-  <p id="notice"><%= notice %></p>
+          <p id="notice"><%= notice %></p>
   
-  <p>
-    <h5>LinkedIn URL:</h5>
-    <%= User.find(@mentor.user_id).linkedin_url %>
-  </p>
+          <p>
+            <strong><b>Name:</b></strong>
+            <%= @mentor.full_name %>
+          </p>
+
+
+          <p>
+            <strong><b>LinkedIn URL:</b></h5>
+            <%= User.find(@mentor.user_id).linkedin_url %>
+          </p>
+        
+          
+          <p>
+            <strong><b>Email:</b></strong>
+            <%= @mentor.email.empty? ? "N/A" : @mentor.email %>
+          </p>
+          
+          <p>
+            <strong><b>Current role:</b></strong>
+            <%= @mentor.current_role[5...-1] %>
+          </p>
+          
+          <p>
+            <strong><b>Mentor role:</b></strong>
+            <%= @mentor.mentor_roles[5...-1] %>
+          </p>
+          
+          <p>
+            <strong><b>Specialized skills:</b></strong>
+            <%= @mentor.specialized_skills[5...-1] %>
+          </p>
+          
+          <p>
+          
+          <p>
+            <strong><b>Years in field:</b></strong>
+            <%= @mentor.years_in_field %>
+          </p>
+          
+          <p>
+            <strong><b>Years in Lead:</b></strong>
+            <%= @mentor.years_in_lead %>
+          </p>
+          
+          <p>
+            <strong><b>Gender:</b></strong>
+            <%= @mentor.gender %>
+          </p>
+          
+          <p>
+            <strong><b>Preferred communication frequency:</b></strong>
+            <%= @mentor.comm_frequency %>
+          </p>
+          
+          <p>
+            <strong><b>Bio:</b></strong>
+            <%= if @mentor.bio.empty? then "N/A" else @mentor.bio end %>
+          </p>
+          
+          <p>
+            <strong><b>Motivation:</b></strong>
+            <%= if @mentor.motivation.empty? then "N/A" else @mentor.motivation end %>
+          </p>
+        </div>
+      </div>
+          
+          <%= link_to 'Edit', edit_mentor_path(@mentor), :class => "btn-large waves-effect waves-light light-blue" %> 
+          <% if current_user.role?(:admin) %>
+            <%= link_to 'Back', mentors_path, :class => "btn-large waves-effect waves-light grey" %>
+          <% else %>
+            <%= link_to 'Back', mentorships_path, :class => "btn-large waves-effect waves-light grey" %>
+          <% end %>
   
-  <p>
-    <strong>Full Name:</strong>
-    <%= @mentor.full_name %>
-  </p>
-  
-  <p>
-    <strong>Email:</strong>
-    <%= @mentor.email.empty? ? "N/A" : @mentor.email %>
-  </p>
-  
-  <p>
-    <strong>Current role:</strong>
-    <%= @mentor.current_role[5...-1] %>
-  </p>
-  
-  <p>
-    <strong>Mentor role:</strong>
-    <%= @mentor.mentor_roles[5...-1] %>
-  </p>
-  
-  <p>
-    <strong>Specialized skills:</strong>
-    <%= @mentor.specialized_skills[5...-1] %>
-  </p>
-  
-  <p>
-  
-  <p>
-    <strong>Years in field:</strong>
-    <%= @mentor.years_in_field %>
-  </p>
-  
-  <p>
-    <strong>Years in Lead:</strong>
-    <%= @mentor.years_in_lead %>
-  </p>
-  
-  <p>
-    <strong>Mentor gender:</strong>
-    <%= @mentor.gender %>
-  </p>
-  
-  <p>
-    <strong>Comm frequency:</strong>
-    <%= @mentor.comm_frequency %>
-  </p>
-  
-  <p>
-    <strong>Bio:</strong>
-    <%= if @mentor.bio.empty? then "N/A" else @mentor.bio end %>
-  </p>
-  
-  <p>
-    <strong>Motivation:</strong>
-    <%= if @mentor.motivation.empty? then "N/A" else @mentor.motivation end %>
-  </p>
-  </div>
-  </div>
-  
-  <%= link_to 'Edit', edit_mentor_path(@mentor), :class => "btn-large waves-effect waves-light light-blue" %> 
-  <% if current_user.role?(:admin) %>
-    <%= link_to 'Back', mentors_path, :class => "btn-large waves-effect waves-light grey" %>
-  <% else %>
-    <%= link_to 'Back', mentorships_path, :class => "btn-large waves-effect waves-light grey" %>
-  <% end %>
-  
-  </div>
-  </div>
+        </div>
+      </div>
 <% end %>
-<!-- </div>
-</div> -->
+
+</div>
+</div>
