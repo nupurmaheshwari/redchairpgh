@@ -17,8 +17,8 @@
                     </thead>
                     <% for mentorship in @active_mentorships %> 
                         <tr>
-                            <td><%= mentorship.mentor_id %></td>
-                            <td><%= mentorship.mentee_id %></td> 
+                            <td><%= link_to Mentor.find(mentorship.mentor_id).full_name,  mentor_path(mentorship.mentor_id) %></td> 
+                            <td><%= link_to Mentee.find(mentorship.mentee_id).full_name, mentee_path(mentorship.mentee_id) %></td> 
                             <td><%= mentorship.status %></td>
                         </tr>
                     <% end %> 
@@ -45,8 +45,8 @@
                     </thead>
                     <% for mentorship in @removed_mentorships %> 
                         <tr>
-                            <td><%= mentorship.mentor_id %></td>
-                            <td><%= mentorship.mentee_id %></td> 
+                            <td><%= link_to Mentor.find(mentorship.mentor_id).full_name,  mentor_path(mentorship.mentor_id) %></td> 
+                            <td><%= link_to Mentee.find(mentorship.mentee_id).full_name, mentee_path(mentorship.mentee_id) %></td> 
                             <td><%= mentorship.status %></td>
                         </tr>
                     <% end %> 
