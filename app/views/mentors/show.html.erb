@@ -1,3 +1,5 @@
+<div class="card">
+<div class="card-content">
 <div class="page-header">
     <p>Mentor Profile</p>
 </div>
@@ -8,8 +10,8 @@
   </p>
 <% end %>
 
-<% if @mentor.user_id != current_user.id && (current_user.role?(:admin) || !Mentee.for_user(current_user).nil?) %>
-  <% if !Mentee.for_user(current_user).nil? %>
+<% if @mentor.user_id != current_user.id && (current_user.role?(:admin) || current_user.is_mentee?) %>
+  <% if current_user.is_mentee? %>
     <% mentee = Mentee.for_user(current_user).first %>
     <div class="row">
       <div class="col s9">
@@ -60,18 +62,18 @@
 
   <p>
     <strong><b>Bio:</b></strong>
-    <%= @mentor.bio %>
+    <%= if @mentor.bio.empty? then "N/A" else @mentor.bio end %>
   </p>
   
   <p>
     <strong><b>Motivation:</b></strong>
-    <%= @mentor.motivation %>
+    <%= if @mentor.motivation.empty? then "N/A" else @mentor.motivation end %>
   </p>
   </div>
   </div>
 
   
-  <% if !Mentee.for_user(current_user).nil? %>
+  <% if current_user.is_mentee? %>
     <% mentee = Mentee.for_user(current_user).first %>
     <% if Mentorship.where(mentor_id: @mentor.id, mentee_id: mentee.id).empty? %>
       <%= link_to 'Request Mentor', mentorships_path(mentor_id: @mentor.id, mentee_id: mentee.id, is_active: true, state: 'pending'), method: :post, :class => "btn-large waves-effect waves-light light-blue" %>
@@ -148,12 +150,12 @@
   
   <p>
     <strong>Bio:</strong>
-    <%= @mentor.bio.empty? ? "N/A" : @mentor.bio %>
+    <%= if mentor.bio.empty? then "N/A" else mentor.bio end %>
   </p>
   
   <p>
     <strong>Motivation:</strong>
-    <%= @mentor.motivation.empty? ? "N/A" : @mentor.motivation %>
+    <%= if mentor.motivation.empty? then "N/A" else mentor.motivation end %>
   </p>
   </div>
   </div>
@@ -168,3 +170,5 @@
   </div>
   </div>
 <% end %>
+</div>
+</div>

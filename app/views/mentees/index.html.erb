@@ -47,11 +47,11 @@
                   <td><%= mentee.skill_2 %></td>
                   <td><%= mentee.skill_3 %></td>
                   <td><%= mentee.years_in_field %></td>
-                  <td><%= mentee.lead_team == false ? "No" : "Yes" %></td>
+                  <td><%= if mentee.lead_team == false then "No" else "Yes" end %></td>
                   <td><%= mentee.mentor_gender %></td>
                   <td><%= mentee.comm_frequency %></td>
-                  <td><%= mentee.bio.empty? ? "N/A" : mentee.bio %>></td>
-                  <td><%= mentee.in_five_years.empty? ? "N/A" : mentee.in_five_years %></td>
+                  <td><%= if mentee.bio.empty? then "N/A" else mentee.bio end %></td>
+                  <td><%= if mentee.in_five_years.empty? then "N/A" else mentee.in_five_years end %></td>
                   <td><%= mentee.is_active %></td>
                   <td><%= link_to 'Show', mentee %></td>
 

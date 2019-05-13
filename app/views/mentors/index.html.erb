@@ -45,8 +45,8 @@
                     <td><%= mentor.years_in_lead %></td>
                     <td><%= mentor.gender %></td>
                     <td><%= mentor.comm_frequency %></td>
-                    <td><%= mentor.bio %></td>
-                    <td><%= mentor.motivation %></td>
+                    <td><%= if mentor.bio.empty? then "N/A" else mentor.bio end %></td>
+                    <td><%= if mentor.motivation.empty? then "N/A" else mentor.motivation end %></td>
                     <td><%= mentor.is_active %></td>
                     <td><%= link_to 'Show', mentor %></td>
     
